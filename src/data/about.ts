@@ -224,10 +224,10 @@ export const path = {
     },
     {
       years: "2025",
-      title: { fr: "Le Web3", en: "Web3" },
+      title: { fr: "Je découvre le Web3", en: "Discovering Web3" },
       text: {
-        fr: "Résidence Aquarium chez XRPL Commons, puis création de B-Wiize.",
-        en: "Aquarium residency at XRPL Commons, then founding B-Wiize.",
+        fr: "C'est là que je découvre la blockchain et le monde du Web3 : résidence Aquarium chez XRPL Commons, puis création de B-Wiize.",
+        en: "This is where I discover blockchain and the world of Web3: the Aquarium residency at XRPL Commons, then founding B-Wiize.",
       },
     },
     {
