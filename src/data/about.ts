@@ -90,8 +90,8 @@ export const bring = {
     {
       title: { fr: "Esprit d'équipe", en: "Team spirit" },
       text: {
-        fr: "Lors du hackathon de sélection pour l'accélérateur Dev3Pack, nous construisions SafeHaven Money quand l'ordinateur de ma coéquipière a lâché. Il fallait quand même livrer l'application dans les temps. J'ai repris tout le travail et je l'ai terminée avec Codex. Résultat : l'application a été livrée à temps et présentée au jury. Pendant le Nanodegree, j'ai aussi répondu aux questions d'autres étudiants sur le forum Udacity.",
-        en: "At the selection hackathon for the Dev3Pack accelerator, we were building SafeHaven Money when my teammate's computer gave out. We still had to deliver the app on time. I took over all the work and finished it with Codex. Result: the app was delivered on time and presented to the jury. During the Nanodegree, I also answered other students' questions on the Udacity forum.",
+        fr: "Lors du hackathon de sélection pour l'accélérateur Dev3Pack, nous construisions SafeHaven Money quand l'ordinateur de ma coéquipière a lâché. Il fallait quand même livrer l'application dans les temps. J'ai repris tout le travail et je l'ai terminée avec Codex. Résultat : l'application a été livrée à temps, présentée au jury, et j'ai intégré l'accélérateur Dev3Pack. Pendant le Nanodegree, j'ai aussi répondu aux questions d'autres étudiants sur le forum Udacity.",
+        en: "At the selection hackathon for the Dev3Pack accelerator, we were building SafeHaven Money when my teammate's computer gave out. We still had to deliver the app on time. I took over all the work and finished it with Codex. Result: the app was delivered on time and presented to the jury, and I joined the Dev3Pack accelerator. During the Nanodegree, I also answered other students' questions on the Udacity forum.",
       },
       proofs: [],
     },
@@ -230,10 +230,10 @@ export const path = {
     },
     {
       years: "2026",
-      title: { fr: "Les agents IA", en: "AI agents" },
+      title: { fr: "Du Web3 aux agents IA", en: "From Web3 to AI agents" },
       text: {
-        fr: "AWS & AI Scholars, le bootcamp Dev3Pack, et SafeHaven Money.",
-        en: "AWS & AI Scholars, the Dev3Pack bootcamp, and SafeHaven Money.",
+        fr: "J'entre dans l'écosystème Dev3Pack en janvier, avec un premier bootcamp pour apprendre Solidity, puis je suis SheFi (saison 15), un programme d'initiation à la DeFi. Ensuite viennent SafeHaven Money, AWS & AI Scholars et, de ma propre initiative, le bootcamp AI Engineering de Dev3Pack.",
+        en: "I join the Dev3Pack ecosystem in January, with a first bootcamp to learn Solidity, then follow SheFi (season 15), a DeFi education programme. Then come SafeHaven Money, AWS & AI Scholars and, on my own initiative, Dev3Pack's AI Engineering bootcamp.",
       },
     },
   ] as Period[],
@@ -260,8 +260,8 @@ export const initiatives = {
       role: { fr: "Country Lead, chapitre France", en: "Country Lead, France chapter" },
       when: { fr: "depuis septembre 2026", en: "since September 2026" },
       text: {
-        fr: "J'anime la communauté française de Dev3Pack : je recrute des participants et j'organise des événements. Un engagement que je mène à côté, parce qu'il me tient à cœur.",
-        en: "I run the French Dev3Pack community: I recruit participants and organise events. It's something I do alongside my work, because I care about it.",
+        fr: "Je connais l'écosystème Dev3Pack de l'intérieur depuis janvier 2026. J'anime aujourd'hui sa communauté française : je recrute des participants et j'organise des événements. Un engagement que je mène à côté, parce qu'il me tient à cœur.",
+        en: "I have known the Dev3Pack ecosystem from the inside since January 2026. Today I run its French community: I recruit participants and organise events. It's something I do alongside my work, because I care about it.",
       },
     },
     {
