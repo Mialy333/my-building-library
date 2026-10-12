@@ -241,7 +241,7 @@ export const path = {
 
 // 4. My initiatives: what I started or lead outside a job.
 // Links and screenshots are optional: an initiative shows them only once they
-// exist (apps behind a login are not linked until the login is removed).
+// exist. Repos are linked; live apps behind a login are not, until the login is removed.
 export interface Initiative {
   name: string;
   role: L;
@@ -273,6 +273,7 @@ export const initiatives = {
         fr: "Une plateforme de stablecoins pilotée à la voix, pour les freelances et les entrepreneurs des pays où l'inflation ronge les revenus. Construite sur Solana, avec LI.FI.",
         en: "A voice-first stablecoin platform for freelancers and entrepreneurs in countries where inflation eats into their income. Built on Solana, with LI.FI.",
       },
+      links: [{ label: { fr: "Code", en: "Code" }, url: "https://github.com/Mialy333/SafeHaven" }],
     },
     {
       name: "B-Wiize → Pop Wallet",
@@ -282,6 +283,7 @@ export const initiatives = {
         fr: "Une application Web3 gamifiée pour apprendre aux étudiants à gérer leur budget, construite sur le XRP Ledger. Fin 2025, elle est devenue Pop Wallet, avec ses dix premiers utilisateurs.",
         en: "A gamified Web3 app that teaches students to manage their budget, built on the XRP Ledger. In late 2025 it became Pop Wallet, with its first ten users.",
       },
+      links: [{ label: { fr: "Code de B-Wiize", en: "B-Wiize code" }, url: "https://github.com/Mialy333/B-Wiize_Tech" }],
     },
   ] as Initiative[],
 };
