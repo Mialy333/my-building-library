@@ -57,7 +57,7 @@ export const bring = {
   title: { fr: "Ce que j'<em>apporte</em>", en: "What I <em>bring</em>" } as L,
   items: [
     {
-      title: { fr: "Je construis des agents IA complets.", en: "I build complete AI agents." },
+      title: { fr: "Construction d'agents IA", en: "Building AI agents" },
       text: {
         fr: "Outils, recherche dans des documents, garde-fous, suivi de chaque étape, et des tests pour vérifier que tout marche. Mon chatbot de support sur AWS a obtenu 0,92 à l'évaluation automatique. Mon agent de recherche Dev3Pack a eu 15/15 sur des questions qu'il n'avait jamais vues.",
         en: "Tools, document search, guardrails, tracing every step, and tests to check that it all works. My support chatbot on AWS scored 0.92 in automated evaluation. My Dev3Pack research agent got 15/15 on questions it had never seen.",
@@ -68,7 +68,7 @@ export const bring = {
       ],
     },
     {
-      title: { fr: "J'explique simplement ce qui est compliqué.", en: "I explain complicated things simply." },
+      title: { fr: "Vulgarisation", en: "Explaining simply" },
       text: {
         fr: "En gestion d'actifs, je traduisais les stratégies des gérants et des quants pour les clients. Je fais la même chose avec l'IA, et c'est tout le but de BAA 101 et de son glossaire.",
         en: "In asset management, I translated the strategies of portfolio managers and quants for clients. I do the same with AI, and that is the whole point of BAA 101 and its glossary.",
@@ -79,7 +79,7 @@ export const bring = {
       ],
     },
     {
-      title: { fr: "Je vérifie avant d'affirmer.", en: "I check before I claim." },
+      title: { fr: "Rigueur", en: "Rigour" },
       text: {
         fr: "Pendant Dev3Pack, j'avais estimé la vitesse de mon modèle. Je me trompais : j'ai mesuré, et c'est la mesure qui a tranché. Quand un test n'avait pas tourné, je l'ai dit au lieu de donner un chiffre au hasard.",
         en: "During Dev3Pack, I had estimated how fast my model was. I was wrong: I measured, and the measurement settled it. When a test hadn't run, I said so instead of giving a made-up number.",
@@ -90,7 +90,7 @@ export const bring = {
       ],
     },
     {
-      title: { fr: "Je suis là pour l'équipe.", en: "I show up for the team." },
+      title: { fr: "Esprit d'équipe", en: "Team spirit" },
       text: {
         fr: "Pendant le Nanodegree, j'ai répondu aux questions d'autres étudiants sur le forum Udacity. En hackathon, sur SafeHaven Money, l'ordinateur de ma coéquipière a lâché : j'ai dû tout reprendre, et j'ai terminé l'application avec Codex.",
         en: "During the Nanodegree, I answered other students' questions on the Udacity forum. At a hackathon, while building SafeHaven Money, my teammate's computer gave out: I had to take everything over, and I finished the app with Codex.",
@@ -98,7 +98,7 @@ export const bring = {
       proofs: [],
     },
     {
-      title: { fr: "Mon expertise en finance.", en: "My expertise in finance." },
+      title: { fr: "Expertise en finance", en: "Finance expertise" },
       text: {
         fr: "Une école de commerce majeure Finance, un MBA Trading & Asset Management, puis dix ans en gestion d'actifs, notamment chez Crédit Agricole CIB, Candriam et Northern Trust. Je sais ce que les équipes financières attendent d'un outil : des chiffres justes, et une explication pour chacun.",
         en: "A business school degree with a Finance major, an MBA in Trading & Asset Management, then ten years in asset management, including at Crédit Agricole CIB, Candriam and Northern Trust. I know what finance teams expect from a tool: accurate numbers, and an explanation for each one.",
