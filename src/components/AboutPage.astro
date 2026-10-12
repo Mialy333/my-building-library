@@ -69,20 +69,34 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
     <ul class="certs">
       {certifications.map((c) => {
         const book = bookName(c.book);
+        const several = c.stages.length > 1;
         return (
           <li class="cert">
-            {/* The certificate itself: a tap opens the official verification page. */}
-            <a class="cert-image" href={c.verify.url} target="_blank" rel="noopener">
-              <Image src={c.image} alt={c.imageAlt[locale]} widths={[340, 680, 1000]} sizes="(min-width: 720px) 640px, calc(100vw - 86px)" />
-            </a>
-            <span class="cert-kind">{c.kind[locale]} · {c.date[locale]}</span>
-            <span class="cert-title">{c.title}</span>
-            <span class="cert-issuer">{c.issuer}{c.id && <> · ID {c.id}</>}</span>
-            <span class="cert-links">
-              <a href={c.verify.url} target="_blank" rel="noopener">{c.verify.label[locale]} ↗</a>
-              {c.extra && <a href={c.extra.url} target="_blank" rel="noopener">{c.extra.label[locale]} ↗</a>}
-              {book && <a href={bookUrl(locale, book)}>{t("about.readBook")} →</a>}
-            </span>
+            <span class="cert-issuer">{c.issuer}</span>
+            <h3 class="cert-title">{c.title}</h3>
+            {c.about && <p class="cert-about">{c.about[locale]}</p>}
+            {/* One stage per certificate; several stages read as a small timeline. */}
+            <ol class:list={["stages", { timeline: several }]}>
+              {c.stages.map((s, i) => (
+                <li class="stage">
+                  {/* The certificate itself, as a thumbnail: a tap opens the official verification page. */}
+                  <a class="thumb" href={s.verify.url} target="_blank" rel="noopener">
+                    <Image src={s.image} alt={s.imageAlt[locale]} widths={[200, 400, 600]} sizes="(min-width: 640px) 180px, 160px" />
+                  </a>
+                  <div class="stage-text">
+                    <span class="stage-kind">{several && <>{t("about.stage")} {i + 1} · </>}{s.kind[locale]} · {s.date[locale]}</span>
+                    {several && <span class="stage-title">{s.title}</span>}
+                    <p class="stage-about">{s.about[locale]}</p>
+                    {s.id && <span class="stage-id">ID {s.id}</span>}
+                    <span class="cert-links">
+                      <a href={s.verify.url} target="_blank" rel="noopener">{s.verify.label[locale]} ↗</a>
+                      {s.extra && <a href={s.extra.url} target="_blank" rel="noopener">{s.extra.label[locale]} ↗</a>}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            {book && <a class="cert-book" href={bookUrl(locale, book)}>{t("about.readBook")} →</a>}
           </li>
         );
       })}
@@ -153,17 +167,41 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
   .proofs a { display: inline-flex; align-items: center; min-height: 32px; text-underline-offset: 3px; }
   .proofs:empty { display: none; }
 
-  .certs { display: flex; flex-direction: column; gap: 12px; margin: 18px 0 0; padding: 0; list-style: none; }
+  .certs { display: flex; flex-direction: column; gap: 16px; margin: 18px 0 0; padding: 0; list-style: none; }
   .cert {
-    display: flex; flex-direction: column; gap: 4px; padding: 16px 18px;
+    display: flex; flex-direction: column; gap: 4px; padding: 18px;
     background: var(--card); border: 1px solid var(--ink); border-radius: 16px; box-shadow: 5px 5px 0 var(--shadow);
   }
-  .cert-image { display: block; margin-bottom: 10px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
-  .cert-image :global(img) { display: block; width: 100%; height: auto; }
-  .cert-image:hover, .cert-image:focus-visible { border-color: var(--accent-text); }
-  .cert-kind { font-family: var(--font-mono); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-muted); }
-  .cert-title { font-family: var(--font-serif); font-size: 26px; line-height: 1.1; }
-  .cert-issuer { font-size: 15px; color: var(--ink-soft); }
-  .cert-links { display: flex; flex-wrap: wrap; gap: 0 18px; margin-top: 4px; }
-  .cert-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 16px; font-weight: 600; text-underline-offset: 3px; }
+  .cert-issuer { font-family: var(--font-mono); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-muted); }
+  .cert-title { margin: 0; font-family: var(--font-serif); font-weight: 400; font-size: 24px; line-height: 1.1; }
+  .cert-about { margin: 2px 0 0; font-size: 16px; line-height: 1.5; color: var(--ink-soft); }
+
+  .stages { display: flex; flex-direction: column; gap: 18px; margin: 14px 0 0; padding: 0; list-style: none; }
+  /* Several stages: a plum thread with a dot per stage, like a bookmark ribbon. */
+  .timeline { position: relative; padding-left: 22px; }
+  .timeline::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+  .timeline .stage { position: relative; }
+  .timeline .stage::before {
+    content: ""; position: absolute; left: -22px; top: 4px; width: 12px; height: 12px;
+    border: 2px solid var(--card); border-radius: 50%; background: var(--accent-text);
+  }
+  .stage { display: flex; flex-direction: column; gap: 10px; }
+  /* Thumbnail: big enough to recognise the certificate, small enough not to take the page. */
+  .thumb { display: block; width: 160px; max-width: 100%; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .thumb :global(img) { display: block; width: 100%; height: auto; }
+  .thumb:hover, .thumb:focus-visible { border-color: var(--accent-text); }
+  .stage-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .stage-kind { font-family: var(--font-mono); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-muted); }
+  .stage-title { font-family: var(--font-serif); font-size: 20px; line-height: 1.15; }
+  .stage-about { margin: 2px 0 0; font-size: 15px; line-height: 1.5; color: var(--ink-soft); }
+  .stage-id { font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
+  .cert-links { display: flex; flex-wrap: wrap; gap: 0 18px; }
+  .cert-links a, .cert-book { display: inline-flex; align-items: center; min-height: 44px; font-size: 16px; font-weight: 600; text-underline-offset: 3px; }
+  .cert-book { align-self: flex-start; margin-top: 4px; }
+
+  /* Wider screens: thumbnail on the left, text on the right. */
+  @media (min-width: 640px) {
+    .stage { flex-direction: row; align-items: flex-start; gap: 18px; }
+    .thumb { flex: none; width: 180px; }
+  }
 </style>

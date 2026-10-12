@@ -74,67 +74,102 @@ export const stack: StackGroup[] = [
   },
 ];
 
-export interface Certification {
+// A programme and the certificates it gave, in the order they were earned.
+// AWS & AI Scholars has two stages: the open challenge, then the Nanodegree
+// for those selected. Dev3Pack has one. Every text here comes from Mialy
+// (programme figures) or the runbooks (scores, dates).
+export interface CertStage {
   title: string;
   kind: L;
-  issuer: string;
   date: L;
-  book?: string; // the book that tells this programme, when there is one
+  about: L; // one or two sentences: what this certificate stands for
   verify: { label: L; url: string };
   extra?: { label: L; url: string }; // a second official proof
-  image: ImageMetadata; // picture of the certificate, shown on the About page
+  image: ImageMetadata; // picture of the certificate, shown as a thumbnail
   imageAlt: L;
   id?: string;
 }
 
+export interface Certification {
+  title: string;
+  issuer: string;
+  about?: L; // the programme in one sentence, when it has several stages
+  book?: string; // the book that tells this programme, when there is one
+  stages: CertStage[];
+}
+
+const verify = (url: string) => ({ label: { fr: "Vérifier", en: "Verify" }, url });
+
 export const certifications: Certification[] = [
   {
-    title: "Future AWS Agent Engineer",
-    kind: { fr: "Nanodegree", en: "Nanodegree" },
-    issuer: "Udacity · AWS & AI Scholars",
-    date: { fr: "6 octobre 2026", en: "October 6, 2026" },
-    book: "aws-scholars",
-    verify: { label: { fr: "Vérifier", en: "Verify" }, url: "https://www.udacity.com/certificate/e/c2ce036c-900d-11f1-adc8-3f80681b4872" },
-    image: udacityCertificate,
-    imageAlt: {
-      fr: "Certificat Udacity Future AWS Agent Engineer, décerné à Mialy Ratsimbazafy le 6 octobre 2026",
-      en: "Udacity Future AWS Agent Engineer certificate, awarded to Mialy Ratsimbazafy on October 6, 2026",
+    title: "AWS & AI Scholars",
+    issuer: "Udacity · AWS",
+    about: {
+      fr: "Un programme en deux étapes : un challenge ouvert à tous, puis un Nanodegree pour les mieux classés.",
+      en: "A two-stage programme: a challenge open to all, then a Nanodegree for the top performers.",
     },
+    book: "aws-scholars",
+    stages: [
+      {
+        // A Udacity course certificate, not the AWS Certified AI Practitioner exam:
+        // the label says "course certificate" so the two are never confused.
+        title: "AWS AI Practitioner Challenge",
+        kind: { fr: "Certificat de cours", en: "Course certificate" },
+        date: { fr: "13 juin 2026", en: "June 13, 2026" },
+        about: {
+          fr: "D'avril à juin 2026, nous étions 100 000 à relever le challenge, avec deux projets à rendre.",
+          en: "From April to June 2026, 100,000 of us took on the challenge, with two projects to complete.",
+        },
+        verify: verify("https://www.udacity.com/certificate/e/6312df26-3d77-11f1-a28a-cba2c0c47bf3"),
+        image: awsPractitionerCertificate,
+        imageAlt: {
+          fr: "Certificat de cours Udacity AWS AI Practitioner Challenge, décerné à Mialy Ratsimbazafy le 13 juin 2026",
+          en: "Udacity AWS AI Practitioner Challenge course certificate, awarded to Mialy Ratsimbazafy on June 13, 2026",
+        },
+      },
+      {
+        title: "Future AWS Agent Engineer",
+        kind: { fr: "Nanodegree", en: "Nanodegree" },
+        date: { fr: "6 octobre 2026", en: "October 6, 2026" },
+        about: {
+          fr: "Les 4 500 meilleurs du challenge ont été sélectionnés pour ce Nanodegree. Je suis allée jusqu'au bout : trois projets validés par le mentor Udacity.",
+          en: "The top 4,500 from the challenge were selected for this Nanodegree. I saw it through: three projects approved by the Udacity mentor.",
+        },
+        verify: verify("https://www.udacity.com/certificate/e/c2ce036c-900d-11f1-adc8-3f80681b4872"),
+        image: udacityCertificate,
+        imageAlt: {
+          fr: "Certificat Udacity Future AWS Agent Engineer, décerné à Mialy Ratsimbazafy le 6 octobre 2026",
+          en: "Udacity Future AWS Agent Engineer certificate, awarded to Mialy Ratsimbazafy on October 6, 2026",
+        },
+      },
+    ],
   },
   {
     title: "AI Engineering Bootcamp",
-    kind: { fr: "Certificat de fin de parcours", en: "Certificate of completion" },
     issuer: "Dev3Pack",
-    date: { fr: "octobre 2026", en: "October 2026" },
     book: "dev3pack",
-    id: "0MEIAR4GV9KF",
-    verify: {
-      label: { fr: "Vérifier", en: "Verify" },
-      url: "https://app.dev3pack.xyz/api/bootcamp-cert?certificateId=0meiar4gv9kf&v=4",
-    },
-    extra: {
-      label: { fr: "Résultat 15/15", en: "15/15 result" },
-      url: "https://github.com/Gecko-Academy/dev3pack-submissions/blob/main/finals/Mialy333/result.json",
-    },
-    image: dev3packCertificate,
-    imageAlt: {
-      fr: "Certificat de fin de parcours Dev3Pack AI Engineering Bootcamp, délivré à Mialy, ID 0MEIAR4GV9KF",
-      en: "Dev3Pack AI Engineering Bootcamp certificate of completion, issued to Mialy, ID 0MEIAR4GV9KF",
-    },
-  },
-  {
-    // A Udacity course certificate, not the AWS Certified AI Practitioner exam:
-    // the label says "course certificate" so the two are never confused.
-    title: "AWS AI Practitioner Challenge",
-    kind: { fr: "Certificat de cours", en: "Course certificate" },
-    issuer: "Udacity",
-    date: { fr: "13 juin 2026", en: "June 13, 2026" },
-    verify: { label: { fr: "Vérifier", en: "Verify" }, url: "https://www.udacity.com/certificate/e/6312df26-3d77-11f1-a28a-cba2c0c47bf3" },
-    image: awsPractitionerCertificate,
-    imageAlt: {
-      fr: "Certificat de cours Udacity AWS AI Practitioner Challenge, décerné à Mialy Ratsimbazafy le 13 juin 2026",
-      en: "Udacity AWS AI Practitioner Challenge course certificate, awarded to Mialy Ratsimbazafy on June 13, 2026",
-    },
+    stages: [
+      {
+        title: "AI Engineering Bootcamp",
+        kind: { fr: "Certificat de fin de parcours", en: "Certificate of completion" },
+        date: { fr: "octobre 2026", en: "October 2026" },
+        about: {
+          fr: "Trois semaines (14 septembre → 2 octobre 2026) pour construire un agent de recherche ancré dans ses sources. Parcours noté 5 100/5 100, final assignment 15/15, Gecko capstone rendu et défendu à l'oral.",
+          en: "Three weeks (September 14 → October 2, 2026) to build a source-grounded research agent. Graded track 5,100/5,100, final assignment 15/15, Gecko capstone delivered and defended orally.",
+        },
+        id: "0MEIAR4GV9KF",
+        verify: verify("https://app.dev3pack.xyz/api/bootcamp-cert?certificateId=0meiar4gv9kf&v=4"),
+        extra: {
+          label: { fr: "Résultat 15/15", en: "15/15 result" },
+          url: "https://github.com/Gecko-Academy/dev3pack-submissions/blob/main/finals/Mialy333/result.json",
+        },
+        image: dev3packCertificate,
+        imageAlt: {
+          fr: "Certificat de fin de parcours Dev3Pack AI Engineering Bootcamp, délivré à Mialy, ID 0MEIAR4GV9KF",
+          en: "Dev3Pack AI Engineering Bootcamp certificate of completion, issued to Mialy, ID 0MEIAR4GV9KF",
+        },
+      },
+    ],
   },
 ];
 
@@ -148,4 +183,6 @@ export function proofHref(proof: Proof, locale: Locale): string | null {
   return chapter?.published ? chapterUrl(locale, book, chapter) : null;
 }
 
-export const certificationOf = (bookSlug: string) => certifications.find((c) => c.book === bookSlug);
+// The certificate a book page shows: the last one its programme gave.
+export const certificationOf = (bookSlug: string): CertStage | undefined =>
+  certifications.find((c) => c.book === bookSlug)?.stages.at(-1);

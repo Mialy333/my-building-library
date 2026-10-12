@@ -291,8 +291,13 @@ Sur la scène, la ligne mono du haut passe donc en `--ink-soft` : `--ink-muted` 
 - En haut : portrait en grande arche (200 × 250), « Qui écrit », h1 « À *propos* », la ligne d'auteure, les boutons de profils.
 - « Ma présentation » : encadré pointillé « à paraître » tant que le texte de Mialy n'est pas écrit.
 - **Ma *stack*** (`src/data/credentials.ts`, source unique) : trois groupes (Langages, AWS, Agents), dont le titre est centré entre deux filets, en mono 16 px, graisse 500, en `--ink`. « AWS » est gardé tel quel (c'est le terme que cherchent les recruteurs). Chaque outil = nom en serif, précision courte, puis ses preuves en mono : liens vers les chapitres ou repos où il a servi, d'après les runbooks. Un outil sans preuve (React) s'affiche sans lien.
-- **Mes *certifications*** : une carte par certificat. En haut, l'image du certificat (`src/assets/certs/`, optimisée par Astro), qui ouvre la page de vérification officielle ; puis type et date en mono, titre serif, organisme (et ID), liens « Vérifier ↗ » (page officielle Udacity ou Dev3Pack), « Résultat 15/15 ↗ » pour Dev3Pack (`result.json` du dépôt du cours) et lien vers le livre du parcours quand il existe (l'AWS AI Practitioner Challenge, cours Udacity de juin 2026, n'a pas de livre). Ordre : du plus récent au plus ancien. Un certificat de cours est étiqueté « Certificat de cours », jamais présenté comme une certification AWS officielle. Pas de logo d'organisme ajouté en dehors des certificats eux-mêmes.
-- Les pages des livres AWS et Dev3Pack affichent aussi leur certificat sous l'en-tête, avec le même lien de vérification.
+- **Mes *certifications*** : une carte par programme, du plus récent au plus ancien. En tête : organisme en mono, titre du programme en serif 24 px, puis une phrase qui présente le programme quand il a plusieurs étapes.
+  - Chaque certificat du programme = une étape : miniature du certificat (160 px sur mobile, 180 px à gauche du texte dès 640 px), qui ouvre la page de vérification officielle ; « Étape N · type · date » en mono ; titre ; une ou deux phrases qui disent ce que le certificat représente ; ID éventuel ; liens « Vérifier ↗ » et, pour Dev3Pack, « Résultat 15/15 ↗ ».
+  - Plusieurs étapes se lisent comme une petite frise : un fil `--line` à gauche et un point prune par étape, comme un ruban marque-page.
+  - AWS & AI Scholars réunit l'AWS AI Practitioner Challenge (avril → juin 2026, 100 000 participants, deux projets ; certificat de cours du 13 juin 2026) et le Nanodegree Future AWS Agent Engineer (les 4 500 mieux classés, trois projets validés ; 6 octobre 2026). Chiffres donnés par Mialy.
+  - Un certificat de cours est étiqueté « Certificat de cours », jamais présenté comme une certification AWS officielle.
+  - Lien « Le livre de ce parcours → » en bas de la carte quand le programme a un livre. Pas de logo d'organisme ajouté en dehors des certificats eux-mêmes.
+- Les pages des livres AWS et Dev3Pack affichent aussi, sous l'en-tête, le dernier certificat de leur programme (le Nanodegree pour AWS), avec le même lien de vérification.
 
 ### 5.9 Glossaire BAA 101
 
