@@ -7,6 +7,10 @@ import type { StackIcon } from "./stack-icons";
 import udacityCertificate from "../assets/certs/udacity.jpg";
 import dev3packCertificate from "../assets/certs/dev3pack.jpg";
 import awsPractitionerCertificate from "../assets/certs/aws-ai-practitioner.jpg";
+import shefiCertificate from "../assets/certs/shefi.jpg";
+import cyfrinBlockchain from "../assets/certs/cyfrin-blockchain.jpg";
+import cyfrinSolidity from "../assets/certs/cyfrin-solidity.jpg";
+import cyfrinFoundry from "../assets/certs/cyfrin-foundry.jpg";
 
 type L = Record<Locale, string>;
 
@@ -50,7 +54,7 @@ export const stack: StackGroup[] = [
       },
       {
         name: "React", icon: "brand-react",
-        // Honest detail: both apps were built with AI coding tools (Codex, Bolt.new).
+        // Honest detail: these apps were built with the help of AI coding tools (Codex, Bolt.new).
         detail: {
           fr: "React Native et web, avec l'aide d'outils d'IA",
           en: "React Native and web, built with AI coding tools",
@@ -58,6 +62,7 @@ export const stack: StackGroup[] = [
         proofs: [
           { label: "SafeHaven Money", url: "https://github.com/Mialy333/SafeHaven/tree/main/app" },
           { label: "B-Wiize", url: "https://github.com/Mialy333/B-Wiize_Tech" },
+          { label: "DeFi PulseX", url: "https://github.com/Mialy333/DeFi-PulseX" },
         ],
       },
     ],
@@ -91,6 +96,48 @@ export const stack: StackGroup[] = [
       { name: "Ollama", icon: "cpu", detail: { fr: "modèles locaux", en: "local models" }, proofs: [d3p(2, "Dev3Pack S2"), d3p(16, "Final")] },
     ],
   },
+  {
+    title: { fr: "Blockchain & DeFi", en: "Blockchain & DeFi" },
+    items: [
+      {
+        name: "Solana", icon: "currency-solana",
+        detail: { fr: "un agent qui achète on-chain", en: "an agent that buys on-chain" },
+        proofs: [d3p(17, "Gecko"), { label: "SafeHaven Money", url: "https://github.com/Mialy333/SafeHaven" }],
+      },
+      {
+        name: "XRP Ledger", icon: "currency-xrp",
+        detail: { fr: "résidence XRPL Commons", en: "XRPL Commons residency" },
+        proofs: [
+          { label: "B-Wiize", url: "https://github.com/Mialy333/B-Wiize_Tech" },
+          { label: "Demo Day", url: "https://www.youtube.com/watch?v=wKpopgjP5Fc" },
+          { label: "LinkedIn", url: "https://www.linkedin.com/posts/mialyratsimbazafy75_hi-everyone-heres-a-recap-of-my-experience-share-7325571310082842624-Sscv/" },
+        ],
+      },
+      {
+        name: "DeFi", icon: "coins",
+        // Hackathon prototypes, left unfinished: said plainly in the detail.
+        detail: { fr: "SheFi, puis des prototypes de hackathon, inachevés", en: "SheFi, then hackathon prototypes, unfinished" },
+        proofs: [
+          { label: "SheFi", page: "about/#cert-title" },
+          { label: "DeFi PulseX", url: "https://github.com/Mialy333/DeFi-PulseX" },
+          { label: "Alpha Whispr", url: "https://farhack2026.vercel.app" },
+          { label: "ENS SplitBook", url: "https://ens-splitbook.vercel.app" },
+        ],
+      },
+      {
+        name: "Solidity", icon: "currency-ethereum",
+        detail: { fr: "premiers contrats", en: "first contracts" },
+        proofs: [
+          { label: "Cyfrin", page: "about/#cert-title" },
+          { label: "GitHub", url: "https://github.com/Mialy333/30-days-of-solidity-submissions/tree/main/submissions/Mialy333" },
+        ],
+      },
+      {
+        name: "Foundry", icon: "hammer",
+        proofs: [{ label: "Cyfrin", page: "about/#cert-title" }],
+      },
+    ],
+  },
 ];
 
 // A programme and the certificates it gave, in the order they were earned.
@@ -100,9 +147,9 @@ export const stack: StackGroup[] = [
 export interface CertStage {
   title: string;
   kind: L;
-  date: L;
+  date?: L; // shown when known
   about: L; // one or two sentences: what this certificate stands for
-  verify: { label: L; url: string };
+  verify?: { label: L; url: string }; // official verification page, when one exists
   extra?: { label: L; url: string }; // a second official proof
   image: ImageMetadata; // picture of the certificate, shown as a thumbnail
   imageAlt: L;
@@ -192,6 +239,61 @@ export const certifications: Certification[] = [
         imageAlt: {
           fr: "Certificat de fin de parcours Dev3Pack AI Engineering Bootcamp, délivré à Mialy, ID 0MEIAR4GV9KF",
           en: "Dev3Pack AI Engineering Bootcamp certificate of completion, issued to Mialy, ID 0MEIAR4GV9KF",
+        },
+      },
+    ],
+  },
+  {
+    title: "Cyfrin Updraft",
+    issuer: "Cyfrin",
+    about: {
+      fr: "Trois cours de développement blockchain, du fonctionnement d'une blockchain jusqu'aux outils de test des smart contracts.",
+      en: "Three blockchain development courses, from how a blockchain works to the tools that test smart contracts.",
+    },
+    stages: [
+      {
+        title: "Blockchain Basics",
+        kind: { fr: "Badge de cours", en: "Course badge" },
+        about: { fr: "Comment fonctionne une blockchain : blocs, transactions, portefeuilles, smart contracts.", en: "How a blockchain works: blocks, transactions, wallets, smart contracts." },
+        verify: verify("https://profiles.cyfrin.io/u/mialy333/achievements/blockchain-basics"),
+        image: cyfrinBlockchain,
+        imageAlt: { fr: "Badge Cyfrin Updraft « Blockchain Course »", en: "Cyfrin Updraft \"Blockchain Course\" badge" },
+      },
+      {
+        title: "Solidity 101",
+        kind: { fr: "Badge de cours", en: "Course badge" },
+        about: { fr: "Écrire ses premiers smart contracts en Solidity.", en: "Writing first smart contracts in Solidity." },
+        verify: verify("https://profiles.cyfrin.io/u/mialy333/achievements/solidity"),
+        image: cyfrinSolidity,
+        imageAlt: { fr: "Badge Cyfrin Updraft « Solidity 101 Course »", en: "Cyfrin Updraft \"Solidity 101 Course\" badge" },
+      },
+      {
+        title: "Foundry 101",
+        kind: { fr: "Badge de cours", en: "Course badge" },
+        about: { fr: "Tester et déployer des smart contracts avec Foundry.", en: "Testing and deploying smart contracts with Foundry." },
+        verify: verify("https://profiles.cyfrin.io/u/mialy333/achievements/foundry"),
+        image: cyfrinFoundry,
+        imageAlt: { fr: "Badge Cyfrin Updraft « Foundry 101 Course »", en: "Cyfrin Updraft \"Foundry 101 Course\" badge" },
+      },
+    ],
+  },
+  {
+    title: "SheFi Season 15",
+    issuer: "SheFi",
+    stages: [
+      {
+        // No public verification page: the certificate is shown, without a "Verify" link.
+        title: "SheFi Season 15",
+        kind: { fr: "Certificat de fin de programme", en: "Certificate of completion" },
+        date: { fr: "2 février 2026", en: "February 2, 2026" },
+        about: {
+          fr: "Un programme d'éducation à la DeFi et au Web3, suivi en début d'année, avant de passer aux agents IA.",
+          en: "A DeFi and Web3 education programme, taken early in the year, before moving on to AI agents.",
+        },
+        image: shefiCertificate,
+        imageAlt: {
+          fr: "Certificat de fin de programme SheFi, saison 15, délivré à Mialy Ratsimbazafy le 2 février 2026",
+          en: "SheFi season 15 certificate of completion, issued to Mialy Ratsimbazafy on February 2, 2026",
         },
       },
     ],

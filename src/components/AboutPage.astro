@@ -118,7 +118,7 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
       {initiatives.items.map((it) => (
         <li class="initiative">
           {it.image && (
-            <Image class="shot" src={it.image.src} alt={it.image.alt[locale]} widths={[340, 680]} sizes="(min-width: 720px) 640px, calc(100vw - 86px)" />
+            <Image class="shot" src={it.image.src} alt={it.image.alt[locale]} widths={[200, 400, 600]} sizes="200px" />
           )}
           <span class="initiative-meta">
             {it.when[locale]}
@@ -213,16 +213,22 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
               {c.stages.map((s, i) => (
                 <li class="stage">
                   {/* The certificate itself, as a thumbnail: a tap opens the official verification page. */}
-                  <a class="thumb" href={s.verify.url} target="_blank" rel="noopener">
-                    <Image src={s.image} alt={s.imageAlt[locale]} widths={[200, 400, 600]} sizes="(min-width: 640px) 180px, 160px" />
-                  </a>
+                  {s.verify ? (
+                    <a class="thumb" href={s.verify.url} target="_blank" rel="noopener">
+                      <Image src={s.image} alt={s.imageAlt[locale]} widths={[200, 400, 600]} sizes="(min-width: 640px) 180px, 160px" />
+                    </a>
+                  ) : (
+                    <span class="thumb">
+                      <Image src={s.image} alt={s.imageAlt[locale]} widths={[200, 400, 600]} sizes="(min-width: 640px) 180px, 160px" />
+                    </span>
+                  )}
                   <div class="stage-text">
-                    <span class="stage-kind">{several && <>{t("about.stage")} {i + 1} · </>}{s.kind[locale]} · {s.date[locale]}</span>
+                    <span class="stage-kind">{several && <>{t("about.stage")} {i + 1} · </>}{s.kind[locale]}{s.date && <> · {s.date[locale]}</>}</span>
                     {several && <span class="stage-title">{s.title}</span>}
                     <p class="stage-about">{s.about[locale]}</p>
                     {s.id && <span class="stage-id">ID {s.id}</span>}
                     <span class="cert-links">
-                      <a href={s.verify.url} target="_blank" rel="noopener">{s.verify.label[locale]} ↗</a>
+                      {s.verify && <a href={s.verify.url} target="_blank" rel="noopener">{s.verify.label[locale]} ↗</a>}
                       {s.extra && <a href={s.extra.url} target="_blank" rel="noopener">{s.extra.label[locale]} ↗</a>}
                     </span>
                   </div>
@@ -344,7 +350,7 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
     display: flex; flex-direction: column; gap: 4px; padding: 18px;
     background: var(--card); border: 1px solid var(--ink); border-radius: 16px; box-shadow: 5px 5px 0 var(--shadow);
   }
-  .initiative :global(.shot) { display: block; width: 100%; height: auto; margin-bottom: 10px; border: 1px solid var(--line); border-radius: 10px; }
+  .initiative :global(.shot) { display: block; width: 200px; max-width: 100%; height: auto; margin-bottom: 10px; border: 1px solid var(--line); border-radius: 8px; }
   .initiative-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-family: var(--font-mono); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-muted); }
   /* "On pause": said plainly, as a small tag. */
   .status { padding: 2px 8px; border: 1px solid var(--ink-faint); border-radius: 999px; font-size: 12px; }

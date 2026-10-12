@@ -52,9 +52,9 @@ const crumbs = [
       <p class="certificate">
         <span class="mono caps">
           {/* "Certificate · Nanodegree", but not "Certificate · Certificate of completion". */}
-          {/certifica/i.test(certification.kind[locale]) ? "" : `${t("book.certificate")} · `}{certification.kind[locale]} · {certification.date[locale]}
+          {/certifica/i.test(certification.kind[locale]) ? "" : `${t("book.certificate")} · `}{certification.kind[locale]}{certification.date && ` · ${certification.date[locale]}`}
         </span>
-        <a href={certification.verify.url} target="_blank" rel="noopener">{certification.verify.label[locale]} ↗</a>
+        {certification.verify && <a href={certification.verify.url} target="_blank" rel="noopener">{certification.verify.label[locale]} ↗</a>}
       </p>
     )}
 

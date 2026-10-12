@@ -3,6 +3,7 @@
 // Sections not written yet simply are not listed: the page shows "coming soon".
 import type { Locale } from "../i18n/ui";
 import type { Proof } from "./credentials";
+import womenInDefiCertificate from "../assets/initiatives/women-in-defi.jpg";
 
 type L = Record<Locale, string>;
 
@@ -122,10 +123,11 @@ export const values = {
     {
       title: { fr: "Contribuer", en: "Giving back" },
       text: {
-        fr: "Pendant le bootcamp Dev3Pack, deux outils du cours plantaient : l'envoi des rendus, et le scanner de secrets du projet Gecko face aux fichiers binaires. Contourner le problème pour moi ne suffisait pas : il fallait que ça marche pour les suivants. J'ai signalé chaque bug dans une issue publique, avec sa cause et un correctif proposé, déjà appliqué dans mon propre repo. Et j'écris sur Dev.to ce que j'apprends en construisant.",
-        en: "During the Dev3Pack bootcamp, two course tools were crashing: the submission command, and the Gecko project's secret scanner on binary files. Working around it for myself wasn't enough: it had to work for the next students. I reported each bug in a public issue, with its cause and a proposed fix, already applied in my own repo. And I write on Dev.to about what I learn while building.",
+        fr: "Women In DeFi cherchait des mentors pour son programme Intro to Web3 Squad 4.0. J'ai postulé et j'ai animé une session d'1 h 30 pour un groupe d'environ 400 participantes : les bases de la blockchain, puis la confiance en soi dans les choix de carrière et la visibilité. Women In DeFi m'a remis un certificat d'appréciation. Pendant le bootcamp Dev3Pack, j'ai aussi signalé deux bugs du cours dans des issues publiques, avec leur cause et un correctif proposé. Et j'écris sur Dev.to ce que j'apprends en construisant.",
+        en: "Women In DeFi was looking for mentors for its Intro to Web3 Squad 4.0 programme. I applied and led a 90-minute session for a group of about 400 participants: blockchain basics, then confidence in career choices and visibility. Women In DeFi gave me a certificate of appreciation. During the Dev3Pack bootcamp, I also reported two course bugs in public issues, with their cause and a proposed fix. And I write on Dev.to about what I learn while building.",
       },
       proofs: [
+        { label: same("Women In DeFi"), proof: { label: "Women In DeFi", page: "about/#initiatives-title" } },
         { label: same("Issue #15"), proof: { label: "Issue #15", url: "https://github.com/Gecko-Academy/dev3pack-cohort-2026-09/issues/15" } },
         { label: same("Issue #16"), proof: { label: "Issue #16", url: "https://github.com/Gecko-Academy/dev3pack-cohort-2026-09/issues/16" } },
         { label: same("Issue #12 (Gecko)"), proof: { label: "Issue #12", url: "https://github.com/Gecko-Academy/Dev3Pack-Gecko-Capstone-Project/issues/12" } },
@@ -232,8 +234,8 @@ export const path = {
       years: "2026",
       title: { fr: "Du Web3 aux agents IA", en: "From Web3 to AI agents" },
       text: {
-        fr: "J'entre dans l'écosystème Dev3Pack en janvier, avec un premier bootcamp pour apprendre Solidity, puis je suis SheFi (saison 15), un programme d'initiation à la DeFi. Ensuite viennent SafeHaven Money, AWS AI & ML Scholars et, de ma propre initiative, le bootcamp AI Engineering de Dev3Pack.",
-        en: "I join the Dev3Pack ecosystem in January, with a first bootcamp to learn Solidity, then follow SheFi (season 15), a DeFi education programme. Then come SafeHaven Money, AWS AI & ML Scholars and, on my own initiative, Dev3Pack's AI Engineering bootcamp.",
+        fr: "J'entre dans l'écosystème Dev3Pack en janvier, avec un premier bootcamp pour apprendre Solidity, puis je suis SheFi (saison 15), un programme d'initiation à la DeFi. Ensuite viennent SafeHaven Money, une session de mentorat chez Women In DeFi, AWS AI & ML Scholars et, de ma propre initiative, le bootcamp AI Engineering de Dev3Pack.",
+        en: "I join the Dev3Pack ecosystem in January, with a first bootcamp to learn Solidity, then follow SheFi (season 15), a DeFi education programme. Then come SafeHaven Money, a mentoring session at Women In DeFi, AWS AI & ML Scholars and, on my own initiative, Dev3Pack's AI Engineering bootcamp.",
       },
     },
   ] as Period[],
@@ -274,6 +276,22 @@ export const initiatives = {
         en: "A voice-first stablecoin platform for freelancers and entrepreneurs in countries where inflation eats into their income. Built on Solana, with LI.FI.",
       },
       links: [{ label: { fr: "Code", en: "Code" }, url: "https://github.com/Mialy333/SafeHaven" }],
+    },
+    {
+      name: "Women In DeFi",
+      role: { fr: "mentore, Intro to Web3 Squad 4.0", en: "mentor, Intro to Web3 Squad 4.0" },
+      when: { fr: "mai 2026", en: "May 2026" },
+      text: {
+        fr: "Une session d'1 h 30 pour un groupe d'environ 400 participantes : les bases de la blockchain, la confiance en soi dans les choix de carrière et la visibilité.",
+        en: "A 90-minute session for a group of about 400 participants: blockchain basics, confidence in career choices, and visibility.",
+      },
+      image: {
+        src: womenInDefiCertificate,
+        alt: {
+          fr: "Certificat d'appréciation Women In DeFi remis à Mialy Ratsimbazafy pour son mentorat dans le programme Intro to Web3 Squad 4.0, 30 mai 2026",
+          en: "Women In DeFi certificate of appreciation given to Mialy Ratsimbazafy for her mentorship in the Intro to Web3 Squad 4.0 programme, May 30, 2026",
+        },
+      },
     },
     {
       name: "B-Wiize → Pop Wallet",
