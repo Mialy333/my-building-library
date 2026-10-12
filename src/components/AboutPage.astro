@@ -11,7 +11,8 @@ import portrait from "../assets/mialy.jpg";
 
 const locale = getLocale(Astro.currentLocale);
 const t = useTranslations(locale);
-const bookName = (slug: string) => books.find((b) => b.slug === slug);
+// A certificate may have no book on the site (a short course): no book link then.
+const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) : undefined);
 ---
 
 <article class="about">

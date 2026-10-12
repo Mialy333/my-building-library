@@ -5,6 +5,7 @@ import type { Locale } from "../i18n/ui";
 import { books, bookUrl, chapterUrl } from "./books";
 import udacityCertificate from "../assets/certs/udacity.jpg";
 import dev3packCertificate from "../assets/certs/dev3pack.jpg";
+import awsPractitionerCertificate from "../assets/certs/aws-ai-practitioner.jpg";
 
 type L = Record<Locale, string>;
 
@@ -78,7 +79,7 @@ export interface Certification {
   kind: L;
   issuer: string;
   date: L;
-  book: string; // the book that tells this programme
+  book?: string; // the book that tells this programme, when there is one
   verify: { label: L; url: string };
   extra?: { label: L; url: string }; // a second official proof
   image: ImageMetadata; // picture of the certificate, shown on the About page
@@ -119,6 +120,20 @@ export const certifications: Certification[] = [
     imageAlt: {
       fr: "Certificat de fin de parcours Dev3Pack AI Engineering Bootcamp, délivré à Mialy, ID 0MEIAR4GV9KF",
       en: "Dev3Pack AI Engineering Bootcamp certificate of completion, issued to Mialy, ID 0MEIAR4GV9KF",
+    },
+  },
+  {
+    // A Udacity course certificate, not the AWS Certified AI Practitioner exam:
+    // the label says "course certificate" so the two are never confused.
+    title: "AWS AI Practitioner Challenge",
+    kind: { fr: "Certificat de cours", en: "Course certificate" },
+    issuer: "Udacity",
+    date: { fr: "13 juin 2026", en: "June 13, 2026" },
+    verify: { label: { fr: "Vérifier", en: "Verify" }, url: "https://www.udacity.com/certificate/e/6312df26-3d77-11f1-a28a-cba2c0c47bf3" },
+    image: awsPractitionerCertificate,
+    imageAlt: {
+      fr: "Certificat de cours Udacity AWS AI Practitioner Challenge, décerné à Mialy Ratsimbazafy le 13 juin 2026",
+      en: "Udacity AWS AI Practitioner Challenge course certificate, awarded to Mialy Ratsimbazafy on June 13, 2026",
     },
   },
 ];
