@@ -98,10 +98,10 @@ export const bring = {
       proofs: [],
     },
     {
-      title: { fr: "Je connais la finance.", en: "I know finance." },
+      title: { fr: "Mon expertise en finance.", en: "My expertise in finance." },
       text: {
-        fr: "Un MBA Trading & Asset Management, puis dix ans en gestion d'actifs, notamment chez Crédit Agricole CIB, Candriam et Northern Trust. Je sais ce que les équipes financières attendent d'un outil : des chiffres justes, et une explication pour chacun.",
-        en: "An MBA in Trading & Asset Management, then ten years in asset management, including at Crédit Agricole CIB, Candriam and Northern Trust. I know what finance teams expect from a tool: accurate numbers, and an explanation for each one.",
+        fr: "Une école de commerce majeure Finance, un MBA Trading & Asset Management, puis dix ans en gestion d'actifs, notamment chez Crédit Agricole CIB, Candriam et Northern Trust. Je sais ce que les équipes financières attendent d'un outil : des chiffres justes, et une explication pour chacun.",
+        en: "A business school degree with a Finance major, an MBA in Trading & Asset Management, then ten years in asset management, including at Crédit Agricole CIB, Candriam and Northern Trust. I know what finance teams expect from a tool: accurate numbers, and an explanation for each one.",
       },
       proofs: [],
     },
@@ -128,8 +128,8 @@ export const path = {
       years: "2012 – 2016",
       title: { fr: "Les débuts en finance", en: "Starting out in finance" },
       text: {
-        fr: "MBA Trading & Asset Management à l'ESLSCA Business School Paris, en 2016. Premiers postes à Paris, chez Crédit Agricole CIB, puis à Tokyo, en conseil financier.",
-        en: "MBA in Trading & Asset Management at ESLSCA Business School Paris, in 2016. First roles in Paris, at Crédit Agricole CIB, then in Tokyo, in financial advisory.",
+        fr: "Programme Grande École, majeure Finance, à Clermont School of Business (ex-ESC Clermont) en 2015, puis MBA Trading & Asset Management à l'ESLSCA Business School Paris en 2016. Premiers postes à Paris, chez Crédit Agricole CIB, puis à Tokyo, en conseil financier.",
+        en: "Master in Management (Grande École programme), Finance major, at Clermont School of Business (formerly ESC Clermont) in 2015, then an MBA in Trading & Asset Management at ESLSCA Business School Paris in 2016. First roles in Paris, at Crédit Agricole CIB, then in Tokyo, in financial advisory.",
       },
     },
     {
