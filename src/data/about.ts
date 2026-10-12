@@ -55,23 +55,21 @@ const same = (text: string): L => ({ fr: text, en: text });
 
 export const bring = {
   title: { fr: "Ce que j'<em>apporte</em>", en: "What I <em>bring</em>" } as L,
+  // Each strength is told with the STAR method: situation, task, action, result.
   items: [
     {
       title: { fr: "Construction d'agents IA", en: "Building AI agents" },
       text: {
-        fr: "Outils, recherche dans des documents, garde-fous, suivi de chaque étape, et des tests pour vérifier que tout marche. Mon chatbot de support sur AWS a obtenu 0,92 à l'évaluation automatique. Mon agent de recherche Dev3Pack a eu 15/15 sur des questions qu'il n'avait jamais vues.",
-        en: "Tools, document search, guardrails, tracing every step, and tests to check that it all works. My support chatbot on AWS scored 0.92 in automated evaluation. My Dev3Pack research agent got 15/15 on questions it had never seen.",
+        fr: "Dans mon Nanodegree, NovaMart avait besoin d'un support client capable de traiter commandes, retours et questions sur ses conditions de vente. Ma mission : un système multi-agents déployé sur AWS, qui ne répond que sur des faits vérifiés et résiste aux tentatives de détournement. J'ai construit cinq agents coordonnés par un orchestrateur, trois bases documentaires interrogées en parallèle, un garde-fou contre les sujets interdits et les données personnelles, et un suivi de chaque étape dans X-Ray. Résultat : 120/120 aux tests du projet, 14/14 aux tests du garde-fou, et un projet validé par le mentor Udacity.",
+        en: "In my Nanodegree, NovaMart needed customer support that could handle orders, returns and questions about its terms. My task: a multi-agent system on AWS that only answers from verified facts and resists hijacking attempts. I built five agents coordinated by an orchestrator, three document bases queried in parallel, a guardrail against banned topics and personal data, and tracing of every step in X-Ray. Result: 120/120 on the project tests, 14/14 on the guardrail tests, and a project approved by the Udacity mentor.",
       },
-      proofs: [
-        { label: same("AWS 1"), proof: { label: "AWS 1", book: "aws-scholars", chapter: 1 } },
-        { label: same("Dev3Pack Final"), proof: { label: "Dev3Pack Final", book: "dev3pack", chapter: 16 } },
-      ],
+      proofs: [{ label: same("AWS 3"), proof: { label: "AWS 3", book: "aws-scholars", chapter: 3 } }],
     },
     {
       title: { fr: "Vulgarisation", en: "Explaining simply" },
       text: {
-        fr: "En gestion d'actifs, je traduisais les stratégies des gérants et des quants pour les clients. Je fais la même chose avec l'IA, et c'est tout le but de BAA 101 et de son glossaire.",
-        en: "In asset management, I translated the strategies of portfolio managers and quants for clients. I do the same with AI, and that is the whole point of BAA 101 and its glossary.",
+        fr: "En gestion d'actifs, je traduisais déjà les stratégies des gérants et des quants pour les clients. En me formant aux agents IA, les notions se sont vite empilées, chacune liée à un outil ou à un cloud. Je me suis fixé un but : garder seulement ce qui vaut pour n'importe quel agent, et l'expliquer simplement. J'ai écrit BAA 101 : chaque chapitre part d'un vrai projet, débarrassé de ses détails, et un glossaire de 54 notions s'ouvre en bulle dans le texte. Résultat : onze chapitres publiés, en français et en anglais.",
+        en: "In asset management, I already translated the strategies of portfolio managers and quants for clients. As I trained in AI agents, concepts piled up fast, each tied to a tool or a cloud. I set myself a goal: keep only what holds for any agent, and explain it simply. I wrote BAA 101: each chapter starts from a real project, stripped of its specifics, and a 54-term glossary opens as a bubble in the text. Result: eleven chapters published, in French and English.",
       },
       proofs: [
         { label: same("BAA 101"), proof: { label: "BAA 101", book: "baa-101" } },
@@ -81,8 +79,8 @@ export const bring = {
     {
       title: { fr: "Rigueur", en: "Rigour" },
       text: {
-        fr: "Pendant Dev3Pack, j'avais estimé la vitesse de mon modèle. Je me trompais : j'ai mesuré, et c'est la mesure qui a tranché. Quand un test n'avait pas tourné, je l'ai dit au lieu de donner un chiffre au hasard.",
-        en: "During Dev3Pack, I had estimated how fast my model was. I was wrong: I measured, and the measurement settled it. When a test hadn't run, I said so instead of giving a made-up number.",
+        fr: "Pendant Dev3Pack, mon agent tournait sur un modèle installé sur ma machine. Il fallait fixer un délai au-delà duquel il abandonne, sinon il pouvait attendre indéfiniment. J'avais une estimation en tête ; plutôt que de m'y fier, j'ai mesuré : 1,9 seconde au premier appel, 0,3 ensuite. Résultat : un délai de 3 secondes fondé sur la mesure, alors que mon estimation était fausse. Même réflexe quand un test n'avait pas tourné : je l'ai déclaré au lieu d'inventer un chiffre.",
+        en: "During Dev3Pack, my agent ran on a model installed on my own machine. I had to set a time limit after which it gives up, or it could wait forever. I had an estimate in mind; rather than trust it, I measured: 1.9 seconds on the first call, 0.3 after that. Result: a 3-second limit based on measurement, while my estimate had been wrong. Same reflex when a test hadn't run: I declared it instead of making up a number.",
       },
       proofs: [
         { label: same("Dev3Pack S2"), proof: { label: "Dev3Pack S2", book: "dev3pack", chapter: 2 } },
@@ -92,8 +90,8 @@ export const bring = {
     {
       title: { fr: "Esprit d'équipe", en: "Team spirit" },
       text: {
-        fr: "Pendant le Nanodegree, j'ai répondu aux questions d'autres étudiants sur le forum Udacity. En hackathon, sur SafeHaven Money, l'ordinateur de ma coéquipière a lâché : j'ai dû tout reprendre, et j'ai terminé l'application avec Codex.",
-        en: "During the Nanodegree, I answered other students' questions on the Udacity forum. At a hackathon, while building SafeHaven Money, my teammate's computer gave out: I had to take everything over, and I finished the app with Codex.",
+        fr: "Lors du hackathon de sélection pour l'accélérateur Dev3Pack, nous construisions SafeHaven Money quand l'ordinateur de ma coéquipière a lâché. Il fallait quand même livrer l'application dans les temps. J'ai repris tout le travail et je l'ai terminée avec Codex. Résultat : l'application a été livrée à temps et présentée au jury. Pendant le Nanodegree, j'ai aussi répondu aux questions d'autres étudiants sur le forum Udacity.",
+        en: "At the selection hackathon for the Dev3Pack accelerator, we were building SafeHaven Money when my teammate's computer gave out. We still had to deliver the app on time. I took over all the work and finished it with Codex. Result: the app was delivered on time and presented to the jury. During the Nanodegree, I also answered other students' questions on the Udacity forum.",
       },
       proofs: [],
     },
@@ -106,6 +104,67 @@ export const bring = {
       proofs: [],
     },
   ] as Strength[],
+};
+
+// 2 bis. My values: each one backed by a fact (STAR). No value without a fact:
+// a third one will come when Mialy has found it, not before.
+export const values = {
+  title: { fr: "Mes <em>valeurs</em>", en: "My <em>values</em>" } as L,
+  items: [
+    {
+      title: { fr: "Innovation", en: "Innovation" },
+      text: {
+        fr: "Fin juillet 2026, en plein Nanodegree, AWS a mis en maintenance l'outil sur lequel mon premier projet était prévu. Il fallait quand même livrer un chatbot de support qui envoie chaque message vers le bon comportement. Plutôt que de bricoler l'ancienne méthode, j'ai reconstruit le projet sur le harness managé d'AgentCore, alors tout récent : tout le routage vit dans les règles du prompt. Résultat : un projet validé, noté 0,92 à l'évaluation automatique.",
+        en: "In late July 2026, in the middle of my Nanodegree, AWS put the tool my first project was planned on into maintenance. I still had to deliver a support chatbot that sends each message to the right behaviour. Rather than patch the old approach, I rebuilt the project on AgentCore's managed harness, then brand new: all the routing lives in the prompt's rules. Result: an approved project, scored 0.92 in automated evaluation.",
+      },
+      proofs: [{ label: same("AWS 1"), proof: { label: "AWS 1", book: "aws-scholars", chapter: 1 } }],
+    },
+    {
+      title: { fr: "Contribuer", en: "Giving back" },
+      text: {
+        fr: "Pendant le bootcamp Dev3Pack, deux outils du cours plantaient : l'envoi des rendus, et le scanner de secrets du projet Gecko face aux fichiers binaires. Contourner le problème pour moi ne suffisait pas : il fallait que ça marche pour les suivants. J'ai signalé chaque bug dans une issue publique, avec sa cause et un correctif proposé, déjà appliqué dans mon propre repo. Et j'écris sur Dev.to ce que j'apprends en construisant.",
+        en: "During the Dev3Pack bootcamp, two course tools were crashing: the submission command, and the Gecko project's secret scanner on binary files. Working around it for myself wasn't enough: it had to work for the next students. I reported each bug in a public issue, with its cause and a proposed fix, already applied in my own repo. And I write on Dev.to about what I learn while building.",
+      },
+      proofs: [
+        { label: same("Issue #15"), proof: { label: "Issue #15", url: "https://github.com/Gecko-Academy/dev3pack-cohort-2026-09/issues/15" } },
+        { label: same("Issue #16"), proof: { label: "Issue #16", url: "https://github.com/Gecko-Academy/dev3pack-cohort-2026-09/issues/16" } },
+        { label: same("Issue #12 (Gecko)"), proof: { label: "Issue #12", url: "https://github.com/Gecko-Academy/Dev3Pack-Gecko-Capstone-Project/issues/12" } },
+        { label: same("Dev.to"), proof: { label: "Dev.to", url: "https://dev.to/mialy333" } },
+      ],
+    },
+  ] as Strength[],
+};
+
+// 5. What inspires me.
+export interface Inspiration {
+  name: string;
+  channel: string;
+  url: string;
+  text: L;
+}
+
+export const inspirations = {
+  title: { fr: "Mes sources d'<em>inspiration</em>", en: "What <em>inspires</em> me" } as L,
+  items: [
+    {
+      name: "Nick Saraev",
+      channel: "YouTube",
+      url: "https://www.youtube.com/@nicksaraev",
+      text: {
+        fr: "Pour ses explications claires sur le fonctionnement interne des agents IA. Il rend un point technique pédagogique, et même intéressant.",
+        en: "For his clear explanations of how AI agents work inside. He makes a technical point easy to follow, and even interesting.",
+      },
+    },
+    {
+      name: "Marina Mogilko",
+      channel: "Silicon Valley Girl",
+      url: "https://www.youtube.com/@SiliconValleyGirl",
+      text: {
+        fr: "Je la suis depuis sept ans. J'apprécie son évolution, ses analyses et ses interventions au cœur de la Silicon Valley. C'est elle qui m'a confortée dans l'envie de me lancer dans la tech.",
+        en: "I've followed her for seven years. I value how she has grown, her insights and her talks from inside Silicon Valley. She is the one who confirmed my wish to move into tech.",
+      },
+    },
+  ] as Inspiration[],
 };
 
 // 3. My path in short: one line per period, internships left out.
