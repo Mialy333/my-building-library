@@ -45,7 +45,18 @@ export const stack: StackGroup[] = [
         detail: { fr: "front de démo NovaMart (connexion Cognito)", en: "NovaMart demo front end (Cognito sign-in)" },
         proofs: [{ label: "GitHub", url: "https://github.com/Mialy333/novamart-multi-agent-support" }],
       },
-      { name: "React", proofs: [] },
+      {
+        name: "React",
+        // Honest detail: both apps were built with AI coding tools (Codex, Bolt.new).
+        detail: {
+          fr: "mobile en React Native (SafeHaven Money), web avec Vite (B-Wiize), avec l'aide d'outils d'IA",
+          en: "mobile with React Native (SafeHaven Money), web with Vite (B-Wiize), built with AI coding tools",
+        },
+        proofs: [
+          { label: "SafeHaven Money", url: "https://github.com/Mialy333/SafeHaven/tree/main/app" },
+          { label: "B-Wiize", url: "https://github.com/Mialy333/B-Wiize_Tech" },
+        ],
+      },
     ],
   },
   {
