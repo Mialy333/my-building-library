@@ -6,7 +6,7 @@ import { Image } from "astro:assets";
 import { getLocale, useTranslations } from "../i18n/ui";
 import { books, bookUrl } from "../data/books";
 import { stack, certifications, proofHref } from "../data/credentials";
-import { lookingFor } from "../data/about";
+import { lookingFor, bring } from "../data/about";
 import SocialLinks from "./SocialLinks.astro";
 import portrait from "../assets/mialy.jpg";
 
@@ -39,6 +39,26 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
         </div>
       ))}
     </dl>
+  </section>
+
+  <section class="block" aria-labelledby="bring-title">
+    <h2 id="bring-title" set:html={bring.title[locale]} />
+    <ul class="strengths">
+      {bring.items.map((item) => (
+        <li class="strength">
+          <h3 class="strength-title">{item.title[locale]}</h3>
+          <p class="strength-text">{item.text[locale]}</p>
+          {item.proofs.length > 0 && (
+            <span class="proofs">
+              {item.proofs.map((p) => {
+                const href = proofHref(p.proof, locale);
+                return href ? <a href={href}>{p.label[locale]}</a> : <span>{p.label[locale]}</span>;
+              })}
+            </span>
+          )}
+        </li>
+      ))}
+    </ul>
   </section>
 
   <section class="block">
@@ -171,6 +191,13 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
   @media (min-width: 640px) {
     .fact { display: grid; grid-template-columns: 140px 1fr; gap: 16px; align-items: baseline; }
   }
+
+  .strengths { margin: 10px 0 0; padding: 0; list-style: none; }
+  .strength { padding: 16px 0; border-bottom: 1px solid var(--rule); }
+  .strength:last-child { border-bottom: 0; }
+  .strength-title { margin: 0; font-family: var(--font-serif); font-weight: 400; font-size: 23px; line-height: 1.15; }
+  .strength-text { margin: 6px 0 0; font-family: var(--font-reading); font-size: 18px; line-height: 1.55; color: var(--ink-soft); }
+  .strength .proofs { margin-top: 6px; }
 
   .pending {
     display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 0; padding: 18px;

@@ -9,8 +9,12 @@ import awsPractitionerCertificate from "../assets/certs/aws-ai-practitioner.jpg"
 
 type L = Record<Locale, string>;
 
-// A proof: a chapter of a book on this site, or an outside page (a repo).
-export type Proof = { label: string; book: string; chapter?: number } | { label: string; url: string };
+// A proof: a chapter of a book on this site, a page of this site (path after
+// the language, e.g. "books/baa-101/glossary/"), or an outside page (a repo).
+export type Proof =
+  | { label: string; book: string; chapter?: number }
+  | { label: string; page: string }
+  | { label: string; url: string };
 
 export interface StackItem {
   name: string;
@@ -176,6 +180,7 @@ export const certifications: Certification[] = [
 // Turns a proof into a link for the current language.
 export function proofHref(proof: Proof, locale: Locale): string | null {
   if ("url" in proof) return proof.url;
+  if ("page" in proof) return `/${locale}/${proof.page}`;
   const book = books.find((b) => b.slug === proof.book);
   if (!book) return null;
   if (proof.chapter === undefined) return bookUrl(locale, book);
