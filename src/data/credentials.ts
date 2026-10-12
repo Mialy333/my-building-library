@@ -121,14 +121,14 @@ export const stack: StackGroup[] = [
           { label: "SheFi", page: "about/#cert-title" },
           { label: "DeFi PulseX", url: "https://github.com/Mialy333/DeFi-PulseX" },
           { label: "Alpha Whispr", url: "https://farhack2026.vercel.app" },
-          { label: "SplitBook", url: "https://ens-splitbook.vercel.app" },
+          { label: "SplitBook", url: "https://github.com/Mialy333/Ens-splitbook-ETH-Global-Hackathon-2026-" },
         ],
       },
       {
         name: "Solidity", icon: "currency-ethereum",
         detail: { fr: "premiers contrats, dont celui de SplitBook, écrit sans IA", en: "first contracts, including SplitBook's, written without AI" },
         proofs: [
-          { label: "SplitBook", url: "https://ens-splitbook.vercel.app" },
+          { label: "SplitBook", url: "https://github.com/Mialy333/Ens-splitbook-ETH-Global-Hackathon-2026-" },
           { label: "Cyfrin", page: "about/#cert-title" },
           { label: "GitHub", url: "https://github.com/Mialy333/30-days-of-solidity-submissions/tree/main/submissions/Mialy333" },
         ],
