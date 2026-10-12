@@ -28,8 +28,8 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
     <SocialLinks />
   </header>
 
-  <section class="block" aria-labelledby="looking-title">
-    <h2 id="looking-title" set:html={lookingFor.title[locale]} />
+  <details class="block fold" open>
+    <summary><h2 id="looking-title" set:html={lookingFor.title[locale]} /></summary>
     <p class="text" set:html={lookingFor.text[locale]} />
     {/* Quick-scan card: what a recruiter checks first, in two seconds. */}
     <dl class="facts">
@@ -40,10 +40,10 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
         </div>
       ))}
     </dl>
-  </section>
+  </details>
 
-  <section class="block" aria-labelledby="bring-title">
-    <h2 id="bring-title" set:html={bring.title[locale]} />
+  <details class="block fold">
+    <summary><h2 id="bring-title" set:html={bring.title[locale]} /></summary>
     <ul class="strengths">
       {bring.items.map((item) => (
         <li class="strength">
@@ -60,10 +60,10 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
         </li>
       ))}
     </ul>
-  </section>
+  </details>
 
-  <section class="block" aria-labelledby="path-title">
-    <h2 id="path-title" set:html={path.title[locale]} />
+  <details class="block fold">
+    <summary><h2 id="path-title" set:html={path.title[locale]} /></summary>
     {/* A short timeline: same thread and plum dots as the certificate stages. */}
     <ol class="periods">
       {path.periods.map((p) => (
@@ -79,10 +79,10 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
         {path.bookLine[locale]} <a href={bookUrl(locale, pathBook)}>{pathBook.name[locale]} →</a>
       </p>
     )}
-  </section>
+  </details>
 
-  <section class="block" aria-labelledby="initiatives-title">
-    <h2 id="initiatives-title" set:html={initiatives.title[locale]} />
+  <details class="block fold">
+    <summary><h2 id="initiatives-title" set:html={initiatives.title[locale]} /></summary>
     <ul class="initiatives">
       {initiatives.items.map((it) => (
         <li class="initiative">
@@ -104,17 +104,10 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
         </li>
       ))}
     </ul>
-  </section>
+  </details>
 
-  <section class="block">
-    <p class="pending">
-      <span class="stamp">{t("book.stamp")}</span>
-      <span>{t("about.introSoon")}</span>
-    </p>
-  </section>
-
-  <section class="block" aria-labelledby="stack-title">
-    <h2 id="stack-title" set:html={t("about.stack")} />
+  <details class="block fold">
+    <summary><h2 id="stack-title" set:html={t("about.stack")} /></summary>
     <p class="lead">{t("about.stackLead")}</p>
     {stack.map((group) => (
       <div class="group">
@@ -142,10 +135,10 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
         </ul>
       </div>
     ))}
-  </section>
+  </details>
 
-  <section class="block" aria-labelledby="cert-title">
-    <h2 id="cert-title" set:html={t("about.certs")} />
+  <details class="block fold">
+    <summary><h2 id="cert-title" set:html={t("about.certs")} /></summary>
     <ul class="certs">
       {certifications.map((c) => {
         const book = bookName(c.book);
@@ -181,9 +174,27 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
         );
       })}
     </ul>
-  </section>
+  </details>
 
+  <section class="block">
+    <p class="pending">
+      <span class="stamp">{t("book.stamp")}</span>
+      <span>{t("about.introSoon")}</span>
+    </p>
+  </section>
 </article>
+
+<script>
+  // A link to an anchor inside a closed section (e.g. #stack-title) opens that section first.
+  function openTarget() {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const el = id ? document.getElementById(id) : null;
+    const fold = el?.closest("details");
+    if (fold && !fold.open) { fold.open = true; el.scrollIntoView(); }
+  }
+  openTarget();
+  window.addEventListener("hashchange", openTarget);
+</script>
 
 <style>
   .about { padding: 32px 24px 0; }
@@ -212,6 +223,28 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
   .hero :global(.socials) { justify-content: center; }
 
   .block { margin-top: 48px; }
+  /* Folding sections: the titles read like a table of contents; one tap opens a part.
+     Native <details>/<summary>: works without JavaScript, keyboard and screen readers included. */
+  .fold { margin-top: 0; border-bottom: 1px solid var(--line); }
+  .hero + .fold { margin-top: 40px; border-top: 1px solid var(--line); }
+  .fold > summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    min-height: 64px; padding: 10px 2px; cursor: pointer; list-style: none;
+  }
+  .fold > summary::-webkit-details-marker { display: none; }
+  /* Chevron in plum: points down when closed, up when open. */
+  .fold > summary::after {
+    content: ""; flex: none; width: 10px; height: 10px; margin: -4px 6px 0 0;
+    border-right: 2px solid var(--accent-text); border-bottom: 2px solid var(--accent-text);
+    transform: rotate(45deg); transition: transform 0.2s ease;
+  }
+  .fold[open] > summary::after { transform: rotate(-135deg); margin-top: 6px; }
+  .fold > summary:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; border-radius: 6px; }
+  .fold > summary h2 { margin: 0; }
+  .fold[open] { padding-bottom: 32px; }
+  .fold + .block:not(.fold), .block:not(.fold) + .fold { margin-top: 32px; }
+  .block:not(.fold) + .fold { border-top: 1px solid var(--line); }
+  @media (prefers-reduced-motion: reduce) { .fold > summary::after { transition: none; } }
   h2 { margin: 0; font-family: var(--font-serif); font-weight: 400; font-size: 34px; line-height: 1.05; }
   .lead { margin: 8px 0 0; font-size: 16px; line-height: 1.55; color: var(--ink-soft); }
 
