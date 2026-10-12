@@ -107,3 +107,75 @@ export const bring = {
     },
   ] as Strength[],
 };
+
+// 3. My path in short: one line per period, internships left out.
+// The full story is the "My path" book (shelf Path), still forthcoming.
+export interface Period {
+  years: string;
+  title: L;
+  text: L;
+}
+
+export const path = {
+  title: { fr: "Mon parcours en <em>bref</em>", en: "My path in <em>short</em>" } as L,
+  book: "my-path",
+  bookLine: {
+    fr: "L'histoire complète deviendra un livre de la bibliothèque :",
+    en: "The full story will become a book in the library:",
+  } as L,
+  periods: [
+    {
+      years: "2012 – 2016",
+      title: { fr: "Les débuts en finance", en: "Starting out in finance" },
+      text: {
+        fr: "MBA Trading & Asset Management à l'ESLSCA Business School Paris, en 2016. Premiers postes à Paris, chez Crédit Agricole CIB, puis à Tokyo, en conseil financier.",
+        en: "MBA in Trading & Asset Management at ESLSCA Business School Paris, in 2016. First roles in Paris, at Crédit Agricole CIB, then in Tokyo, in financial advisory.",
+      },
+    },
+    {
+      years: "2017 – 2020",
+      title: { fr: "Luxembourg", en: "Luxembourg" },
+      text: {
+        fr: "Junior Client Portfolio Manager sur des fonds multi-actifs chez Candriam, puis commerciale institutionnelle chez Northern Trust.",
+        en: "Junior Client Portfolio Manager on multi-asset funds at Candriam, then institutional sales at Northern Trust.",
+      },
+    },
+    {
+      years: "2019 – 2021",
+      title: { fr: "Mon premier projet à moi", en: "My first venture" },
+      text: {
+        fr: "En parallèle, Mialy Ericka : de la stratégie de communication digitale pour des femmes entrepreneures.",
+        en: "On the side, Mialy Ericka: digital communication strategy for women entrepreneurs.",
+      },
+    },
+    {
+      years: "2022 – 2023",
+      title: { fr: "Paris", en: "Paris" },
+      text: { fr: "Conseillère en gestion de patrimoine.", en: "Wealth management advisor." },
+    },
+    {
+      years: "2024",
+      title: { fr: "Je passe au code", en: "I switch to code" },
+      text: {
+        fr: "Formation de développeuse fullstack à Ada Tech School. Il me reste à valider le diplôme, en alternance.",
+        en: "Fullstack developer training at Ada Tech School. The diploma is still to be completed, through a work-study contract.",
+      },
+    },
+    {
+      years: "2025",
+      title: { fr: "Le Web3", en: "Web3" },
+      text: {
+        fr: "Résidence Aquarium chez XRPL Commons, puis création de B-Wiize.",
+        en: "Aquarium residency at XRPL Commons, then founding B-Wiize.",
+      },
+    },
+    {
+      years: "2026",
+      title: { fr: "Les agents IA", en: "AI agents" },
+      text: {
+        fr: "AWS & AI Scholars, le bootcamp Dev3Pack, et SafeHaven Money.",
+        en: "AWS & AI Scholars, the Dev3Pack bootcamp, and SafeHaven Money.",
+      },
+    },
+  ] as Period[],
+};
