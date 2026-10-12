@@ -97,12 +97,16 @@ export const bring = {
       proofs: [],
     },
     {
-      title: { fr: "Expertise en finance", en: "Finance expertise" },
+      title: { fr: "Expertise en finance institutionnelle et numérique", en: "Institutional and digital finance expertise" },
       text: {
-        fr: "Une école de commerce majeure Finance, un MBA Trading & Asset Management, puis dix ans en gestion d'actifs, notamment chez Crédit Agricole CIB, Candriam et Northern Trust. Je sais ce que les équipes financières attendent d'un outil : des chiffres justes, et une explication pour chacun.",
-        en: "A business school degree with a Finance major, an MBA in Trading & Asset Management, then ten years in asset management, including at Crédit Agricole CIB, Candriam and Northern Trust. I know what finance teams expect from a tool: accurate numbers, and an explanation for each one.",
+        fr: "Une école de commerce majeure Finance, un MBA Trading & Asset Management, puis dix ans en gestion d'actifs, notamment chez Crédit Agricole CIB, Candriam et Northern Trust : je connais la logique métier de la finance institutionnelle. Côté numérique, je construis sur la blockchain : une application sur le XRP Ledger, un contrat déployé sur Ethereum (réseau de test Sepolia), et un agent qui achète on-chain sur Solana.",
+        en: "A business school degree with a Finance major, an MBA in Trading & Asset Management, then ten years in asset management, including at Crédit Agricole CIB, Candriam and Northern Trust: I know how institutional finance works. On the digital side, I build on blockchain: an app on the XRP Ledger, a contract deployed on Ethereum (Sepolia testnet), and an agent that buys on-chain on Solana.",
       },
-      proofs: [],
+      proofs: [
+        { label: same("B-Wiize"), proof: { label: "B-Wiize", url: "https://github.com/Mialy333/B-Wiize_Tech" } },
+        { label: same("SplitBook"), proof: { label: "SplitBook", url: "https://sepolia.etherscan.io/address/0x700f744E7ab35332683c4Cc0b653D18a176150dA" } },
+        { label: same("Gecko"), proof: { label: "Gecko", book: "dev3pack", chapter: 17 } },
+      ],
     },
   ] as Strength[],
 };
