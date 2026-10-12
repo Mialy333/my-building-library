@@ -14,17 +14,21 @@ export interface Fact {
 export const lookingFor = {
   title: { fr: "Ce que je <em>cherche</em>", en: "What I'm <em>looking for</em>" } as L,
   text: {
-    fr: "Je cherche un poste d'<strong>ingénieure IA</strong>, idéalement dans la <strong>finance et les actifs numériques</strong> : dans une fintech, dans l'équipe R&D d'un acteur financier, ou dans un cabinet de conseil tech qui les accompagne. J'y apporte deux langages rarement réunis : celui des agents IA, que j'apprends en construisant, et celui de la gestion d'actifs, que je pratique depuis dix ans.",
-    en: "I'm looking for an <strong>AI engineer</strong> role, ideally in <strong>finance and digital assets</strong>: at a fintech, in the R&D team of a financial firm, or at a tech consultancy that serves them. I bring two languages that rarely meet: AI agents, which I learn by building, and asset management, which I've practised for ten years.",
+    fr: "Je cherche à rejoindre une équipe qui construit des <strong>agents et assistants IA</strong>, en <strong>alternance</strong> pour aller au bout de ma formation à Ada Tech School, ou en CDI. La finance et les actifs numériques me sont familiers, mais ce qui m'attire avant tout, ce sont les projets où la fiabilité compte : un assistant qui cite ses sources, ou qui sait dire qu'il ne sait pas. J'y apporte deux langages rarement réunis : celui des agents IA, que j'apprends en construisant, et celui de la gestion d'actifs, que je pratique depuis dix ans.",
+    en: "I'm looking to join a team that builds <strong>AI agents and assistants</strong>, as a <strong>work-study apprentice</strong> to complete my training at Ada Tech School, or on a permanent contract. Finance and digital assets are familiar ground, but what draws me most are projects where reliability matters: an assistant that cites its sources, or knows to say it doesn't know. I bring two languages that rarely meet: AI agents, which I learn by building, and asset management, which I've practised for ten years.",
   } as L,
   facts: [
-    { label: { fr: "Poste", en: "Role" }, value: { fr: "Ingénieure IA · AI Agent Engineer", en: "AI Engineer · AI Agent Engineer" } },
-    { label: { fr: "Secteurs", en: "Sectors" }, value: { fr: "Finance, actifs numériques", en: "Finance, digital assets" } },
+    { label: { fr: "Poste", en: "Role" }, value: { fr: "Ingénieure IA · Développeuse d'agents IA", en: "AI Engineer · AI agent developer" } },
+    {
+      label: { fr: "Contrat", en: "Contract" },
+      value: { fr: "Alternance (formation Ada Tech School) ou CDI", en: "Work-study (Ada Tech School training) or permanent contract" },
+    },
+    { label: { fr: "Secteurs", en: "Sectors" }, value: { fr: "Finance, actifs numériques, industrie", en: "Finance, digital assets, industry" } },
     {
       label: { fr: "Où", en: "Where" },
       value: {
-        fr: "Paris et Île-de-France, télétravail, ou relocalisation à l'étranger (Suisse, États-Unis…)",
-        en: "Paris area, remote, or relocation abroad (Switzerland, United States…)",
+        fr: "Paris et Île-de-France, télétravail ; ouverte à une mobilité à l'étranger à terme",
+        en: "Paris area, remote; open to moving abroad later on",
       },
     },
     { label: { fr: "Disponibilité", en: "Availability" }, value: { fr: "Immédiate", en: "Immediately" } },
