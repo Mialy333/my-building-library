@@ -163,8 +163,9 @@ Sur la scène, la ligne mono du haut passe donc en `--ink-soft` : `--ink-muted` 
 - **En-tête** :
   - 64 px de haut, collant : il reste visible pendant le défilement, sur fond `--paper` ;
   - à gauche, logo ruban et « My Building *Library* » en serif 20 px ;
-  - sous 380 px de large, le lien Étagère réduit ses marges (4 px au lieu de 8 px) pour que tout tienne sur une ligne ;
-  - à droite, lien Étagère, sélecteur FR/EN en mono et bouton de thème rond de 44 px avec `aria-label`.
+  - à droite, liens Étagère et À propos (le lien de la page en cours est souligné en prune, `aria-current`), sélecteur FR/EN en mono et bouton de thème rond de 44 px avec `aria-label` (12 oct 2026 : À propos ajouté, il reste aussi dans le pied de page) ;
+  - sous 480 px de large, tout se resserre pour tenir sur une ligne : marque en 18 px, liens en 11 px avec 4 px de marge, et le sélecteur de langue ne montre plus que l'autre langue (« EN » sur une page FR) ;
+  - sous 360 px, marque en 15 px et liens sans espacement des lettres.
 
 ## 5. Composants
 

@@ -7,8 +7,12 @@ const t = useTranslations(locale);
 const pathFor = (target: string) =>
   Astro.url.pathname.replace(/^\/(en|fr)(?=\/|$)/, `/${target}`);
 
-const shelfHref = `/${locale}/shelf/`;
-const onShelf = Astro.url.pathname.replace(/\/?$/, "/") === shelfHref;
+// Main links: the shelf and the About page. The current page is marked (aria-current).
+const here = Astro.url.pathname.replace(/\/?$/, "/");
+const links = [
+  { href: `/${locale}/shelf/`, label: t("nav.shelf") },
+  { href: `/${locale}/about/`, label: t("nav.about") },
+];
 ---
 
 <header class="site-header">
@@ -19,7 +23,9 @@ const onShelf = Astro.url.pathname.replace(/\/?$/, "/") === shelfHref;
 
   <div class="right">
     <nav aria-label={t("nav.label")}>
-      <a class="nav-link" href={shelfHref} aria-current={onShelf ? "page" : undefined}>{t("nav.shelf")}</a>
+      {links.map((l) => (
+        <a class="nav-link" href={l.href} aria-current={here === l.href ? "page" : undefined}>{l.label}</a>
+      ))}
     </nav>
 
     <nav class="lang" aria-label={t("lang.label")}>
@@ -142,10 +148,22 @@ const onShelf = Astro.url.pathname.replace(/\/?$/, "/") === shelfHref;
     cursor: pointer;
   }
   .theme:hover { color: var(--accent-text); }
-  /* Small phones (under 380 px): "Library" is longer than "Diary", so the
-     shelf link gives back a little padding to keep everything on one line. */
-  @media (max-width: 379px) {
-    .nav-link { padding: 0 4px; }
+  nav:not(.lang) { display: flex; align-items: center; }
+  .nav-link { white-space: nowrap; }
+  /* Phones (under 480 px): two links now share the bar with the brand, so
+     everything gets a little tighter, and the language switch only shows the
+     other language (the current one is already obvious from the page). */
+  @media (max-width: 479px) {
+    .site-header { padding-left: 10px; gap: 2px; }
     .brand { gap: 8px; }
+    .brand-name { font-size: 18px; }
+    .nav-link { padding: 0 4px; font-size: 11px; letter-spacing: 0.5px; }
+    .lang .current, .lang .sep { display: none; }
+    .lang a { min-width: 32px; }
+  }
+  /* Very small phones (320 px): smaller brand, no letter spacing. */
+  @media (max-width: 359px) {
+    .brand-name { font-size: 15px; }
+    .nav-link { padding: 0 2px; letter-spacing: 0; }
   }
 </style>
