@@ -94,7 +94,7 @@ npm run preview   # serve the build (page transitions are best seen here)
 
 The direction is called **Papier & prune** (paper and plum): an editorial, print-like diary with paper, ink and a bookmark ribbon, one plum accent, and an illustrated, cosy touch on the home page. Every choice (palette, contrast, type scale, components, motion) is recorded in [`docs/design-decisions.md`](docs/design-decisions.md).
 
-Profile icons come from [Tabler Icons](https://tabler.io/icons) (MIT).
+Profile and stack icons come from [Tabler Icons](https://tabler.io/icons) (MIT).
 
 ## Author
 

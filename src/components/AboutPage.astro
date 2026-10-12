@@ -6,6 +6,7 @@ import { Image } from "astro:assets";
 import { getLocale, useTranslations } from "../i18n/ui";
 import { books, bookUrl } from "../data/books";
 import { stack, certifications, proofHref } from "../data/credentials";
+import { stackIcons } from "../data/stack-icons";
 import { lookingFor, bring, values, path, initiatives, inspirations } from "../data/about";
 import SocialLinks from "./SocialLinks.astro";
 import portrait from "../assets/mialy.jpg";
@@ -154,25 +155,38 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
     <p class="lead">{t("about.stackLead")}</p>
     {stack.map((group) => (
       <div class="group">
-        <h3 class="group-title">{group.title[locale]}</h3>
-        <ul class="items">
+        <h3 class="group-title">
+          {group.icon && (
+            <svg class="group-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={stackIcons[group.icon]} />
+          )}
+          {group.title[locale]}
+        </h3>
+        {/* One small tile per tool: icon, name, what exactly, and where it was used. */}
+        <ul class="tiles">
           {group.items.map((item) => (
-            <li class="item">
-              <span class="name">{item.name}</span>
-              {item.detail && <span class="detail">{item.detail[locale]}</span>}
-              <span class="proofs">
-                {item.proofs.map((p) => {
-                  const href = proofHref(p, locale);
-                  const external = "url" in p;
-                  return href ? (
-                    <a href={href} target={external ? "_blank" : undefined} rel={external ? "noopener" : undefined}>
-                      {p.label}{external ? " ↗" : ""}
-                    </a>
-                  ) : (
-                    <span>{p.label}</span>
-                  );
-                })}
+            <li class="tile">
+              <span class="tile-head">
+                <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={stackIcons[item.icon]} />
+                <span class="tile-name">{item.name}</span>
               </span>
+              {item.detail && <span class="tile-detail">{item.detail[locale]}</span>}
+              {item.proofs.length > 0 && (
+                <span class="tile-proofs">
+                  {item.proofs.map((p) => {
+                    const href = proofHref(p, locale);
+                    const external = "url" in p;
+                    return href ? (
+                      <a href={href} target={external ? "_blank" : undefined} rel={external ? "noopener" : undefined}>
+                        {p.label}{external ? " ↗" : ""}
+                      </a>
+                    ) : (
+                      <span>{p.label}</span>
+                    );
+                  })}
+                </span>
+              )}
             </li>
           ))}
         </ul>
@@ -336,7 +350,7 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
   .initiative-text { margin: 6px 0 0; font-family: var(--font-reading); font-size: 18px; line-height: 1.55; color: var(--ink-soft); }
 
 
-  .group { margin-top: 32px; }
+  .group { margin-top: 28px; }
   /* Group title, centred between two rules, like a chapter divider. */
   .group-title {
     display: flex; align-items: center; gap: 14px; margin: 0 0 6px;
@@ -344,13 +358,22 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
     text-transform: uppercase; color: var(--ink);
   }
   .group-title::before, .group-title::after { content: ""; flex-grow: 1; height: 1px; background: var(--line); }
-  .items { margin: 0; padding: 0; list-style: none; }
-  .item { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; padding: 10px 0; border-bottom: 1px solid var(--rule); }
-  .name { font-family: var(--font-serif); font-size: 21px; line-height: 1.2; }
-  .detail { font-size: 15px; color: var(--ink-soft); }
+  .group-icon { width: 22px; height: 22px; flex: none; color: var(--accent-text); }
+  /* Tiles: two per row on a phone, more on wider screens; much shorter than a list. */
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 8px; margin: 14px 0 0; padding: 0; list-style: none; }
+  .tile {
+    display: flex; flex-direction: column; gap: 2px; padding: 10px 12px 6px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  }
+  /* Icon beside the name, so each tile stays short. */
+  .tile-head { display: flex; align-items: flex-start; gap: 8px; }
+  .tile-icon { width: 22px; height: 22px; flex: none; margin-top: 1px; color: var(--accent-text); }
+  .tile-name { font-family: var(--font-serif); font-size: 18px; line-height: 1.15; }
+  .tile-detail { font-size: 13px; line-height: 1.35; color: var(--ink-soft); }
+  .tile-proofs { display: flex; flex-wrap: wrap; gap: 0 8px; margin-top: 2px; font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); }
+  .tile-proofs a { display: inline-flex; align-items: center; min-height: 32px; text-underline-offset: 3px; }
   .proofs { display: flex; flex-wrap: wrap; gap: 4px 10px; width: 100%; font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
   .proofs a { display: inline-flex; align-items: center; min-height: 32px; text-underline-offset: 3px; }
-  .proofs:empty { display: none; }
 
   .certs { display: flex; flex-direction: column; gap: 16px; margin: 18px 0 0; padding: 0; list-style: none; }
   .cert {

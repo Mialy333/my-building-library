@@ -3,6 +3,7 @@
 // (AWS projects 1-3, Dev3Pack). A tool without proof is shown without a link.
 import type { Locale } from "../i18n/ui";
 import { books, bookUrl, chapterUrl } from "./books";
+import type { StackIcon } from "./stack-icons";
 import udacityCertificate from "../assets/certs/udacity.jpg";
 import dev3packCertificate from "../assets/certs/dev3pack.jpg";
 import awsPractitionerCertificate from "../assets/certs/aws-ai-practitioner.jpg";
@@ -18,12 +19,14 @@ export type Proof =
 
 export interface StackItem {
   name: string;
+  icon: StackIcon; // see stack-icons.ts
   detail?: L; // what exactly was used, in a few words
   proofs: Proof[];
 }
 
 export interface StackGroup {
   title: L;
+  icon?: StackIcon;
   items: StackItem[];
 }
 
@@ -34,23 +37,23 @@ export const stack: StackGroup[] = [
   {
     title: { fr: "Langages", en: "Languages" },
     items: [
-      { name: "Python", proofs: [aws(1), aws(2), aws(3), { label: "Dev3Pack", book: "dev3pack" }] },
+      { name: "Python", icon: "brand-python", proofs: [aws(1), aws(2), aws(3), { label: "Dev3Pack", book: "dev3pack" }] },
       {
-        name: "TypeScript",
-        detail: { fr: "ce site, en Astro", en: "this site, in Astro" },
+        name: "TypeScript", icon: "brand-typescript",
+        detail: { fr: "ce site (Astro)", en: "this site (Astro)" },
         proofs: [{ label: "GitHub", url: "https://github.com/Mialy333/my-building-library" }],
       },
       {
-        name: "JavaScript",
-        detail: { fr: "front de démo NovaMart (connexion Cognito)", en: "NovaMart demo front end (Cognito sign-in)" },
+        name: "JavaScript", icon: "brand-javascript",
+        detail: { fr: "front NovaMart (Cognito)", en: "NovaMart front end (Cognito)" },
         proofs: [{ label: "GitHub", url: "https://github.com/Mialy333/novamart-multi-agent-support" }],
       },
       {
-        name: "React",
+        name: "React", icon: "brand-react",
         // Honest detail: both apps were built with AI coding tools (Codex, Bolt.new).
         detail: {
-          fr: "mobile en React Native (SafeHaven Money), web avec Vite (B-Wiize), avec l'aide d'outils d'IA",
-          en: "mobile with React Native (SafeHaven Money), web with Vite (B-Wiize), built with AI coding tools",
+          fr: "React Native et web, avec l'aide d'outils d'IA",
+          en: "React Native and web, built with AI coding tools",
         },
         proofs: [
           { label: "SafeHaven Money", url: "https://github.com/Mialy333/SafeHaven/tree/main/app" },
@@ -61,30 +64,31 @@ export const stack: StackGroup[] = [
   },
   {
     title: { fr: "AWS", en: "AWS" },
+    icon: "brand-aws",
     items: [
       {
-        name: "Amazon Bedrock AgentCore",
-        detail: { fr: "Runtime, Gateway (MCP), Memory, harness managé", en: "Runtime, Gateway (MCP), Memory, managed harness" },
+        name: "Amazon Bedrock AgentCore", icon: "cloud-computing",
+        detail: { fr: "Runtime, Gateway, Memory", en: "Runtime, Gateway, Memory" },
         proofs: [aws(1), aws(2), aws(3)],
       },
-      { name: "Bedrock Knowledge Bases", detail: { fr: "RAG, S3 Vectors", en: "RAG, S3 Vectors" }, proofs: [aws(2), aws(3)] },
-      { name: "Bedrock Guardrails", proofs: [aws(3)] },
-      { name: "Bedrock Evaluations", detail: { fr: "LLM-as-judge", en: "LLM-as-judge" }, proofs: [aws(1)] },
-      { name: "AWS Lambda", proofs: [aws(1), aws(2), aws(3)] },
-      { name: "Amazon API Gateway", proofs: [aws(2)] },
-      { name: "Amazon DynamoDB", proofs: [aws(1), aws(3)] },
-      { name: "Amazon S3", proofs: [aws(1), aws(2), aws(3)] },
-      { name: "AWS CloudFormation", proofs: [aws(1), aws(3)] },
-      { name: "CloudWatch & X-Ray", detail: { fr: "logs, traces, tableau de bord", en: "logs, traces, dashboard" }, proofs: [aws(3)] },
-      { name: "Amazon Cognito", proofs: [aws(3)] },
+      { name: "Bedrock Knowledge Bases", icon: "books", detail: { fr: "RAG, S3 Vectors", en: "RAG, S3 Vectors" }, proofs: [aws(2), aws(3)] },
+      { name: "Bedrock Guardrails", icon: "shield-check", proofs: [aws(3)] },
+      { name: "Bedrock Evaluations", icon: "ruler-measure", detail: { fr: "LLM-as-judge", en: "LLM-as-judge" }, proofs: [aws(1)] },
+      { name: "AWS Lambda", icon: "lambda", proofs: [aws(1), aws(2), aws(3)] },
+      { name: "Amazon API Gateway", icon: "api", proofs: [aws(2)] },
+      { name: "Amazon DynamoDB", icon: "database", proofs: [aws(1), aws(3)] },
+      { name: "Amazon S3", icon: "bucket", proofs: [aws(1), aws(2), aws(3)] },
+      { name: "AWS CloudFormation", icon: "stack-2", proofs: [aws(1), aws(3)] },
+      { name: "CloudWatch & X-Ray", icon: "chart-dots-3", detail: { fr: "logs et traces", en: "logs and traces" }, proofs: [aws(3)] },
+      { name: "Amazon Cognito", icon: "user-shield", proofs: [aws(3)] },
     ],
   },
   {
     title: { fr: "Agents", en: "Agents" },
     items: [
-      { name: "Strands Agents", proofs: [aws(2), aws(3)] },
-      { name: "MCP", proofs: [aws(1), aws(2), d3p(12, "Dev3Pack S12"), d3p(13, "S13"), d3p(17, "Gecko")] },
-      { name: "Ollama", detail: { fr: "modèles locaux (Qwen 2.5)", en: "local models (Qwen 2.5)" }, proofs: [d3p(2, "Dev3Pack S2"), d3p(16, "Final")] },
+      { name: "Strands Agents", icon: "robot", proofs: [aws(2), aws(3)] },
+      { name: "MCP", icon: "plug", proofs: [aws(1), aws(2), d3p(12, "Dev3Pack S12"), d3p(13, "S13"), d3p(17, "Gecko")] },
+      { name: "Ollama", icon: "cpu", detail: { fr: "modèles locaux", en: "local models" }, proofs: [d3p(2, "Dev3Pack S2"), d3p(16, "Final")] },
     ],
   },
 ];
