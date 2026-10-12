@@ -126,9 +126,9 @@ export const stack: StackGroup[] = [
       },
       {
         name: "Solidity", icon: "currency-ethereum",
-        detail: { fr: "premiers contrats, dont celui de SplitBook, écrit sans IA", en: "first contracts, including SplitBook's, written without AI" },
+        detail: { fr: "premiers contrats ; SplitBook déployé sur Sepolia", en: "first contracts; SplitBook deployed on Sepolia" },
         proofs: [
-          { label: "SplitBook", url: "https://github.com/Mialy333/Ens-splitbook-ETH-Global-Hackathon-2026-" },
+          { label: "SplitBook (Etherscan)", url: "https://sepolia.etherscan.io/address/0x700f744E7ab35332683c4Cc0b653D18a176150dA" },
           { label: "Cyfrin", page: "about/#cert-title" },
           { label: "GitHub", url: "https://github.com/Mialy333/30-days-of-solidity-submissions/tree/main/submissions/Mialy333" },
         ],
