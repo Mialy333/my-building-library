@@ -179,3 +179,50 @@ export const path = {
     },
   ] as Period[],
 };
+
+// 4. My initiatives: what I started or lead outside a job.
+// Links and screenshots are optional: an initiative shows them only once they
+// exist (apps behind a login are not linked until the login is removed).
+export interface Initiative {
+  name: string;
+  role: L;
+  when: L;
+  status?: L; // e.g. "on pause"
+  text: L;
+  links?: { label: L; url: string }[];
+  image?: { src: ImageMetadata; alt: L }; // a screenshot in src/assets/initiatives/
+}
+
+export const initiatives = {
+  title: { fr: "Mes <em>initiatives</em>", en: "My <em>initiatives</em>" } as L,
+  items: [
+    {
+      name: "Dev3Pack",
+      role: { fr: "Country Lead, chapitre France", en: "Country Lead, France chapter" },
+      when: { fr: "depuis septembre 2026", en: "since September 2026" },
+      text: {
+        fr: "J'anime la communauté française de Dev3Pack : je recrute des participants et j'organise des événements. Un engagement que je mène à côté, parce qu'il me tient à cœur.",
+        en: "I run the French Dev3Pack community: I recruit participants and organise events. It's something I do alongside my work, because I care about it.",
+      },
+    },
+    {
+      name: "SafeHaven Money",
+      role: { fr: "cofondatrice et CEO", en: "co-founder and CEO" },
+      when: { fr: "depuis mai 2026", en: "since May 2026" },
+      status: { fr: "en pause", en: "on pause" },
+      text: {
+        fr: "Une plateforme de stablecoins pilotée à la voix, pour les freelances et les entrepreneurs des pays où l'inflation ronge les revenus. Construite sur Solana, avec LI.FI.",
+        en: "A voice-first stablecoin platform for freelancers and entrepreneurs in countries where inflation eats into their income. Built on Solana, with LI.FI.",
+      },
+    },
+    {
+      name: "B-Wiize → Pop Wallet",
+      role: { fr: "fondatrice", en: "founder" },
+      when: { fr: "2025", en: "2025" },
+      text: {
+        fr: "Une application Web3 gamifiée pour apprendre aux étudiants à gérer leur budget, construite sur le XRP Ledger. Fin 2025, elle est devenue Pop Wallet, avec ses dix premiers utilisateurs.",
+        en: "A gamified Web3 app that teaches students to manage their budget, built on the XRP Ledger. In late 2025 it became Pop Wallet, with its first ten users.",
+      },
+    },
+  ] as Initiative[],
+};

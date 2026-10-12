@@ -1,12 +1,12 @@
 ---
 // About page: portrait, profiles, Mialy's own text (src/data/about.ts, pushed
-// section by section: looking for, what I bring, path in short), stack and certifications. What is not written yet is
+// section by section: looking for, what I bring, path in short, initiatives), stack and certifications. What is not written yet is
 // shown as "coming soon", like everywhere else in the library.
 import { Image } from "astro:assets";
 import { getLocale, useTranslations } from "../i18n/ui";
 import { books, bookUrl } from "../data/books";
 import { stack, certifications, proofHref } from "../data/credentials";
-import { lookingFor, bring, path } from "../data/about";
+import { lookingFor, bring, path, initiatives } from "../data/about";
 import SocialLinks from "./SocialLinks.astro";
 import portrait from "../assets/mialy.jpg";
 
@@ -79,6 +79,31 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
         {path.bookLine[locale]} <a href={bookUrl(locale, pathBook)}>{pathBook.name[locale]} →</a>
       </p>
     )}
+  </section>
+
+  <section class="block" aria-labelledby="initiatives-title">
+    <h2 id="initiatives-title" set:html={initiatives.title[locale]} />
+    <ul class="initiatives">
+      {initiatives.items.map((it) => (
+        <li class="initiative">
+          {it.image && (
+            <Image class="shot" src={it.image.src} alt={it.image.alt[locale]} widths={[340, 680]} sizes="(min-width: 720px) 640px, calc(100vw - 86px)" />
+          )}
+          <span class="initiative-meta">
+            {it.when[locale]}
+            {it.status && <span class="status">{it.status[locale]}</span>}
+          </span>
+          <h3 class="initiative-name">{it.name}</h3>
+          <span class="initiative-role">{it.role[locale]}</span>
+          <p class="initiative-text">{it.text[locale]}</p>
+          {it.links && it.links.length > 0 && (
+            <span class="cert-links">
+              {it.links.map((l) => <a href={l.url} target="_blank" rel="noopener">{l.label[locale]} ↗</a>)}
+            </span>
+          )}
+        </li>
+      ))}
+    </ul>
   </section>
 
   <section class="block">
@@ -226,6 +251,19 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
   .period-text { margin: 4px 0 0; font-family: var(--font-reading); font-size: 18px; line-height: 1.55; color: var(--ink-soft); }
   .path-book { margin: 18px 0 0; font-size: 16px; color: var(--ink-soft); }
   .path-book a { font-weight: 600; text-underline-offset: 3px; }
+
+  .initiatives { display: flex; flex-direction: column; gap: 16px; margin: 18px 0 0; padding: 0; list-style: none; }
+  .initiative {
+    display: flex; flex-direction: column; gap: 4px; padding: 18px;
+    background: var(--card); border: 1px solid var(--ink); border-radius: 16px; box-shadow: 5px 5px 0 var(--shadow);
+  }
+  .initiative :global(.shot) { display: block; width: 100%; height: auto; margin-bottom: 10px; border: 1px solid var(--line); border-radius: 10px; }
+  .initiative-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-family: var(--font-mono); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-muted); }
+  /* "On pause": said plainly, as a small tag. */
+  .status { padding: 2px 8px; border: 1px solid var(--ink-faint); border-radius: 999px; font-size: 12px; }
+  .initiative-name { margin: 2px 0 0; font-family: var(--font-serif); font-weight: 400; font-size: 24px; line-height: 1.1; }
+  .initiative-role { font-size: 15px; color: var(--ink-soft); }
+  .initiative-text { margin: 6px 0 0; font-family: var(--font-reading); font-size: 18px; line-height: 1.55; color: var(--ink-soft); }
 
   .pending {
     display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 0; padding: 18px;
