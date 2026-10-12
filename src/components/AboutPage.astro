@@ -1,12 +1,12 @@
 ---
 // About page: portrait, profiles, Mialy's own text (src/data/about.ts, pushed
-// section by section: looking for, what I bring, path in short, initiatives), stack and certifications. What is not written yet is
+// section by section: looking for, what I bring, values, path in short, initiatives, inspirations), stack and certifications. What is not written yet is
 // shown as "coming soon", like everywhere else in the library.
 import { Image } from "astro:assets";
 import { getLocale, useTranslations } from "../i18n/ui";
 import { books, bookUrl } from "../data/books";
 import { stack, certifications, proofHref } from "../data/credentials";
-import { lookingFor, bring, path, initiatives } from "../data/about";
+import { lookingFor, bring, values, path, initiatives, inspirations } from "../data/about";
 import SocialLinks from "./SocialLinks.astro";
 import portrait from "../assets/mialy.jpg";
 
@@ -53,7 +53,37 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
             <span class="proofs">
               {item.proofs.map((p) => {
                 const href = proofHref(p.proof, locale);
-                return href ? <a href={href}>{p.label[locale]}</a> : <span>{p.label[locale]}</span>;
+                const external = "url" in p.proof;
+                return href ? (
+                  <a href={href} target={external ? "_blank" : undefined} rel={external ? "noopener" : undefined}>
+                    {p.label[locale]}{external ? " ↗" : ""}
+                  </a>
+                ) : <span>{p.label[locale]}</span>;
+              })}
+            </span>
+          )}
+        </li>
+      ))}
+    </ul>
+  </details>
+
+  <details class="block fold">
+    <summary><h2 id="values-title" set:html={values.title[locale]} /></summary>
+    <ul class="strengths">
+      {values.items.map((item) => (
+        <li class="strength">
+          <h3 class="strength-title">{item.title[locale]}</h3>
+          <p class="strength-text">{item.text[locale]}</p>
+          {item.proofs.length > 0 && (
+            <span class="proofs">
+              {item.proofs.map((p) => {
+                const href = proofHref(p.proof, locale);
+                const external = "url" in p.proof;
+                return href ? (
+                  <a href={href} target={external ? "_blank" : undefined} rel={external ? "noopener" : undefined}>
+                    {p.label[locale]}{external ? " ↗" : ""}
+                  </a>
+                ) : <span>{p.label[locale]}</span>;
               })}
             </span>
           )}
@@ -101,6 +131,19 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
               {it.links.map((l) => <a href={l.url} target="_blank" rel="noopener">{l.label[locale]} ↗</a>)}
             </span>
           )}
+        </li>
+      ))}
+    </ul>
+  </details>
+
+  <details class="block fold">
+    <summary><h2 id="inspirations-title" set:html={inspirations.title[locale]} /></summary>
+    <ul class="strengths">
+      {inspirations.items.map((it) => (
+        <li class="strength">
+          <h3 class="strength-title">{it.name}</h3>
+          <a class="channel" href={it.url} target="_blank" rel="noopener">{it.channel} ↗</a>
+          <p class="strength-text">{it.text[locale]}</p>
         </li>
       ))}
     </ul>
@@ -175,13 +218,6 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
       })}
     </ul>
   </details>
-
-  <section class="block">
-    <p class="pending">
-      <span class="stamp">{t("book.stamp")}</span>
-      <span>{t("about.introSoon")}</span>
-    </p>
-  </section>
 </article>
 
 <script>
@@ -270,6 +306,7 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
   .strength-title { margin: 0; font-family: var(--font-serif); font-weight: 400; font-size: 23px; line-height: 1.15; }
   .strength-text { margin: 6px 0 0; font-family: var(--font-reading); font-size: 18px; line-height: 1.55; color: var(--ink-soft); }
   .strength .proofs { margin-top: 6px; }
+  .channel { display: inline-flex; align-items: center; min-height: 32px; font-family: var(--font-mono); font-size: 13px; text-underline-offset: 3px; }
 
   .periods { position: relative; margin: 16px 0 0; padding: 0 0 0 22px; list-style: none; }
   .periods::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
@@ -298,15 +335,6 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
   .initiative-role { font-size: 15px; color: var(--ink-soft); }
   .initiative-text { margin: 6px 0 0; font-family: var(--font-reading); font-size: 18px; line-height: 1.55; color: var(--ink-soft); }
 
-  .pending {
-    display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 0; padding: 18px;
-    border: 1px dashed var(--ink-faint); border-radius: 16px; font-size: 16px; color: var(--ink-soft);
-  }
-  .stamp {
-    padding: 4px 12px; border: 1.5px solid var(--accent-text); border-radius: 999px; transform: rotate(-6deg);
-    font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--accent-text);
-  }
 
   .group { margin-top: 32px; }
   /* Group title, centred between two rules, like a chapter divider. */
