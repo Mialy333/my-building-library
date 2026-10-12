@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ShelfPage from "../../components/ShelfPage.astro";
+import ShelfScene from "../../components/ShelfScene.astro";
 import { useTranslations } from "../../i18n/ui";
 const t = useTranslations("fr");
 ---
 
 <BaseLayout title={t("shelf.pageTitle")}>
+  <ShelfScene slot="hero" />
   <ShelfPage />
 </BaseLayout>

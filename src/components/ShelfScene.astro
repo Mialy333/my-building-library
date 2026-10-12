@@ -1,0 +1,332 @@
+---
+// Illustrated band at the top of the shelf page: a reading nook under an arched
+// window, between two bookcases, with a sleeping cat on the window seat.
+// Same recipe as the home scene: pure SVG + CSS, no JavaScript, day/night follows
+// the site theme, and everything stops with prefers-reduced-motion.
+// Futuristic touches: a sky-tram crossing the city, a floating holographic book.
+import { getLocale, useTranslations } from "../i18n/ui";
+
+const t = useTranslations(getLocale(Astro.currentLocale));
+---
+
+<div class="shelf-scene" role="img" aria-label={t("shelf.sceneLabel")}>
+<svg viewBox="0 0 720 300" preserveAspectRatio="xMidYMid slice" class="art" aria-hidden="true">
+ <defs>
+  <linearGradient id="sh-skyD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3C4A6"/><stop offset="1" stop-color="#E8A7B6"/></linearGradient>
+  <linearGradient id="sh-skyN" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1C1424"/><stop offset="1" stop-color="#4A2E4F"/></linearGradient>
+  <linearGradient id="sh-beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3EA" stop-opacity=".55"/><stop offset="1" stop-color="#FFF3EA" stop-opacity="0"/></linearGradient>
+  <clipPath id="sh-archA"><path d="M276 236 V110 a84 84 0 0 1 168 0 V236 Z"/></clipPath>
+  <radialGradient id="sh-glow"><stop offset="0" stop-color="#FFD98A" stop-opacity=".55"/><stop offset="1" stop-color="#FFD98A" stop-opacity="0"/></radialGradient>
+  <radialGradient id="sh-holo"><stop offset="0" stop-color="#F4B6CF" stop-opacity=".7"/><stop offset="1" stop-color="#F4B6CF" stop-opacity="0"/></radialGradient>
+ </defs>
+ <rect width="720" height="300" class="wall"/>
+ <!-- window -->
+ <g clip-path="url(#sh-archA)">
+  <rect x="270" y="20" width="180" height="230" fill="url(#sh-skyD)"/>
+  <rect x="270" y="20" width="180" height="230" fill="url(#sh-skyN)" class="nightonly"/>
+  <circle cx="400" cy="92" r="14" class="orb"/>
+  <circle cx="407" cy="86" r="12" class="crescent nightonly"/>
+  <g class="nightonly stars"><circle class="tw" cx="300" cy="70" r="1.3"/><circle class="tw" style="--w:.8s" cx="340" cy="52" r="1"/><circle class="tw" style="--w:1.6s" cx="372" cy="120" r="1.2"/><circle class="tw" style="--w:.4s" cx="425" cy="140" r="1"/><circle class="tw" style="--w:2s" cx="318" cy="128" r="1.1"/></g>
+  <g class="clouds drift"><ellipse cx="318" cy="112" rx="26" ry="7"/><ellipse cx="334" cy="106" rx="14" ry="6"/><ellipse cx="420" cy="150" rx="22" ry="6"/></g>
+  <!-- distant city with a sky-tram line: the futuristic hint -->
+  <g class="city"><rect x="276" y="186" width="20" height="50"/><rect x="296" y="168" width="16" height="68"/><rect x="312" y="150" width="22" height="86"/><rect x="334" y="176" width="14" height="60"/><rect x="348" y="140" width="18" height="96"/><rect x="366" y="172" width="22" height="64"/><rect x="388" y="156" width="16" height="80"/><rect x="404" y="182" width="24" height="54"/><rect x="428" y="164" width="16" height="72"/></g>
+  <path d="M270 160 Q360 146 450 158" class="rail"/>
+  <rect x="300" y="150" width="22" height="7" rx="3" class="tram"/>
+  <g class="nightonly lit"><rect class="tw" style="--d:5s" x="317" y="160" width="4" height="5"/><rect x="352" y="150" width="4" height="5"/><rect class="tw" style="--d:6s;--w:1s" x="392" y="166" width="4" height="5"/><rect x="301" y="180" width="4" height="5"/><rect x="410" y="192" width="4" height="5"/><rect class="tw" style="--d:7s;--w:2s" x="434" y="176" width="4" height="5"/></g>
+ </g>
+ <path d="M276 236 V110 a84 84 0 0 1 168 0 V236" class="frame"/>
+ <path d="M360 26 V236 M276 150 H444" class="mullion"/>
+ <!-- curtains -->
+ <path d="M258 30 C270 90 262 170 270 238 L252 238 C246 170 252 90 246 30 Z" class="curtain sway-l"/>
+ <path d="M462 30 C450 90 458 170 450 238 L468 238 C474 170 468 90 474 30 Z" class="curtain sway-r"/>
+ <rect x="236" y="24" width="248" height="6" rx="3" class="rod"/>
+ <!-- sun beam + dust by day -->
+ <path d="M300 236 L444 236 L520 300 L250 300 Z" fill="url(#sh-beam)" class="dayonly"/>
+ <g class="dayonly dust"><circle class="mote" cx="330" cy="250" r="1.6"/><circle class="mote" style="--w:1.2s" cx="380" cy="262" r="1.2"/><circle class="mote" style="--w:2.4s" cx="420" cy="248" r="1.4"/><circle class="mote" style="--w:3.1s" cx="360" cy="276" r="1.1"/></g>
+ <!-- shelves -->
+ <rect x="18" y="36" width="214" height="194" class="case"/>
+<rect x="24" y="58" width="9" height="34" fill="var(--b4)" class="book"/>
+<rect x="33" y="59" width="14" height="33" fill="var(--b3)" class="book"/>
+<rect x="48" y="60" width="7" height="32" fill="var(--b4)" class="book"/>
+<rect x="56" y="49" width="7" height="43" fill="var(--b1)" class="book"/>
+<rect x="63" y="61" width="8" height="31" fill="var(--b5)" class="book"/>
+<rect x="71" y="61" width="8" height="31" fill="var(--b5)" class="book"/>
+<rect x="80" y="58" width="10" height="34" fill="var(--b5)" class="book"/>
+<rect x="80" y="64" width="10" height="2" class="band"/>
+<rect x="91" y="57" width="11" height="35" fill="var(--b1)" class="book"/>
+<rect x="105" y="59" width="9" height="33" fill="var(--b5)" transform="rotate(14 105 92)" class="book"/>
+<rect x="122" y="60" width="12" height="32" fill="var(--b5)" class="book"/>
+<rect x="122" y="66" width="12" height="2" class="band"/>
+<rect x="135" y="49" width="10" height="43" fill="var(--b3)" class="book"/>
+<rect x="147" y="53" width="9" height="39" fill="var(--b2)" class="book"/>
+<rect x="157" y="53" width="7" height="39" fill="var(--b5)" class="book"/>
+<rect x="165" y="48" width="12" height="44" fill="var(--b3)" class="book"/>
+<rect x="177" y="46" width="7" height="46" fill="var(--b4)" class="book"/>
+<rect x="177" y="52" width="7" height="2" class="band"/>
+<rect x="185" y="47" width="8" height="45" fill="var(--b4)" class="book"/>
+<rect x="185" y="53" width="8" height="2" class="band"/>
+<rect x="193" y="52" width="14" height="40" fill="var(--b3)" class="book"/>
+<rect x="211" y="48" width="11" height="44" fill="var(--b1)" transform="rotate(14 211 92)" class="book"/>
+<rect x="18" y="92" width="214" height="5" class="board"/>
+<rect x="18" y="97" width="214" height="2" class="neon"/>
+<rect x="24" y="122" width="14" height="32" fill="var(--b3)" class="book"/>
+<rect x="38" y="115" width="7" height="39" fill="var(--b6)" class="book"/>
+<rect x="47" y="112" width="9" height="42" fill="var(--b6)" class="book"/>
+<rect x="47" y="118" width="9" height="2" class="band"/>
+<rect x="58" y="119" width="9" height="35" fill="var(--b5)" class="book"/>
+<rect x="58" y="125" width="9" height="2" class="band"/>
+<rect x="67" y="115" width="8" height="39" fill="var(--b2)" class="book"/>
+<rect x="77" y="109" width="10" height="45" fill="var(--b1)" class="book"/>
+<rect x="77" y="115" width="10" height="2" class="band"/>
+<rect x="89" y="116" width="11" height="38" fill="var(--b2)" class="book"/>
+<rect x="101" y="111" width="12" height="43" fill="var(--b3)" class="book"/>
+<rect x="117" y="120" width="8" height="34" fill="var(--b1)" transform="rotate(14 117 154)" class="book"/>
+<rect x="133" y="120" width="8" height="34" fill="var(--b2)" class="book"/>
+<rect x="141" y="119" width="10" height="35" fill="var(--b3)" class="book"/>
+<rect x="141" y="125" width="10" height="2" class="band"/>
+<rect x="152" y="113" width="10" height="41" fill="var(--b5)" class="book"/>
+<rect x="163" y="108" width="12" height="46" fill="var(--b5)" class="book"/>
+<rect x="175" y="112" width="10" height="42" fill="var(--b4)" class="book"/>
+<rect x="185" y="112" width="10" height="42" fill="var(--b1)" class="book"/>
+<rect x="185" y="118" width="10" height="2" class="band"/>
+<rect x="196" y="119" width="10" height="35" fill="var(--b1)" class="book"/>
+<rect x="196" y="125" width="10" height="2" class="band"/>
+<rect x="206" y="124" width="7" height="30" fill="var(--b5)" class="book"/>
+<rect x="206" y="130" width="7" height="2" class="band"/>
+<rect x="215" y="124" width="9" height="30" fill="var(--b1)" transform="rotate(14 215 154)" class="book"/>
+<rect x="18" y="154" width="214" height="5" class="board"/>
+<rect x="18" y="159" width="214" height="2" class="neon"/>
+<rect x="24" y="180" width="14" height="36" fill="var(--b5)" class="book"/>
+<rect x="39" y="175" width="9" height="41" fill="var(--b4)" class="book"/>
+<rect x="39" y="181" width="9" height="2" class="band"/>
+<rect x="50" y="171" width="10" height="45" fill="var(--b4)" class="book"/>
+<rect x="50" y="177" width="10" height="2" class="band"/>
+<rect x="61" y="176" width="7" height="40" fill="var(--b6)" class="book"/>
+<rect x="61" y="182" width="7" height="2" class="band"/>
+<rect x="69" y="186" width="11" height="30" fill="var(--b2)" class="book"/>
+<rect x="81" y="186" width="8" height="30" fill="var(--b5)" class="book"/>
+<rect x="81" y="192" width="8" height="2" class="band"/>
+<rect x="89" y="178" width="12" height="38" fill="var(--b5)" class="book"/>
+<rect x="102" y="179" width="9" height="37" fill="var(--b5)" class="book"/>
+<rect x="114" y="179" width="12" height="37" fill="var(--b5)" transform="rotate(14 114 216)" class="book"/>
+<rect x="134" y="180" width="14" height="36" fill="var(--b2)" class="book"/>
+<rect x="149" y="170" width="8" height="46" fill="var(--b4)" class="book"/>
+<rect x="157" y="178" width="7" height="38" fill="var(--b4)" class="book"/>
+<rect x="157" y="184" width="7" height="2" class="band"/>
+<rect x="165" y="175" width="10" height="41" fill="var(--b3)" class="book"/>
+<rect x="165" y="181" width="10" height="2" class="band"/>
+<rect x="175" y="171" width="8" height="45" fill="var(--b2)" class="book"/>
+<rect x="175" y="177" width="8" height="2" class="band"/>
+<rect x="185" y="186" width="11" height="30" fill="var(--b4)" class="book"/>
+<rect x="197" y="184" width="14" height="32" fill="var(--b6)" class="book"/>
+<rect x="197" y="190" width="14" height="2" class="band"/>
+<rect x="18" y="216" width="214" height="5" class="board"/>
+<rect x="18" y="221" width="214" height="2" class="neon"/>
+ <rect x="488" y="36" width="214" height="194" class="case"/>
+<rect x="494" y="57" width="10" height="35" fill="var(--b4)" class="book"/>
+<rect x="505" y="50" width="7" height="42" fill="var(--b4)" class="book"/>
+<rect x="512" y="57" width="12" height="35" fill="var(--b2)" class="book"/>
+<rect x="524" y="48" width="8" height="44" fill="var(--b6)" class="book"/>
+<rect x="524" y="54" width="8" height="2" class="band"/>
+<rect x="534" y="51" width="12" height="41" fill="var(--b2)" class="book"/>
+<rect x="547" y="62" width="7" height="30" fill="var(--b6)" class="book"/>
+<rect x="555" y="56" width="10" height="36" fill="var(--b2)" class="book"/>
+<rect x="555" y="62" width="10" height="2" class="band"/>
+<rect x="566" y="46" width="9" height="46" fill="var(--b2)" class="book"/>
+<rect x="578" y="49" width="9" height="43" fill="var(--b2)" transform="rotate(14 578 92)" class="book"/>
+<rect x="595" y="51" width="7" height="41" fill="var(--b4)" class="book"/>
+<rect x="604" y="46" width="14" height="46" fill="var(--b2)" class="book"/>
+<rect x="618" y="48" width="14" height="44" fill="var(--b2)" class="book"/>
+<rect x="633" y="58" width="8" height="34" fill="var(--b4)" class="book"/>
+<rect x="641" y="61" width="11" height="31" fill="var(--b3)" class="book"/>
+<rect x="654" y="59" width="14" height="33" fill="var(--b5)" class="book"/>
+<rect x="654" y="65" width="14" height="2" class="band"/>
+<rect x="669" y="61" width="9" height="31" fill="var(--b1)" class="book"/>
+<rect x="678" y="60" width="14" height="32" fill="var(--b4)" class="book"/>
+<rect x="678" y="66" width="14" height="2" class="band"/>
+<rect x="488" y="92" width="214" height="5" class="board"/>
+<rect x="488" y="97" width="214" height="2" class="neon"/>
+<rect x="494" y="116" width="12" height="38" fill="var(--b4)" class="book"/>
+<rect x="508" y="117" width="11" height="37" fill="var(--b6)" class="book"/>
+<rect x="520" y="118" width="11" height="36" fill="var(--b4)" class="book"/>
+<rect x="520" y="124" width="11" height="2" class="band"/>
+<rect x="531" y="110" width="10" height="44" fill="var(--b3)" class="book"/>
+<rect x="531" y="116" width="10" height="2" class="band"/>
+<rect x="542" y="122" width="10" height="32" fill="var(--b2)" class="book"/>
+<rect x="552" y="120" width="14" height="34" fill="var(--b6)" class="book"/>
+<rect x="567" y="116" width="8" height="38" fill="var(--b2)" class="book"/>
+<rect x="576" y="121" width="12" height="33" fill="var(--b4)" class="book"/>
+<rect x="591" y="117" width="12" height="37" fill="var(--b2)" transform="rotate(14 591 154)" class="book"/>
+<rect x="611" y="111" width="12" height="43" fill="var(--b5)" class="book"/>
+<rect x="625" y="113" width="8" height="41" fill="var(--b3)" class="book"/>
+<rect x="625" y="119" width="8" height="2" class="band"/>
+<rect x="634" y="114" width="7" height="40" fill="var(--b5)" class="book"/>
+<rect x="641" y="114" width="10" height="40" fill="var(--b5)" class="book"/>
+<rect x="651" y="117" width="7" height="37" fill="var(--b1)" class="book"/>
+<rect x="651" y="123" width="7" height="2" class="band"/>
+<rect x="659" y="119" width="7" height="35" fill="var(--b3)" class="book"/>
+<rect x="668" y="116" width="14" height="38" fill="var(--b4)" class="book"/>
+<rect x="668" y="122" width="14" height="2" class="band"/>
+<rect x="684" y="114" width="12" height="40" fill="var(--b1)" class="book"/>
+<rect x="684" y="120" width="12" height="2" class="band"/>
+<rect x="488" y="154" width="214" height="5" class="board"/>
+<rect x="488" y="159" width="214" height="2" class="neon"/>
+<rect x="494" y="184" width="10" height="32" fill="var(--b3)" class="book"/>
+<rect x="504" y="178" width="14" height="38" fill="var(--b1)" class="book"/>
+<rect x="519" y="178" width="7" height="38" fill="var(--b1)" class="book"/>
+<rect x="527" y="173" width="11" height="43" fill="var(--b3)" class="book"/>
+<rect x="538" y="179" width="11" height="37" fill="var(--b1)" class="book"/>
+<rect x="550" y="181" width="7" height="35" fill="var(--b2)" class="book"/>
+<rect x="558" y="180" width="11" height="36" fill="var(--b3)" class="book"/>
+<rect x="570" y="175" width="9" height="41" fill="var(--b1)" class="book"/>
+<rect x="581" y="186" width="7" height="30" fill="var(--b6)" transform="rotate(14 581 216)" class="book"/>
+<rect x="596" y="180" width="11" height="36" fill="var(--b5)" class="book"/>
+<rect x="609" y="173" width="7" height="43" fill="var(--b6)" class="book"/>
+<rect x="618" y="177" width="11" height="39" fill="var(--b6)" class="book"/>
+<rect x="618" y="183" width="11" height="2" class="band"/>
+<rect x="630" y="180" width="9" height="36" fill="var(--b6)" class="book"/>
+<rect x="640" y="175" width="10" height="41" fill="var(--b1)" class="book"/>
+<rect x="650" y="178" width="7" height="38" fill="var(--b4)" class="book"/>
+<rect x="650" y="184" width="7" height="2" class="band"/>
+<rect x="657" y="174" width="12" height="42" fill="var(--b5)" class="book"/>
+<rect x="670" y="179" width="11" height="37" fill="var(--b6)" class="book"/>
+<rect x="670" y="185" width="11" height="2" class="band"/>
+<rect x="685" y="181" width="8" height="35" fill="var(--b3)" transform="rotate(14 685 216)" class="book"/>
+<rect x="488" y="216" width="214" height="5" class="board"/>
+<rect x="488" y="221" width="214" height="2" class="neon"/>
+ <!-- plants on top of the cases -->
+ <g class="sway" style="--d:6s"><path d="M54 34 C44 20 48 8 56 4 C60 16 60 26 54 34Z" class="leaf"/><path d="M58 34 C66 22 76 20 82 22 C78 30 70 34 58 34Z" class="leaf dk"/></g>
+ <rect x="46" y="32" width="22" height="10" rx="2" class="pot"/>
+ <!-- hanging lamp -->
+ <path d="M160 0 V16" class="cord"/>
+ <circle cx="160" cy="30" r="34" fill="url(#sh-glow)" class="nightonly pulse"/>
+ <path d="M147 31 Q160 12 173 31 Z" class="lamp"/>
+ <!-- floating holo book: futuristic touch -->
+ <g class="bob">
+  <ellipse cx="610" cy="22" rx="30" ry="12" fill="url(#sh-holo)" class="nightonly"/>
+  <path d="M596 24 L610 28 L624 24 L624 12 L610 16 L596 12 Z" class="holo"/>
+  <path d="M610 16 V28" class="holo-line"/>
+ </g>
+ <ellipse cx="610" cy="35" rx="14" ry="2" class="holo-shadow"/>
+ <!-- floor and window seat -->
+ <rect x="0" y="236" width="720" height="64" class="floor"/>
+ <rect x="0" y="236" width="720" height="5" class="skirting"/>
+ <ellipse cx="360" cy="282" rx="170" ry="12" class="rug"/>
+ <rect x="262" y="226" width="196" height="16" rx="5" class="seat"/>
+ <rect x="266" y="242" width="188" height="20" class="seat-front"/>
+ <rect x="282" y="214" width="56" height="14" rx="7" class="cushion"/>
+ <!-- sleeping cat: curled, tail around, breathing -->
+ <g class="cat">
+  <g class="breathe">
+   <path d="M378 228 C374 210 392 200 410 202 C430 204 440 216 436 228 Z" class="cat-fur"/>
+   <path d="M390 226 C384 218 386 210 394 208" class="cat-line"/>
+  </g>
+  <circle cx="380" cy="220" r="10" class="cat-fur"/>
+  <path d="M372 214 L373 204 L379 211 Z M383 210 L389 204 L389 214 Z" class="cat-fur"/>
+  <path d="M374 213 L374.6 207.6 L377.6 211 Z M384.8 210.8 L388 207.4 L388 212.6 Z" class="cat-pink"/>
+  <path d="M375 221 q2 2 4 0 M383 221 q2 2 4 0" class="cat-eyes"/>
+  <path class="cat-tail" d="M436 226 C446 232 430 238 404 236 C392 235 386 232 384 228"/>
+  <text x="402" y="196" class="zzz">z</text><text x="410" y="186" class="zzz" style="--w:1.3s">z</text>
+ </g>
+ <!-- books stack + mug on seat -->
+ <rect x="296" y="208" width="34" height="6" class="stackbook" fill="var(--b3)"/><rect x="299" y="202" width="30" height="6" class="stackbook" fill="var(--b1)"/>
+</svg>
+</div>
+
+<style>
+  /* Day palette (scene-only colours). Night palette below follows the site theme,
+     with the same two selectors as the home scene. */
+  .shelf-scene {
+    --n: 0;
+    --wall: #F6E6DC; --case: #E3C2B4; --board: #C99E8C; --floor: #EAD3C8; --skirt: #E3C2B4;
+    --seat: #E3C2B4; --seat-front: #EAD3C8; --cushion: #F4DDE2;
+    --b1: #8FB394; --b2: #E9A47E; --b3: #E8A7B6; --b4: #7A2E5C; --b5: #F1E6DA; --b6: #4A3F47; --band: #FBF7F3;
+    --city: #D59AA8; --cloud: #FFF3EA; --orb: #FBE3B8;
+    --fur: #E9B07F; --fur-line: #C98A5C; --curtain: #F4DDE2; --frame: #FBF7F3; --neon: transparent;
+    --lamp: #E3C2B4; --leaf: #8FB394; --leafdk: #6F9A78;
+  }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .shelf-scene {
+      --n: 1;
+      --wall: #2A1E2A; --case: #3A2A35; --board: #4A3743; --floor: #2D2129; --skirt: #3A2A35;
+      --seat: #3A2A35; --seat-front: #2D2129; --cushion: #7A2E5C;
+      --b1: #557D5E; --b2: #A86A50; --b3: #9C5A6C; --b4: #5E2347; --b5: #8C7F78; --b6: #1A1318; --band: #CBBFB3;
+      --city: #2E2030; --cloud: #6B4A68; --orb: #F4E6C8;
+      --fur: #B07A55; --fur-line: #8A5A3C; --curtain: #5A3550; --frame: #CBBFB3; --neon: #F4B6CF;
+      --lamp: #F2C46D; --leaf: #6F9A78; --leafdk: #557D5E;
+    }
+  }
+  :global(:root[data-theme="dark"]) .shelf-scene {
+    --n: 1;
+    --wall: #2A1E2A; --case: #3A2A35; --board: #4A3743; --floor: #2D2129; --skirt: #3A2A35;
+    --seat: #3A2A35; --seat-front: #2D2129; --cushion: #7A2E5C;
+    --b1: #557D5E; --b2: #A86A50; --b3: #9C5A6C; --b4: #5E2347; --b5: #8C7F78; --b6: #1A1318; --band: #CBBFB3;
+    --city: #2E2030; --cloud: #6B4A68; --orb: #F4E6C8;
+    --fur: #B07A55; --fur-line: #8A5A3C; --curtain: #5A3550; --frame: #CBBFB3; --neon: #F4B6CF;
+    --lamp: #F2C46D; --leaf: #6F9A78; --leafdk: #557D5E;
+  }
+
+  /* A band across the top of the page, under the header. The drawing keeps its
+     bottom and centre (window, seat, cat); the sides are cropped on phones. */
+  /* Phones: the drawing fills the band and its sides are cropped (slice).
+     Wider screens: the drawing keeps its proportions (12:5) and is centred; the
+     wall and the floor simply continue on both sides, painted by the background
+     (floor line at 236/300 of the height, skirting 5 units). */
+  .shelf-scene {
+    --h: clamp(230px, 30vw, 400px);
+    height: var(--h); overflow: hidden; border-bottom: 1px solid var(--line);
+    background: linear-gradient(var(--wall) 78.67%, var(--skirt) 78.67% 80.33%, var(--floor) 80.33%);
+    transition: background .8s;
+  }
+  .art { display: block; width: min(100%, calc(var(--h) * 2.4)); height: 100%; margin: 0 auto; }
+  .art * { transition: fill .8s, opacity .8s, stroke .8s; }
+
+  .wall { fill: var(--wall); } .case { fill: var(--case); } .board { fill: var(--board); }
+  .neon { fill: var(--neon); opacity: .55; }
+  .band { fill: var(--band); opacity: .6; } .floor { fill: var(--floor); } .skirting { fill: var(--skirt); }
+  .seat { fill: var(--seat); stroke: var(--ink); stroke-width: 1; } .seat-front { fill: var(--seat-front); stroke: var(--ink); stroke-width: 1; }
+  .cushion { fill: var(--cushion); } .rug { fill: var(--cushion); opacity: .55; }
+  .city { fill: var(--city); } .clouds { fill: var(--cloud); opacity: .85; } .orb { fill: var(--orb); } .crescent { fill: #4A2E4F; }
+  .frame { fill: none; stroke: var(--frame); stroke-width: 7; } .mullion { stroke: var(--frame); stroke-width: 3; fill: none; }
+  .curtain { fill: var(--curtain); } .rod { fill: #9C6B7E; }
+  .rail { fill: none; stroke: #9C6B7E; stroke-width: 1.2; } .tram { fill: #F4B6CF; }
+  .lit { fill: #F2C46D; } .stars { fill: #F7EBD0; } .mote { fill: #FFF3EA; }
+  .cord { stroke: #9C6B7E; stroke-width: 1.2; } .lamp { fill: var(--lamp); stroke: var(--ink); stroke-width: 1; }
+  .holo { fill: #F4B6CF; opacity: .75; stroke: #7A2E5C; stroke-width: 1; } .holo-line { stroke: #7A2E5C; stroke-width: 1; }
+  .holo-shadow { fill: #7A2E5C; opacity: .15; }
+  .leaf { fill: var(--leaf); } .leaf.dk { fill: var(--leafdk); } .pot { fill: #C77E6B; stroke: var(--ink); stroke-width: 1; }
+  .cat-fur { fill: var(--fur); } .cat-line { fill: none; stroke: var(--fur-line); stroke-width: 1.5; stroke-linecap: round; }
+  .cat-tail { fill: none; stroke: var(--fur); stroke-width: 6; stroke-linecap: round; } .cat-pink { fill: #E3A0AA; }
+  .cat-eyes { fill: none; stroke: var(--ink); stroke-width: 1.3; stroke-linecap: round; }
+  .zzz { font: 600 10px var(--font-mono), monospace; fill: #9C6B7E; opacity: 0; animation: zz 4s ease-in-out var(--w, 0s) infinite; }
+  .stackbook { stroke: var(--ink); stroke-width: .8; }
+  /* Night-only and day-only layers fade with the theme. */
+  .nightonly { opacity: var(--n); } .dayonly { opacity: calc(1 - var(--n)); }
+
+  /* Motion. --d = duration, --w = delay, set per element in the markup. */
+  .tw { animation: tw var(--d, 3s) ease-in-out var(--w, 0s) infinite; }
+  .drift { animation: drift 26s ease-in-out infinite alternate; }
+  .breathe { transform-box: fill-box; transform-origin: 50% 100%; animation: breathe 4s ease-in-out infinite; }
+  .mote { animation: mote 7s ease-in-out var(--w, 0s) infinite; }
+  .bob { animation: bob 5s ease-in-out infinite; }
+  .pulse { animation: pulse 4s ease-in-out var(--w, 0s) infinite; }
+  .sway { transform-box: fill-box; transform-origin: 50% 100%; animation: sway var(--d, 5s) ease-in-out infinite; }
+  .sway-l, .sway-r { transform-box: fill-box; transform-origin: 50% 0; animation: curtain 7s ease-in-out infinite; }
+  .sway-r { animation-delay: 1s; }
+  .tram { animation: tram 14s linear infinite; }
+  @keyframes tw { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+  @keyframes drift { from { transform: translateX(-10px); } to { transform: translateX(10px); } }
+  @keyframes breathe { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.05); } }
+  @keyframes mote { 0% { transform: translate(0, 0); opacity: 0; } 30% { opacity: .9; } 100% { transform: translate(14px, -26px); opacity: 0; } }
+  @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  @keyframes pulse { 0%, 100% { opacity: calc(var(--n) * .7); } 50% { opacity: var(--n); } }
+  @keyframes sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+  @keyframes curtain { 0%, 100% { transform: skewX(0); } 50% { transform: skewX(1.5deg); } }
+  @keyframes tram { from { transform: translateX(-40px); } to { transform: translateX(200px); } }
+  @keyframes zz { 0% { opacity: 0; transform: translateY(4px); } 30% { opacity: .9; } 100% { opacity: 0; transform: translateY(-10px); } }
+
+  /* Reduced motion: a still picture. */
+  @media (prefers-reduced-motion: reduce) {
+    .shelf-scene * { animation: none !important; transition: none !important; }
+  }
+</style>

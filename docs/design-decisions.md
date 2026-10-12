@@ -331,6 +331,16 @@ Sur la scène, la ligne mono du haut passe donc en `--ink-soft` : `--ink-muted` 
   - variantes trop courantes exclues : « passage ».
 - S'applique à tous les chapitres, des trois livres, en FR et en EN. Rien à faire à la rédaction : une notion ajoutée au glossaire est repérée au build suivant.
 
+### 5.11 Scène de l'étagère (12 oct 2026)
+
+- Bandeau illustré en haut de la page Étagère (`ShelfScene.astro`, slot `hero`), même recette que l'accueil : SVG + CSS, sans JavaScript, jour/nuit suivant le thème du site, tout s'arrête avec `prefers-reduced-motion`. Pas de vrai GIF : trop lourd, flou sur écran Retina, incapable de suivre le bouton de thème.
+- Composition : grande fenêtre en arche (écho de l'arche du portrait) entre deux bibliothèques ; rideaux ; banquette avec coussin, pile de livres et **chat roux endormi en boule** (différent du chat assis de l'accueil) ; tapis ; plante et lampe suspendue sur la bibliothèque de gauche.
+- Touches futuristes, discrètes : ville au loin avec un tram aérien qui glisse sur son rail, livre holographique qui flotte au-dessus de la bibliothèque de droite ; la nuit, un liseré néon rose sous les étagères.
+- Jour : ciel pêche et rose de l'accueil, soleil, rayon de lumière et grains de poussière. Nuit : ciel prune, lune, étoiles, fenêtres allumées, lampe et livre holographique qui rayonnent.
+- Mouvement : respiration du chat et petits « z », poussière, nuages, tram, livre qui flotte, rideaux, scintillement des étoiles.
+- Hauteur `clamp(230px, 30vw, 400px)`. Sur téléphone, les côtés sont recadrés (la fenêtre et le chat restent au centre) ; sur grand écran, le dessin garde ses proportions 12:5 et le mur et le sol se prolongent sur les côtés par le fond.
+- Inspiré de deux images d'ambiance (bibliothèques façon anime) pour l'esprit seulement : aucune composition, aucun personnage ni objet repris.
+
 ## 6. Règles
 
 - Taille de texte minimale : **12 px**, sans exception ; 13 px partout hors en-tête et couvertures depuis le 9 oct 2026 (les petits textes ont tous gagné 1 px, les titres et le corps de lecture sont inchangés).
