@@ -94,7 +94,7 @@ export const stack: StackGroup[] = [
 ];
 
 // A programme and the certificates it gave, in the order they were earned.
-// AWS & AI Scholars has two stages: the open challenge, then the Nanodegree
+// AWS AI & ML Scholars has two stages: the open challenge, then the Nanodegree
 // for those selected. Dev3Pack has one. Every text here comes from Mialy
 // (programme figures) or the runbooks (scores, dates).
 export interface CertStage {
@@ -113,6 +113,7 @@ export interface Certification {
   title: string;
   issuer: string;
   about?: L; // the programme in one sentence, when it has several stages
+  source?: { label: L; url: string }; // official page of the programme
   book?: string; // the book that tells this programme, when there is one
   stages: CertStage[];
 }
@@ -121,11 +122,16 @@ const verify = (url: string) => ({ label: { fr: "Vérifier", en: "Verify" }, url
 
 export const certifications: Certification[] = [
   {
-    title: "AWS & AI Scholars",
+    title: "AWS AI & ML Scholars",
     issuer: "Udacity · AWS",
     about: {
       fr: "Un programme en deux étapes : un challenge ouvert à tous, puis un Nanodegree pour les mieux classés.",
       en: "A two-stage programme: a challenge open to all, then a Nanodegree for the top performers.",
+    },
+    // Figures (100,000 learners, top 4,500, dates) checked on AWS's official page.
+    source: {
+      label: { fr: "Le programme sur le site d'AWS", en: "The programme on AWS's website" },
+      url: "https://aws.amazon.com/about-aws/our-impact/scholars/",
     },
     book: "aws-scholars",
     stages: [
@@ -136,8 +142,8 @@ export const certifications: Certification[] = [
         kind: { fr: "Certificat de cours", en: "Course certificate" },
         date: { fr: "13 juin 2026", en: "June 13, 2026" },
         about: {
-          fr: "D'avril à juin 2026, nous étions 100 000 à relever le challenge, avec deux projets à rendre.",
-          en: "From April to June 2026, 100,000 of us took on the challenge, with two projects to complete.",
+          fr: "De mars à juin 2026, nous étions 100 000 à relever le challenge, avec deux projets à rendre.",
+          en: "From March to June 2026, 100,000 of us took on the challenge, with two projects to complete.",
         },
         verify: verify("https://www.udacity.com/certificate/e/6312df26-3d77-11f1-a28a-cba2c0c47bf3"),
         image: awsPractitionerCertificate,
@@ -151,7 +157,7 @@ export const certifications: Certification[] = [
         kind: { fr: "Nanodegree", en: "Nanodegree" },
         date: { fr: "6 octobre 2026", en: "October 6, 2026" },
         about: {
-          fr: "Les 4 500 meilleurs du challenge ont été sélectionnés pour ce Nanodegree. Je suis allée jusqu'au bout : trois projets validés par le mentor Udacity.",
+          fr: "Les 4 500 meilleurs du challenge ont été sélectionnés pour ce Nanodegree. Je suis allée jusqu'au bout : trois projets validés par le mentor Udacity.",
           en: "The top 4,500 from the challenge were selected for this Nanodegree. I saw it through: three projects approved by the Udacity mentor.",
         },
         verify: verify("https://www.udacity.com/certificate/e/c2ce036c-900d-11f1-adc8-3f80681b4872"),
@@ -173,7 +179,7 @@ export const certifications: Certification[] = [
         kind: { fr: "Certificat de fin de parcours", en: "Certificate of completion" },
         date: { fr: "octobre 2026", en: "October 2026" },
         about: {
-          fr: "Trois semaines (14 septembre → 2 octobre 2026) pour construire un agent de recherche ancré dans ses sources. Parcours noté 5 100/5 100, final assignment 15/15, Gecko capstone rendu et défendu à l'oral.",
+          fr: "Trois semaines (14 septembre → 2 octobre 2026) pour construire un agent de recherche ancré dans ses sources. Parcours noté 5 100/5 100, final assignment 15/15, Gecko capstone rendu et défendu à l'oral.",
           en: "Three weeks (September 14 → October 2, 2026) to build a source-grounded research agent. Graded track 5,100/5,100, final assignment 15/15, Gecko capstone delivered and defended orally.",
         },
         id: "0MEIAR4GV9KF",

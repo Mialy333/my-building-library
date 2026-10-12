@@ -21,7 +21,7 @@ Every project is a book, every step a chapter.
 | Shelf | Book | What it holds | Status |
 | --- | --- | --- | --- |
 | Fundamentals | **BAA 101** · Building AI Agents 101 | The basics of building an AI agent, and only the basics: each chapter is a lesson learned on a real project, stripped of its specifics so it holds for any agent. Comes with a 54-term glossary. | Living book · 11 chapters |
-| Journeys | **Future Agent Engineer** · AWS & AI Scholars | Three projects on Amazon Bedrock AgentCore, from a support chatbot to a multi-agent system with guardrails and tracing. | 3/3 · Udacity Nanodegree |
+| Journeys | **Future Agent Engineer** · AWS AI & ML Scholars | Three projects on Amazon Bedrock AgentCore, from a support chatbot to a multi-agent system with guardrails and tracing. | 3/3 · Udacity Nanodegree |
 | Journeys | **Dev3Pack** · AI Engineering Bootcamp | Three weeks to build a source-grounded research agent that cites or refuses, then a buyer agent on Solana devnet. | 17/17 · certificate |
 | Path | **My path** | From asset management to AI engineering. | Coming soon |
 | Builds | **My agents** | The AI agents I build on my own, from the BAA 101 concepts. | Coming soon |

@@ -99,14 +99,14 @@ export const books: Book[] = [
     color: "apricot",
     gauge: true,
     heading: { text: { fr: "Future Agent ", en: "Future Agent " }, accent: { fr: "Engineer", en: "Engineer" } },
-    meta: { fr: "AWS & AI Scholars · Udacity · 3 projets validés", en: "AWS & AI Scholars · Udacity · 3 projects approved" },
+    meta: { fr: "AWS AI & ML Scholars · Udacity · 3 projets validés", en: "AWS AI & ML Scholars · Udacity · 3 projects approved" },
     summary: {
       fr: [
-        "Le parcours Future Agent Engineer du programme AWS & AI Scholars : trois projets de support client sur Amazon Bedrock AgentCore, tous validés par le mentor Udacity.",
+        "Le parcours Future Agent Engineer du programme AWS AI & ML Scholars : trois projets de support client sur Amazon Bedrock AgentCore, tous validés par le mentor Udacity.",
         "Un chatbot dont tout le routage vit dans le prompt système, puis un agent Strands avec outils, RAG et mémoire long terme, puis un système de cinq agents qui coopèrent derrière un guardrail.",
       ],
       en: [
-        "The Future Agent Engineer track of the AWS & AI Scholars program: three customer support projects on Amazon Bedrock AgentCore, all approved by the Udacity mentor.",
+        "The Future Agent Engineer track of the AWS AI & ML Scholars program: three customer support projects on Amazon Bedrock AgentCore, all approved by the Udacity mentor.",
         "A chatbot whose routing lives entirely in its system prompt, then a Strands agent with tools, RAG and long-term memory, then a system of five cooperating agents behind a guardrail.",
       ],
     },
@@ -117,7 +117,7 @@ export const books: Book[] = [
     cover: {
       title: { fr: "Future Agent ", en: "Future Agent " },
       accent: { fr: "Engineer", en: "Engineer" },
-      subtitle: { fr: "AWS & AI Scholars", en: "AWS & AI Scholars" },
+      subtitle: { fr: "AWS AI & ML Scholars", en: "AWS AI & ML Scholars" },
       info: { fr: "AWS", en: "AWS" },
       bars: [70, 45, 90],
       art: "cloud",

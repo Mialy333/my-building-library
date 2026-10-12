@@ -232,8 +232,8 @@ export const path = {
       years: "2026",
       title: { fr: "Du Web3 aux agents IA", en: "From Web3 to AI agents" },
       text: {
-        fr: "J'entre dans l'écosystème Dev3Pack en janvier, avec un premier bootcamp pour apprendre Solidity, puis je suis SheFi (saison 15), un programme d'initiation à la DeFi. Ensuite viennent SafeHaven Money, AWS & AI Scholars et, de ma propre initiative, le bootcamp AI Engineering de Dev3Pack.",
-        en: "I join the Dev3Pack ecosystem in January, with a first bootcamp to learn Solidity, then follow SheFi (season 15), a DeFi education programme. Then come SafeHaven Money, AWS & AI Scholars and, on my own initiative, Dev3Pack's AI Engineering bootcamp.",
+        fr: "J'entre dans l'écosystème Dev3Pack en janvier, avec un premier bootcamp pour apprendre Solidity, puis je suis SheFi (saison 15), un programme d'initiation à la DeFi. Ensuite viennent SafeHaven Money, AWS AI & ML Scholars et, de ma propre initiative, le bootcamp AI Engineering de Dev3Pack.",
+        en: "I join the Dev3Pack ecosystem in January, with a first bootcamp to learn Solidity, then follow SheFi (season 15), a DeFi education programme. Then come SafeHaven Money, AWS AI & ML Scholars and, on my own initiative, Dev3Pack's AI Engineering bootcamp.",
       },
     },
   ] as Period[],
