@@ -23,7 +23,14 @@ export const lookingFor = {
     { label: { fr: "Poste", en: "Role" }, value: { fr: "Ingénieure IA · Développeuse d'agents IA", en: "AI Engineer · AI agent developer" } },
     {
       label: { fr: "Contrat", en: "Contract" },
-      value: { fr: "Contrat de professionnalisation (formation Ada Tech School) ou CDI", en: "Work-study contract (Ada Tech School training) or permanent contract" },
+      value: {
+        fr: "Contrat de professionnalisation de 12 à 24\u00a0mois (formation Ada Tech School), ou CDI",
+        en: "Work-study contract of 12 to 24\u00a0months (Ada Tech School training), or permanent contract",
+      },
+    },
+    {
+      label: { fr: "Rythme", en: "Schedule" },
+      value: { fr: "4\u00a0jours en entreprise, 1\u00a0jour à l'école", en: "4\u00a0days at the company, 1\u00a0day at school" },
     },
     { label: { fr: "Secteurs", en: "Sectors" }, value: { fr: "Finance institutionnelle, actifs numériques (blockchain, stablecoins), industrie", en: "Institutional finance, digital assets (blockchain, stablecoins), industry" } },
     {
