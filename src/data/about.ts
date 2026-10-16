@@ -16,23 +16,30 @@ export interface Fact {
 export const lookingFor = {
   title: { fr: "Ce que je <em>cherche</em>", en: "What I'm <em>looking for</em>" } as L,
   text: {
-    fr: "Je cherche à rejoindre une équipe qui construit des <strong>agents et assistants IA</strong>, en <strong>contrat de professionnalisation</strong> pour aller au bout de ma formation à Ada Tech School, ou en CDI. La finance institutionnelle et les actifs numériques me sont familiers, mais ce qui m'attire avant tout, ce sont les projets où la fiabilité compte : un assistant qui cite ses sources, ou qui sait dire qu'il ne sait pas. J'y apporte deux langages rarement réunis : celui des agents IA, que j'apprends en construisant, et celui de la gestion d'actifs, que je pratique depuis dix ans.",
-    en: "I'm looking to join a team that builds <strong>AI agents and assistants</strong>, on a <strong>work-study contract</strong> (French <em>contrat de professionnalisation</em>) to complete my training at Ada Tech School, or on a permanent contract. Institutional finance and digital assets are familiar ground, but what draws me most are projects where reliability matters: an assistant that cites its sources, or knows to say it doesn't know. I bring two languages that rarely meet: AI agents, which I learn by building, and asset management, which I've practised for ten years.",
+    fr: "Je cherche à rejoindre une équipe qui construit des <strong>agents IA</strong>, d'un agent seul à un système multi-agents, dans la <strong>finance traditionnelle</strong> ou une <strong>fintech</strong>. En <strong>contrat de professionnalisation</strong> pour aller au bout de ma formation à Ada Tech School, ou en CDI. J'ai travaillé dix ans en gestion d'actifs, et je construis aujourd'hui des agents, surtout sur AWS. Je suis de près l'arrivée de la blockchain et des stablecoins dans les banques et les institutions financières : c'est là que je veux construire.",
+    en: "I'm looking to join a team that builds <strong>AI agents</strong>, from a single agent to a multi-agent system, in <strong>traditional finance</strong> or a <strong>fintech</strong>. On a <strong>work-study contract</strong> (French <em>contrat de professionnalisation</em>) to complete my training at Ada Tech School, or on a permanent contract. I spent ten years in asset management, and today I build agents, mostly on AWS. I follow closely how blockchain and stablecoins are entering banks and financial institutions: that is where I want to build.",
   } as L,
   facts: [
-    { label: { fr: "Poste", en: "Role" }, value: { fr: "Ingénieure IA · Développeuse d'agents IA", en: "AI Engineer · AI agent developer" } },
+    { label: { fr: "Poste", en: "Role" }, value: { fr: "Développeuse · Ingénieure IA : agents et systèmes multi\u2011agents", en: "AI Developer · AI Engineer: agents and multi\u2011agent systems" } },
+    { label: { fr: "Secteurs", en: "Sectors" }, value: { fr: "Finance traditionnelle et fintechs ; blockchain et stablecoins côté institutions", en: "Traditional finance and fintechs; blockchain and stablecoins for institutions" } },
+    {
+      label: { fr: "Environnement", en: "Stack" },
+      value: {
+        fr: "AWS de préférence (Bedrock, AgentCore) · Claude · Ollama pour les modèles open source",
+        en: "AWS preferred (Bedrock, AgentCore) · Claude · Ollama for open-source models",
+      },
+    },
     {
       label: { fr: "Contrat", en: "Contract" },
       value: {
-        fr: "Contrat de professionnalisation de 12 à 24\u00a0mois (formation Ada Tech School), ou CDI",
-        en: "Work-study contract of 12 to 24\u00a0months (Ada Tech School training), or permanent contract",
+        fr: "Contrat de professionnalisation de 12\u00a0à\u00a024\u00a0mois (formation Ada Tech School), ou CDI",
+        en: "Work-study contract of 12\u00a0to\u00a024\u00a0months (Ada Tech School training), or permanent contract",
       },
     },
     {
       label: { fr: "Rythme", en: "Schedule" },
       value: { fr: "4\u00a0jours en entreprise, 1\u00a0jour à l'école", en: "4\u00a0days at the company, 1\u00a0day at school" },
     },
-    { label: { fr: "Secteurs", en: "Sectors" }, value: { fr: "Finance institutionnelle, actifs numériques (blockchain, stablecoins), industrie", en: "Institutional finance, digital assets (blockchain, stablecoins), industry" } },
     {
       label: { fr: "Où", en: "Where" },
       value: {
