@@ -16,17 +16,17 @@ export interface Fact {
 export const lookingFor = {
   title: { fr: "Ce que je <em>cherche</em>", en: "What I'm <em>looking for</em>" } as L,
   text: {
-    fr: "Je cherche à rejoindre une équipe qui construit des <strong>agents IA</strong>, d'un agent seul à un système multi-agents, dans la <strong>finance traditionnelle</strong> ou une <strong>fintech</strong>. En <strong>contrat de professionnalisation</strong> pour aller au bout de ma formation à Ada Tech School, ou en CDI. J'ai travaillé dix ans en gestion d'actifs, et je construis aujourd'hui des agents, surtout sur AWS. Je suis de près l'arrivée de la blockchain et des stablecoins dans les banques et les institutions financières : c'est là que je veux construire.",
-    en: "I'm looking to join a team that builds <strong>AI agents</strong>, from a single agent to a multi-agent system, in <strong>traditional finance</strong> or a <strong>fintech</strong>. On a <strong>work-study contract</strong> (French <em>contrat de professionnalisation</em>) to complete my training at Ada Tech School, or on a permanent contract. I spent ten years in asset management, and today I build agents, mostly on AWS. I follow closely how blockchain and stablecoins are entering banks and financial institutions: that is where I want to build.",
+    fr: "Je cherche à rejoindre une équipe qui conçoit des <strong>agents IA</strong> et les met en production : assistants conversationnels, RAG, systèmes multi-agents, branchés sur les outils des métiers. Je viens pour <strong>apprendre</strong> : sur une vraie base de code, avec des relectures, des contraintes de production et des personnes plus expérimentées que moi. En <strong>contrat de professionnalisation</strong> pour aller au bout de ma formation à Ada Tech School, ou en CDI. Pendant dix ans en gestion d'actifs, j'ai traduit des stratégies complexes pour des clients ; aujourd'hui, je fais le même travail entre un besoin métier et l'agent qui y répond, avec des sources vérifiables et des tests. J'ai surtout construit sur AWS, et je suis prête à apprendre la stack de l'équipe : un autre cloud, un autre framework, un autre langage.",
+    en: "I'm looking to join a team that designs <strong>AI agents</strong> and ships them to production: conversational assistants, RAG, multi-agent systems, connected to the tools people use at work. I'm here to <strong>learn</strong>: on a real codebase, with code reviews, production constraints and people more experienced than me. On a <strong>work-study contract</strong> (French <em>contrat de professionnalisation</em>) to complete my training at Ada Tech School, or on a permanent contract. For ten years in asset management, I translated complex strategies for clients; today I do the same work between a business need and the agent that answers it, with verifiable sources and tests. I have built mostly on AWS, and I'm ready to learn the team's stack: another cloud, another framework, another language.",
   } as L,
   facts: [
-    { label: { fr: "Poste", en: "Role" }, value: { fr: "Développeuse · Ingénieure IA : agents et systèmes multi\u2011agents", en: "AI Developer · AI Engineer: agents and multi\u2011agent systems" } },
-    { label: { fr: "Secteurs", en: "Sectors" }, value: { fr: "Finance traditionnelle et fintechs ; blockchain et stablecoins côté institutions", en: "Traditional finance and fintechs; blockchain and stablecoins for institutions" } },
+    { label: { fr: "Poste", en: "Role" }, value: { fr: "Développeuse · Ingénieure IA : agents, RAG, systèmes multi\u2011agents, IA intégrée dans des applications", en: "AI Developer · AI Engineer: agents, RAG, multi\u2011agent systems, AI built into applications" } },
+    { label: { fr: "Secteurs", en: "Sectors" }, value: { fr: "Ouverte à tous les secteurs ; un atout en finance, assurance et réglementation (dix ans en gestion d'actifs)", en: "Open to any sector; an edge in finance, insurance and regulation (ten years in asset management)" } },
     {
       label: { fr: "Environnement", en: "Stack" },
       value: {
-        fr: "AWS de préférence (Bedrock, AgentCore) · Claude · Ollama pour les modèles open source",
-        en: "AWS preferred (Bedrock, AgentCore) · Claude · Ollama for open-source models",
+        fr: "Surtout AWS (Bedrock, AgentCore, Strands) · Claude · Ollama pour les modèles open source · MCP · pytest et GitHub Actions ; prête à apprendre Azure, GCP et les outils de l'équipe",
+        en: "Mostly AWS (Bedrock, AgentCore, Strands) · Claude · Ollama for open-source models · MCP · pytest and GitHub Actions; ready to learn Azure, GCP and the team's tools",
       },
     },
     {
@@ -43,8 +43,8 @@ export const lookingFor = {
     {
       label: { fr: "Où", en: "Where" },
       value: {
-        fr: "Paris et Île-de-France, télétravail ; ouverte à une mobilité à l'étranger à terme",
-        en: "Paris area, remote; open to moving abroad later on",
+        fr: "Paris et Île-de-France, en hybride ; déplacements possibles",
+        en: "Paris area, hybrid; happy to travel for work",
       },
     },
     { label: { fr: "Disponibilité", en: "Availability" }, value: { fr: "Immédiate", en: "Immediately" } },
@@ -94,12 +94,14 @@ export const bring = {
     {
       title: { fr: "Rigueur", en: "Rigour" },
       text: {
-        fr: "Pendant Dev3Pack, mon agent tournait sur un modèle installé sur ma machine. Il fallait fixer un délai au-delà duquel il abandonne, sinon il pouvait attendre indéfiniment. J'avais une estimation en tête ; plutôt que de m'y fier, j'ai mesuré : 1,9 seconde au premier appel, 0,3 ensuite. Résultat : un délai de 3 secondes fondé sur la mesure, alors que mon estimation était fausse. Même réflexe quand un test n'avait pas tourné : je l'ai déclaré au lieu d'inventer un chiffre.",
-        en: "During Dev3Pack, my agent ran on a model installed on my own machine. I had to set a time limit after which it gives up, or it could wait forever. I had an estimate in mind; rather than trust it, I measured: 1.9 seconds on the first call, 0.3 after that. Result: a 3-second limit based on measurement, while my estimate had been wrong. Same reflex when a test hadn't run: I declared it instead of making up a number.",
+        fr: "Pendant Dev3Pack, mon agent tournait sur un modèle installé sur ma machine. Il fallait fixer un délai au-delà duquel il abandonne, sinon il pouvait attendre indéfiniment. J'avais une estimation en tête ; plutôt que de m'y fier, j'ai mesuré : 1,9 seconde au premier appel, 0,3 ensuite. Résultat : un délai de 3 secondes fondé sur la mesure, alors que mon estimation était fausse. Même réflexe quand un test n'avait pas tourné : je l'ai déclaré au lieu d'inventer un chiffre. Sur mon agent acheteur Gecko, 98 tests tournent à chaque push dans GitHub Actions. Et quand un juge LLM a noté mon chatbot de support 0,92, j'ai quand même vérifié la base de données : il avait laissé passer de faux numéros de ticket.",
+        en: "During Dev3Pack, my agent ran on a model installed on my own machine. I had to set a time limit after which it gives up, or it could wait forever. I had an estimate in mind; rather than trust it, I measured: 1.9 seconds on the first call, 0.3 after that. Result: a 3-second limit based on measurement, while my estimate had been wrong. Same reflex when a test hadn't run: I declared it instead of making up a number. On my Gecko buyer agent, 98 tests run on every push in GitHub Actions. And when an LLM judge scored my support chatbot 0.92, I still checked the database: it had let fake ticket IDs through.",
       },
       proofs: [
         { label: same("Dev3Pack S2"), proof: { label: "Dev3Pack S2", book: "dev3pack", chapter: 2 } },
         { label: same("S8"), proof: { label: "S8", book: "dev3pack", chapter: 8 } },
+        { label: same("Gecko · CI"), proof: { label: "Gecko · CI", url: "https://github.com/Mialy333/my-gecko-buyer" } },
+        { label: same("Chatbot · LLM judge"), proof: { label: "Chatbot · LLM judge", url: "https://github.com/Mialy333/support-chatbot-bedrock-agentcore" } },
       ],
     },
     {
@@ -111,10 +113,10 @@ export const bring = {
       proofs: [],
     },
     {
-      title: { fr: "Expertise en finance institutionnelle et numérique", en: "Institutional and digital finance expertise" },
+      title: { fr: "Comprendre un métier avant de coder", en: "Understanding the business before coding" },
       text: {
-        fr: "Une école de commerce majeure Finance, un MBA Trading & Asset Management, puis dix ans en gestion d'actifs, notamment chez Crédit Agricole CIB, Candriam et Northern Trust : je connais la logique métier de la finance institutionnelle. Côté numérique, je construis sur la blockchain : une application sur le XRP Ledger, un contrat déployé sur Ethereum (réseau de test Sepolia), et un agent qui achète on-chain sur Solana.",
-        en: "A business school degree with a Finance major, an MBA in Trading & Asset Management, then ten years in asset management, including at Crédit Agricole CIB, Candriam and Northern Trust: I know how institutional finance works. On the digital side, I build on blockchain: an app on the XRP Ledger, a contract deployed on Ethereum (Sepolia testnet), and an agent that buys on-chain on Solana.",
+        fr: "Une école de commerce majeure Finance, un MBA Trading & Asset Management, puis dix ans en gestion d'actifs, notamment chez Crédit Agricole CIB, Candriam et Northern Trust. Mon travail consistait à comprendre ce dont un client avait besoin, puis à le lui expliquer sans jargon. C'est le point de départ d'un agent utile : savoir quelle question le métier se pose avant de choisir un modèle. Je connais en particulier la finance institutionnelle et sa réglementation, et je construis aussi sur la blockchain : une application sur le XRP Ledger, un contrat déployé sur Ethereum (réseau de test Sepolia), et un agent qui achète on-chain sur Solana.",
+        en: "A business school degree with a Finance major, an MBA in Trading & Asset Management, then ten years in asset management, including at Crédit Agricole CIB, Candriam and Northern Trust. My job was to understand what a client needed, then explain it to them without jargon. That is where a useful agent starts: knowing which question the business is asking before choosing a model. I know institutional finance and its regulation in particular, and I also build on blockchain: an app on the XRP Ledger, a contract deployed on Ethereum (Sepolia testnet), and an agent that buys on-chain on Solana.",
       },
       proofs: [
         { label: same("B-Wiize"), proof: { label: "B-Wiize", url: "https://github.com/Mialy333/B-Wiize_Tech" } },
