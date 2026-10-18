@@ -9,7 +9,7 @@ Cette version remplace entièrement la V1 retro-futuriste (Néon indigo, sphère
 ## 1. Principes
 
 - **Direction.** Style éditorial print, doux et personnel, sans rien de gamin. Le site se lit comme une bibliothèque personnelle que Mialy construit : papier, encre, ruban marque-page. On y trouve trois sortes de livres :
-  - les formations et bootcamps suivis (Journeys) ;
+  - les formations, bootcamps et challenges suivis (Journeys, « Formations et challenges » en français) ;
   - les fondamentaux qu'elle en tire (BAA 101 et son glossaire) ;
   - les agents qu'elle construit par elle-même à partir de ces notions (Builds).
 - **Illustration (depuis le 9 oct 2026).** Une touche illustrée « cosy lo-fi » : un bureau devant la ville, au crépuscule ou la nuit, avec un écran, une plante, un mug et un chat. Dessinée en SVG et CSS, sans image ni bibliothèque.
@@ -355,6 +355,7 @@ Sur la scène, la ligne mono du haut passe donc en `--ink-soft` : `--ink-muted` 
 - Contraste du texte : 4,5:1 minimum, y compris sur le ciel de la scène d'accueil (voir 2.4).
 - Un seul accent d'interface, le prune. Les couleurs des livres ne servent jamais pour du texte.
 - Un décor ne passe jamais sur un titre. L'écran de couverture est un bloc séparé, sous le titre. Sur la scène d'accueil, le texte est posé sur le ciel uni ; nuages, soleil et lune restent hors de la zone de texte.
+- **Rayon Journeys** (18 oct 2026) : « Formations et challenges » en français, « Journeys » en anglais. Sous son label, une phrase de synthèse (« Mes formations et mes challenges, racontés étape par étape. »), à la taille et la couleur de la description d'un livre. Un rayon à un seul livre garde la description du livre à côté de sa couverture.
 - Un tag sans livre est masqué ; en V1 du site, seul « dev » est affiché. Un rayon vide est masqué.
 - **Livres sans chapitre publié** (18 oct 2026) : masqués de l'étagère, et leur rayon avec eux s'il devient vide (Parcours et Builds pour l'instant). Ils restent dans `books.ts` et réapparaissent avec leur premier chapitre. Raison : un livre vide en bas de l'étagère se lit comme un site inachevé, et un rayon « Mes agents » vide laisse croire que je n'ai rien construit seule. Remplace la règle du 9 oct 2026 (Builds affiché avec un livre « à paraître »).
 - Les chapitres pas encore écrits d'un livre en cours restent visibles avec « à paraître ».

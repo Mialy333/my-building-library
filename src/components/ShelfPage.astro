@@ -1,6 +1,6 @@
 ---
 import { getLocale, useTranslations, type UiKey } from "../i18n/ui";
-import { books, shelfOrder, pad } from "../data/books";
+import { books, shelfOrder, pad, type Shelf } from "../data/books";
 import BookItem from "./BookItem.astro";
 
 const locale = getLocale(Astro.currentLocale);
@@ -11,6 +11,9 @@ const t = useTranslations(locale);
 const groups = shelfOrder
   .map((shelf) => ({ shelf, books: books.filter((b) => b.shelf === shelf && !b.forthcoming) }))
   .filter((group) => group.books.length > 0);
+// One sentence under a rayon's label, for a rayon with several books (a rayon with a
+// single book shows that book's own description next to its cover instead).
+const shelfLead: Partial<Record<Shelf, UiKey>> = { journeys: "shelf.lead.journeys" };
 const tags = [...new Set(books.flatMap((b) => b.tags ?? []))];
 // Position of each book on the whole shelf, across rayons: it staggers the entry animation.
 let position = 0;
@@ -34,6 +37,7 @@ const rows = groups.map((group) => ({ ...group, items: group.books.map((book) =>
     <h2 class="rayon-label">
       <span>{t("shelf.rayon")} {pad(i + 1)} · <span class="rayon-name">{t(`shelf.${group.shelf}` as UiKey)}</span></span>
     </h2>
+    {shelfLead[group.shelf] && <p class="rayon-lead">{t(shelfLead[group.shelf]!)}</p>}
     <div class="grid">
       {group.items.map(({ book, index }) => <BookItem book={book} index={index} solo={group.items.length === 1} />)}
     </div>
@@ -56,6 +60,8 @@ const rows = groups.map((group) => ({ ...group, items: group.books.map((book) =>
   }
   .chip.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
   .rayon { padding: 40px 20px 0; }
+  /* Same size and colour as a book's description on the shelf (BookItem). */
+  .rayon-lead { margin: -4px 0 18px; font-size: 15px; line-height: 1.55; color: var(--ink-soft); }
   .rayon-label {
     display: flex; align-items: center; gap: 10px; margin: 0 0 16px;
     font-family: var(--font-mono); font-weight: 400; font-size: 13px; letter-spacing: 2px;

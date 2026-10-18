@@ -72,7 +72,7 @@ export const books: Book[] = [
     color: "sage",
     living: true,
     description: {
-      fr: "Les fondamentaux des agents IA, tirés de ce que les journeys m'apprennent.",
+      fr: "Les fondamentaux des agents IA, tirés de ce que mes formations et mes challenges m'apprennent.",
       en: "The fundamentals of AI agents, drawn from what the journeys teach me.",
     },
     heading: { text: { fr: "Building AI Agents ", en: "Building AI Agents " }, accent: { fr: "101", en: "101" } },
@@ -378,7 +378,8 @@ export const books: Book[] = [
       },
     },
     cover: {
-      title: { fr: "Hacktober", en: "Hacktober" },
+      // \u00AD = soft hyphen: lets "Hacktoberfest" break as "Hacktober-/fest" on a narrow cover.
+      title: { fr: "Hacktober\u00AD", en: "Hacktober\u00AD" },
       accent: { fr: "fest", en: "fest" },
       subtitle: { fr: "Open-Source AI Challenges", en: "Open-Source AI Challenges" },
       info: { fr: "5 SEM.", en: "5 WKS" },
