@@ -6,6 +6,8 @@ export interface Term {
   term: L;
   definition: L;
   concepts?: number[];
+  // Journey chapters where the term was met: { book slug, chapter slug }.
+  usedIn?: { book: string; chapter: string }[];
 }
 
 export const glossary: Term[] = [
@@ -31,6 +33,7 @@ export const glossary: Term[] = [
       en: "The model's request to run a tool with specific arguments. That's what you read in the trace, not the final answer.",
     },
     concepts: [3, 8],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-1" }, { book: "hacktoberfest-2026", chapter: "week-2" }],
   },
   {
     term: { fr: "Base de connaissances", en: "Knowledge base" },
@@ -142,6 +145,7 @@ export const glossary: Term[] = [
       en: "A filter applied to the model's inputs and outputs: harmful content, personal data, denied topics. It's tested like code, false positives included.",
     },
     concepts: [4],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
   },
   {
     term: { fr: "Hallucination d'action", en: "Action hallucination" },
@@ -245,6 +249,7 @@ export const glossary: Term[] = [
       en: "What survives from one session to the next, filed per user: facts, preferences, summaries. Without an owner or a limit, it leaks and contaminates tests.",
     },
     concepts: [10],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-1" }],
   },
   {
     term: { fr: "Orchestrateur", en: "Orchestrator" },
@@ -285,6 +290,7 @@ export const glossary: Term[] = [
       en: "The fixed instructions given to the model before any conversation. A rule there reduces a behavior without eliminating it, and a prompt that's too long is followed less well.",
     },
     concepts: [4, 11],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-1" }],
   },
   {
     term: { fr: "RAG", en: "RAG" },
@@ -325,6 +331,7 @@ export const glossary: Term[] = [
       en: "A single second attempt where the model gets back the error from its first one. Beyond that, a flagged refusal.",
     },
     concepts: [5],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
   },
   {
     term: { fr: "Rollback", en: "Rollback" },
@@ -340,6 +347,7 @@ export const glossary: Term[] = [
       en: "The required shape of a piece of data: its fields, their types, their bounds.",
     },
     concepts: [5],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "weekend" }],
   },
   {
     term: { fr: "Seam (couture)", en: "Seam" },
@@ -432,6 +440,146 @@ export const glossary: Term[] = [
       en: "Every write carries the version read just before it; if the version changed in the meantime, the write is refused. Two agents can't silently overwrite each other.",
     },
     concepts: [11],
+  },
+  // Hacktoberfest 2026 (October 2026): 16 terms added from the runbook.
+  {
+    term: { fr: "Inférence dans le navigateur (WebGPU)", en: "In-browser inference (WebGPU)" },
+    definition: {
+      fr: "La page télécharge le modèle une fois, puis la carte graphique de l'ordinateur le fait tourner directement dans le navigateur : rien à installer, rien n'est envoyé.",
+      en: "The page downloads the model once, then the computer's graphics card runs it directly in the browser: nothing to install, nothing is sent.",
+    },
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "weekend" }],
+  },
+  {
+    term: { fr: "Sortie structurée", en: "Structured output" },
+    definition: {
+      fr: "Demander au modèle de répondre dans un format fixe (du JSON), pour que l'interface affiche toujours la même chose, au même endroit.",
+      en: "Asking the model to answer in a fixed format (JSON), so the interface always shows the same thing, in the same place.",
+    },
+    concepts: [5],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "weekend" }],
+  },
+  {
+    term: { fr: "Données ouvertes (open data)", en: "Open data" },
+    definition: {
+      fr: "Des données publiées par une institution, que n'importe qui peut télécharger et réutiliser gratuitement, souvent sous licence ouverte.",
+      en: "Data published by an institution, that anyone can download and reuse for free, often under an open licence.",
+    },
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-1" }],
+  },
+  {
+    term: { fr: "Tâche planifiée", en: "Scheduled job" },
+    definition: {
+      fr: "Un programme que la machine lance toute seule à heure fixe, par exemple chaque matin.",
+      en: "A program the machine starts on its own at a set time, for example every morning.",
+    },
+    concepts: [11],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-1" }],
+  },
+  {
+    term: { fr: "Modèle de fondation tabulaire", en: "Tabular foundation model" },
+    definition: {
+      fr: "Un modèle déjà entraîné sur des millions de tableaux synthétiques : on lui donne un petit tableau d'exemples et il prédit les lignes suivantes, sans long entraînement.",
+      en: "A model already trained on millions of synthetic tables: you give it a small table of examples and it predicts the next rows, without long training.",
+    },
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
+  },
+  {
+    term: { fr: "Backtest", en: "Backtest" },
+    definition: {
+      fr: "Tester une méthode sur le passé : on fait comme si on ignorait l'issue des cas récents, on prédit, puis on compare à ce qui s'est vraiment passé.",
+      en: "Testing a method on the past: you act as if you didn't know how recent cases turned out, you predict, then you compare with what really happened.",
+    },
+    concepts: [9],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
+  },
+  {
+    term: { fr: "Fuite de données (data leakage)", en: "Data leakage" },
+    definition: {
+      fr: "Quand le modèle voit par erreur une information qu'il n'aurait pas eue au moment de prédire (par exemple la date de paiement) : le score paraît excellent, mais il est faux.",
+      en: "When the model sees by mistake a piece of information it wouldn't have had at prediction time (for example the payment date): the score looks excellent, but it's false.",
+    },
+    concepts: [9],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
+  },
+  {
+    term: { fr: "Taux de base", en: "Base rate" },
+    definition: {
+      fr: "La proportion « normale » dans les données. Un modèle qui répète toujours la réponse la plus fréquente a l'air bon sans rien comprendre.",
+      en: "The “normal” proportion in the data. A model that always repeats the most frequent answer looks good without understanding anything.",
+    },
+    concepts: [9],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
+  },
+  {
+    term: { fr: "ROC-AUC", en: "ROC-AUC" },
+    definition: {
+      fr: "Une note entre 0,5 (hasard) et 1 (parfait) qui mesure si le modèle classe bien les cas à risque avant les autres.",
+      en: "A score between 0.5 (chance) and 1 (perfect) that measures whether the model ranks risky cases ahead of the others.",
+    },
+    concepts: [9],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
+  },
+  {
+    term: { fr: "Seuil de décision", en: "Decision threshold" },
+    definition: {
+      fr: "Le score à partir duquel on dit « oui ». On le choisit sur une tranche de données à part, jamais sur les données du test final.",
+      en: "The score from which you say “yes”. You choose it on a separate slice of data, never on the final test data.",
+    },
+    concepts: [9],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
+  },
+  {
+    term: { fr: "Calibration", en: "Calibration" },
+    definition: {
+      fr: "Un score de 80 % est bien calibré si, sur beaucoup de cas notés 80 %, environ 8 sur 10 se réalisent. Un seul cas ne peut pas le prouver.",
+      en: "An 80% score is well calibrated if, over many cases scored 80%, about 8 in 10 happen. A single case can't prove it.",
+    },
+    concepts: [9],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
+  },
+  {
+    term: { fr: "Routage hybride", en: "Hybrid routing" },
+    definition: {
+      fr: "Choisir la méthode selon le cas : par exemple un modèle pour un nouveau client, et l'historique du client sinon.",
+      en: "Choosing the method case by case: for example a model for a new client, and the client's history otherwise.",
+    },
+    concepts: [11],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
+  },
+  {
+    term: { fr: "Fail closed", en: "Fail closed" },
+    definition: {
+      fr: "En cas de doute, le garde-fou bloque plutôt que de laisser passer. Un garde-fou qui ne vérifie rien quand le modèle n'appelle pas l'outil échoue « ouvert ».",
+      en: "When in doubt, the guard blocks rather than lets through. A guard that checks nothing when the model doesn't call the tool “fails open”.",
+    },
+    concepts: [8, 11],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
+  },
+  {
+    term: { fr: "Test fresh clone", en: "Fresh-clone test" },
+    definition: {
+      fr: "Cloner son propre dépôt dans un dossier vide et suivre uniquement le README, comme un inconnu, pour voir si ça marche.",
+      en: "Cloning your own repo into an empty folder and following only the README, like a stranger, to see if it works.",
+    },
+    concepts: [1],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
+  },
+  {
+    term: { fr: "Licence open-weights", en: "Open-weights licence" },
+    definition: {
+      fr: "Des poids ouverts ne veulent pas dire « libre de vendre » : un modèle peut être gratuit pour un prototype et interdit dans un produit payant.",
+      en: "Open weights don't mean “free to sell”: a model can be free for a prototype and off-limits in a paid product.",
+    },
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
+  },
+  {
+    term: { fr: "Télémétrie", en: "Telemetry" },
+    definition: {
+      fr: "Les statistiques d'usage qu'un logiciel envoie à son éditeur. Certains outils en envoient par défaut ; on peut les couper.",
+      en: "The usage statistics a piece of software sends to its publisher. Some tools send them by default; you can turn them off.",
+    },
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
   },
 ];
 

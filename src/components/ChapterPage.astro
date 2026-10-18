@@ -4,6 +4,7 @@ import { getLocale, useTranslations } from "../i18n/ui";
 import { baa, conceptsOf, appliedIn, type Book, type Chapter, bookUrl, chapterUrl, chapterLabel, chapterSlug } from "../data/books";
 import Breadcrumb from "./Breadcrumb.astro";
 import ConceptList from "./ConceptList.astro";
+import { techIcons } from "../data/tech-icons";
 
 interface Props {
   book: Book;
@@ -37,6 +38,14 @@ const readKey = `${book.slug}/${slug}`;
 const concepts = conceptsOf(chapter);
 const uses = book === baa ? appliedIn(chapter) : [];
 const repo = chapter.repo ?? book.repo;
+// The chapter's links, in reading order: code, DEV post, demo, video.
+// A link the chapter doesn't have is simply left out.
+const links = [
+  { href: repo, label: t("chapter.code") },
+  { href: chapter.post, label: t("chapter.post") },
+  { href: chapter.demo, label: t("chapter.demo") },
+  { href: chapter.video, label: t("chapter.video") },
+].filter((l): l is { href: string; label: string } => !!l.href);
 const index = book.chapters.indexOf(chapter);
 const next = book.chapters[index + 1];
 
@@ -57,6 +66,9 @@ const crumbs = [
       <span class="bar" style={`background: var(--book-${book.color})`} aria-hidden="true"></span>
       {book.name[locale]} · {chapterLabel(chapter, t)}
     </p>
+    {chapter.theme && (
+      <p class="theme"><span>{t("chapter.theme")}</span> <em>{chapter.theme}</em></p>
+    )}
     <h1>{chapter.title[locale]}</h1>
     <p class="meta">
       {workedOn && <span>{t("chapter.workedOn")} {workedOn} · </span>}
@@ -92,7 +104,33 @@ const crumbs = [
       </div>
     )}
 
-    {repo && <a class="code" href={repo} rel="noopener">{t("chapter.code")}</a>}
+    {chapter.stack && chapter.stack.length > 0 && (
+      <div class="block">
+        <p class="mono-label">{t("chapter.stack")}</p>
+        <ul class="stack">
+          {chapter.stack.map((tech) => {
+            const icon = techIcons[tech.icon];
+            // Tabler icons are drawn with a stroke, Simple Icons are filled shapes.
+            const draw = icon.kind === "fill"
+              ? ({ fill: "currentColor", stroke: "none" } as const)
+              : ({ fill: "none", stroke: "currentColor", "stroke-width": 1.6, "stroke-linecap": "round", "stroke-linejoin": "round" } as const);
+            return (
+              <li class:list={["tech", { partner: tech.partner }]}>
+                <svg class="tech-icon" viewBox="0 0 24 24" aria-hidden="true" {...draw} set:html={icon.svg} />
+                <span>{tech.name}</span>
+                {tech.partner && <span class="tech-partner">{t("chapter.partner")}</span>}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    )}
+
+    {links.length > 0 && (
+      <p class="links">
+        {links.map((l) => <a class="code" href={l.href} rel="noopener">{l.label}</a>)}
+      </p>
+    )}
 
     {next && (
       <div class="block">
@@ -213,7 +251,23 @@ const crumbs = [
     border-bottom: 1px solid var(--rule); text-decoration: none;
   }
   .applied-title { font-family: var(--font-serif); font-size: 20px; line-height: 1.15; color: var(--ink); }
-  .code { display: inline-flex; align-items: center; min-height: 44px; margin-top: 16px; font-size: 16px; font-weight: 600; }
+  .theme {
+    margin: 10px 0 0; font-family: var(--font-mono); font-size: 13px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--ink-muted);
+  }
+  .theme em { font-family: var(--font-serif); font-size: 22px; letter-spacing: 0; text-transform: none; }
+  /* Stack: small chips, icon in plum next to the name. A partner technology
+     gets a plum border and a mono note under its name. */
+  .stack { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 0; padding: 0; list-style: none; }
+  .tech {
+    display: inline-flex; flex-wrap: wrap; align-items: center; column-gap: 8px; min-height: 40px; padding: 6px 14px;
+    border: 1px solid var(--line); border-radius: 18px; background: var(--paper); font-size: 15px; line-height: 1.25;
+  }
+  .tech.partner { border-color: var(--accent-text); }
+  .tech-icon { width: 18px; height: 18px; flex: none; color: var(--accent-text); }
+  .tech-partner { flex-basis: 100%; padding-left: 26px; font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); }
+  .links { display: flex; flex-wrap: wrap; column-gap: 24px; margin: 16px 0 0; }
+  .code { display: inline-flex; align-items: center; min-height: 44px; font-size: 16px; font-weight: 600; }
   .next-link, .next-pending {
     display: flex; flex-direction: column; gap: 2px; margin: 8px 0 0; padding: 14px 18px;
     border-radius: 14px; text-decoration: none; color: var(--ink);

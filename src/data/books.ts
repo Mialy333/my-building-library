@@ -1,10 +1,19 @@
 import type { Locale, UiKey } from "../i18n/ui";
+import type { TechIcon } from "./tech-icons";
 
 export type BookColor = "sage" | "apricot" | "rose";
 export type Shelf = "fundamentals" | "journeys" | "path" | "builds";
 export const shelfOrder: Shelf[] = ["fundamentals", "journeys", "path", "builds"];
 
 type L = Record<Locale, string>;
+
+// A tool or model used in a chapter. partner: a Hacktoberfest partner technology
+// the chapter competed with (featured or partner category).
+export interface Tech {
+  name: string;
+  icon: TechIcon; // see tech-icons.ts
+  partner?: boolean;
+}
 
 export interface Chapter {
   number: number;
@@ -16,6 +25,14 @@ export interface Chapter {
   teaser?: L;
   concepts?: number[];
   repo?: string;
+  // Theme of a challenge (Hacktoberfest), the same in both languages.
+  theme?: string;
+  // Tools and models used, shown with their icons at the end of the chapter.
+  stack?: Tech[];
+  // Extra links shown at the end of a chapter, after the code link.
+  post?: string;
+  demo?: string;
+  video?: string;
 }
 
 export interface Book {
@@ -333,6 +350,122 @@ export const books: Book[] = [
     ],
   },
   {
+    // Hacktoberfest 2026, published chapter by chapter: one chapter after each DEV post.
+    // Source: the Claude Doc runbook "Hacktoberfest 2026", section
+    // "Le livre Hacktoberfest 2026 pour My Building Library".
+    slug: "hacktoberfest-2026",
+    name: { fr: "Hacktoberfest 2026", en: "Hacktoberfest 2026" },
+    shelf: "journeys",
+    color: "apricot",
+    gauge: true,
+    heading: { text: { fr: "Hacktoberfest ", en: "Hacktoberfest " }, accent: { fr: "2026", en: "2026" } },
+    meta: { fr: "02.10 → 01.11.2026 · MLH × DEV · En cours", en: "02.10 → 01.11.2026 · MLH × DEV · In progress" },
+    summary: {
+      fr: [
+        "Open-Source AI Challenges : un mois pour construire chaque semaine un petit projet neuf avec de l'IA open-source au cœur (modèles open-weight, inférence locale, framework d'agent), le remettre à une vraie personne et le raconter sur DEV.",
+        "Cinq challenges MLH × DEV, un thème révélé chaque lundi.",
+      ],
+      en: [
+        "Open-Source AI Challenges: one month to build a small new project every week with open-source AI at its core (open-weight models, local inference, an agent framework), hand it to a real person and tell the story on DEV.",
+        "Five MLH × DEV challenges, a theme revealed every Monday.",
+      ],
+    },
+    callout: {
+      label: { fr: "Fil rouge", en: "Common thread" },
+      text: {
+        fr: "Des agents IA utiles à de vraies personnes, <em>construits avec des modèles open-source.</em>",
+        en: "AI agents that help real people, <em>built with open-source models.</em>",
+      },
+    },
+    cover: {
+      title: { fr: "Hacktober", en: "Hacktober" },
+      accent: { fr: "fest", en: "fest" },
+      subtitle: { fr: "Open-Source AI Challenges", en: "Open-Source AI Challenges" },
+      info: { fr: "5 SEM.", en: "5 WKS" },
+      bars: [35, 60, 85, 50, 70],
+    },
+    chapters: [
+      {
+        number: 1, kind: "step", code: "Weekend", slug: "weekend", published: true,
+        theme: "Build for a Friend",
+        concepts: [5, 11],
+        title: { fr: "Une seule chose à faire", en: "Just one thing to do" },
+        teaser: {
+          fr: "Un outil pour ma sœur, qui tourne dans son navigateur et lui propose une seule action à la fois.",
+          en: "A tool for my sister that runs in her browser and suggests one action at a time.",
+        },
+        stack: [
+          { name: "Gemma 2 2B", icon: "brain", partner: true },
+          { name: "WebLLM", icon: "browser" },
+          { name: "WebGPU", icon: "si-webgpu" },
+          { name: "Chrome", icon: "brand-chrome" },
+          { name: "HTML / JS", icon: "brand-html5" },
+          { name: "Render", icon: "si-render" },
+          { name: "Claude Code", icon: "si-claude" },
+        ],
+        repo: "https://github.com/Mialy333/one-step",
+        post: "https://dev.to/mialy333/when-everything-feels-urgent-i-built-my-sister-a-tool-that-gives-her-just-one-next-step-3hg7",
+        demo: "https://one-step-jypm.onrender.com",
+      },
+      {
+        number: 2, kind: "step", code: "Week 1", slug: "week-1", published: true,
+        theme: "Touch Grass",
+        concepts: [3, 10, 11],
+        title: { fr: "Le modèle rédige, le code calcule", en: "The model writes, the code computes" },
+        teaser: {
+          fr: "Un agent qui m'envoie chaque matin sur Telegram une balade d'automne dans Paris.",
+          en: "An agent that sends me an autumn walk through Paris on Telegram every morning.",
+        },
+        stack: [
+          { name: "Gemma (gemma4:e2b)", icon: "brain", partner: true },
+          { name: "Ollama", icon: "si-ollama" },
+          { name: "Strands Agents", icon: "robot" },
+          { name: "Python", icon: "brand-python" },
+          { name: "SQLite", icon: "si-sqlite" },
+          { name: "Paris Data", icon: "trees" },
+          { name: "Open-Meteo", icon: "cloud-rain" },
+          { name: "Telegram", icon: "brand-telegram" },
+          { name: "launchd", icon: "clock" },
+          { name: "uv", icon: "si-uv" },
+          { name: "Claude Code", icon: "si-claude" },
+        ],
+        repo: "https://github.com/Mialy333/autumn-walks",
+        post: "https://dev.to/mialy333/i-built-an-ai-that-sends-me-on-autumn-walks-then-i-got-sick-56o9",
+      },
+      {
+        number: 3, kind: "step", code: "Week 2", slug: "week-2", published: true,
+        theme: "Side Hustle",
+        concepts: [1, 5, 8, 9, 11],
+        title: { fr: "82 % de risque, payée 15 jours en avance", en: "82% risk, paid 15 days early" },
+        teaser: {
+          fr: "Un outil local qui classe les factures impayées selon le risque de retard et rédige la relance.",
+          en: "A local tool that ranks unpaid invoices by risk of late payment and drafts the reminder.",
+        },
+        stack: [
+          { name: "TabPFN-3.5", icon: "table", partner: true },
+          { name: "Gemma (gemma4:e2b)", icon: "brain", partner: true },
+          { name: "Ollama", icon: "si-ollama" },
+          { name: "Strands Agents", icon: "robot" },
+          { name: "Python", icon: "brand-python" },
+          { name: "Streamlit", icon: "si-streamlit" },
+          { name: "uv", icon: "si-uv" },
+          { name: "Claude Code", icon: "si-claude" },
+        ],
+        repo: "https://github.com/Mialy333/late-pay-radar",
+        post: "https://dev.to/mialy333/my-model-gave-my-client-an-82-risk-of-paying-late-they-paid-15-days-early-35ih",
+        video: "https://youtu.be/sccG2NXpBWw",
+      },
+      {
+        number: 4, kind: "step", code: "Week 3", slug: "week-3", published: false,
+        title: { fr: "Thème révélé le 19 octobre", en: "Theme revealed on October 19" },
+      },
+      {
+        number: 5, kind: "step", code: "Week 4", slug: "week-4", published: false,
+        title: { fr: "Thème révélé le 26 octobre", en: "Theme revealed on October 26" },
+      },
+    ],
+  },
+  {
     slug: "my-path",
     name: { fr: "Mon parcours", en: "My path" },
     shelf: "path",
@@ -401,6 +534,10 @@ export const chapterUrl = (locale: Locale, book: Book, chapter: Chapter) =>
   `/${locale}/books/${book.slug}/${chapterSlug(chapter)}/`;
 export const chapterLabel = (chapter: Chapter, t: (key: UiKey) => string) =>
   chapter.code ?? `${t(chapter.kind === "session" ? "label.session" : "label.chapter")} ${pad(chapter.number)}`;
+// The label followed by the challenge theme when there is one: "Weekend · Build for a Friend".
+// Used on the book page; the short label stays in breadcrumbs and cross-links.
+export const chapterLabelWithTheme = (chapter: Chapter, t: (key: UiKey) => string) =>
+  chapter.theme ? `${chapterLabel(chapter, t)} · ${chapter.theme}` : chapterLabel(chapter, t);
 
 export function latestChapters() {
   return books

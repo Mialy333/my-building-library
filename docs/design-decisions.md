@@ -80,6 +80,7 @@ Ces couleurs servent uniquement en aplat, jamais pour du texte.
 | BAA 101 | sauge `#A9C4AB` | — (pas de jauge) |
 | AWS Scholars | abricot `#EFBF93` | `#E0A071` |
 | Dev3Pack | rose `#E3A0AA` | `#D98391` |
+| Hacktoberfest 2026 | abricot `#EFBF93`, provisoire (voir 9) | `#E0A071` |
 | Mon parcours | — (à paraître) | — |
 
 - Sur ces aplats, les dessins et les barres sont en encre `#231A22` à 75 %, dans les deux modes.
@@ -251,7 +252,11 @@ Sur la scène, la ligne mono du haut passe donc en `--ink-soft` : `--ink-muted` 
   - Rien n'est envoyé à un serveur. Sans `localStorage`, aucun tampon.
 - Corps en Newsreader 19 px, interligne 1.6 ; intertitres h2 en serif 28 px ; code en IBM Plex Mono.
 - Citation de la question de défense : filet prune à gauche.
-- Bas de page : bloc « Concept BAA 101 » (mêmes règles que 5.5), « Appliqué dans » pour les chapitres de BAA 101, lien vers le code, puis chapitre suivant (lien s'il est publié, sinon titre + « à paraître »).
+- **Thème du challenge** (18 oct 2026, Hacktoberfest) : sous le label, « THÈME » en mono suivi du nom du thème en serif italique prune 22 px (« Build for a Friend »). Le nom reste en anglais dans les deux langues. Sur la page du livre, le label devient `WEEKEND · BUILD FOR A FRIEND` ; le fil d'Ariane et les liens croisés gardent le label court.
+- Bas de page : bloc « Concept BAA 101 » (mêmes règles que 5.5), « Appliqué dans » pour les chapitres de BAA 101, bloc « Stack », liens, puis chapitre suivant (lien s'il est publié, sinon titre + « à paraître »).
+- **Stack** (18 oct 2026) : une pastille par outil, bordure `--line`, fond `--paper`, icône prune de 18 px à côté du nom. Une techno partenaire Hacktoberfest a une bordure prune et la mention « Partenaire Hacktoberfest » en mono sous son nom.
+  - Icônes (`src/data/tech-icons.ts`) : Tabler (MIT, trait) quand Tabler a le logo (Python, Telegram, Chrome, HTML5) ; Simple Icons (CC0, forme pleine, en `currentColor`) pour les marques absentes de Tabler (Ollama, Render, SQLite, Streamlit, Claude, uv, WebGPU) ; sinon une icône de fonction Tabler, jamais un logo inventé (cerveau pour Gemma, tableau pour TabPFN, robot pour Strands Agents, navigateur pour WebLLM, arbres pour Paris Data, nuage de pluie pour Open-Meteo, horloge pour launchd).
+- **Liens** (18 oct 2026) : sur une ligne qui passe à la ligne si besoin, dans cet ordre : « Voir le code → », « Lire le post DEV → », « Essayer la démo → », « Voir la vidéo → ». Un lien absent n'est pas affiché.
 - Un chapitre marqué publié sans fichier de texte : avertissement visible en développement, échec du build en production. Jamais de page vide en ligne.
 
 ### 5.8 Accueil
@@ -317,6 +322,7 @@ Sur la scène, la ligne mono du haut passe donc en `--ink-soft` : `--ink-muted` 
 - Page `/books/baa-101/glossary/`, accessible par une carte placée avant le sommaire de BAA 101.
 - Notions classées par ordre alphabétique, regroupées par lettre (accents ignorés), dans une liste de définitions (`<dl>`).
 - Barre de lettres collante, sous l'en-tête. Chaque notion renvoie vers les chapitres de BAA 101 qui la traitent.
+- Depuis le 18 oct 2026, une notion peut aussi renvoyer vers le chapitre de journey où elle a été rencontrée (champ `usedIn`), en mono à la suite des chapitres BAA (« Hacktoberfest 2026 · Week 2 »). Le lien n'apparaît que si ce chapitre est publié.
 - Les termes propres au cours (outillage de rendu) et à Solana sont exclus.
 - Chaque notion a une ancre (`#appel-d-outil`) ; la notion atteinte depuis un chapitre est surlignée en `--blush`.
 
@@ -406,6 +412,7 @@ Toutes les animations sont en CSS ou SVG, sans bibliothèque. Seul le tampon « 
 - Tags par livre : aucune source ne dit encore quels livres portent « dev ».
 - Phrase de description de la scène pour lecteurs d'écran (FR et EN) : rédigée par Claude, à valider.
 - Tampon « LU » : propre à chaque navigateur ; il ne suit pas le lecteur d'un appareil à l'autre.
+- Hacktoberfest 2026 : couleur et dessin de couverture à choisir. En attendant, abricot (comme AWS Scholars) et barres.
 
 Réglés le 8 oct 2026 : polices auto-hébergées via l'API Fonts d'Astro ; Dev3Pack découpé en 17 chapitres (Sessions 1 à 14, cap01, Final, Gecko) ; repos AWS et Dev3Pack branchés.
 Réglé le 9 oct 2026 : ordre de l'index « Dernières pages », devenu sans objet depuis son retrait de l'accueil.

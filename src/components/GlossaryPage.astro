@@ -1,13 +1,21 @@
 ---
 import { getLocale, useTranslations } from "../i18n/ui";
-import { baa, bookUrl, chapterUrl, type Chapter } from "../data/books";
+import { books, baa, bookUrl, chapterUrl, chapterLabel, chapterSlug, type Book, type Chapter } from "../data/books";
 import { glossary, glossaryByLetter, termId } from "../data/glossary";
 import Breadcrumb from "./Breadcrumb.astro";
 
 const locale = getLocale(Astro.currentLocale);
 const t = useTranslations(locale);
 const groups = glossaryByLetter(locale);
-const conceptOf = (n: number) => baa?.chapters.find((c) => c.number === n);
+// A local constant, so TypeScript keeps knowing it exists inside the callbacks below.
+const baaBook = baa;
+const conceptOf = (n: number) => baaBook?.chapters.find((c) => c.number === n);
+// A journey chapter named in a term's usedIn, if it exists and is published.
+const usedChapter = (ref: { book: string; chapter: string }) => {
+  const book = books.find((b) => b.slug === ref.book);
+  const chapter = book?.chapters.find((c) => chapterSlug(c) === ref.chapter && c.published);
+  return book && chapter ? { book, chapter } : undefined;
+};
 
 const crumbs = [
   { label: t("nav.shelf"), href: `/${locale}/shelf/` },
@@ -40,16 +48,24 @@ const crumbs = [
           const concepts = (entry.concepts ?? [])
             .map(conceptOf)
             .filter((c): c is Chapter => c !== undefined);
+          const uses = (entry.usedIn ?? [])
+            .map(usedChapter)
+            .filter((u): u is { book: Book; chapter: Chapter } => u !== undefined);
           return (
             <div class="entry" id={termId(entry, locale)}>
               <dt>{entry.term[locale]}</dt>
               <dd>
                 <p>{entry.definition[locale]}</p>
-                {baa && concepts.length > 0 && (
+                {baaBook && (concepts.length > 0 || uses.length > 0) && (
                   <p class="see">
                     <span class="see-label">{t("glossary.see")}</span>
                     {concepts.map((c) => (
-                      <a href={chapterUrl(locale, baa, c)}>{c.title[locale]}</a>
+                      <a href={chapterUrl(locale, baaBook, c)}>{c.title[locale]}</a>
+                    ))}
+                    {uses.map((u) => (
+                      <a class="journey" href={chapterUrl(locale, u.book, u.chapter)}>
+                        {u.book.name[locale]} · {chapterLabel(u.chapter, t)}
+                      </a>
                     ))}
                   </p>
                 )}
@@ -95,5 +111,7 @@ const crumbs = [
   dd p { margin: 0; font-family: var(--font-reading); font-size: 18px; line-height: 1.55; }
   .see { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 12px; margin-top: 6px !important; }
   .see-label { font-family: var(--font-mono); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-muted); }
+  /* A journey chapter: same link, in mono, so it reads as "where I met it". */
+  .see a.journey { font-family: var(--font-mono); font-size: 13px; letter-spacing: 1px; }
   .see a { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--font-sans); font-size: 15px; font-weight: 500; text-underline-offset: 3px; }
 </style>

@@ -1,7 +1,7 @@
 ---
 import { getLocale, useTranslations, plural, type UiKey } from "../i18n/ui";
 import {
-  books, baa, conceptsOf, appliedIn, type Book, type Chapter, pad, publishedCount, progressPercent, chapterUrl, bookUrl, chapterLabel, chapterSlug,
+  books, baa, conceptsOf, appliedIn, type Book, type Chapter, pad, publishedCount, progressPercent, chapterUrl, bookUrl, chapterLabelWithTheme, chapterSlug,
 } from "../data/books";
 import BookCover from "./BookCover.astro";
 import Breadcrumb from "./Breadcrumb.astro";
@@ -17,7 +17,7 @@ const { book } = Astro.props;
 const certification = certificationOf(book.slug);
 const locale = getLocale(Astro.currentLocale);
 const t = useTranslations(locale);
-const label = (c: Chapter) => chapterLabel(c, t);
+const label = (c: Chapter) => chapterLabelWithTheme(c, t);
 
 const journeys = books.filter((b) => b.shelf === "journeys");
 
