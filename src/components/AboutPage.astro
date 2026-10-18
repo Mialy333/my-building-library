@@ -105,7 +105,8 @@ const bookName = (slug?: string) => (slug ? books.find((b) => b.slug === slug) :
         </li>
       ))}
     </ol>
-    {pathBook && (
+    {/* Link to the "My path" book only once it has a page: a forthcoming book has none. */}
+    {pathBook && !pathBook.forthcoming && (
       <p class="path-book">
         {path.bookLine[locale]} <a href={bookUrl(locale, pathBook)}>{pathBook.name[locale]} →</a>
       </p>

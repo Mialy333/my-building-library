@@ -5,8 +5,11 @@ import BookItem from "./BookItem.astro";
 
 const locale = getLocale(Astro.currentLocale);
 const t = useTranslations(locale);
+// A book without a published chapter yet ("forthcoming") stays in books.ts but is
+// not shown: an empty book on the shelf reads as an unfinished site. A rayon left
+// with no book disappears too (filter below), and the rayon numbers stay continuous.
 const groups = shelfOrder
-  .map((shelf) => ({ shelf, books: books.filter((b) => b.shelf === shelf) }))
+  .map((shelf) => ({ shelf, books: books.filter((b) => b.shelf === shelf && !b.forthcoming) }))
   .filter((group) => group.books.length > 0);
 const tags = [...new Set(books.flatMap((b) => b.tags ?? []))];
 // Position of each book on the whole shelf, across rayons: it staggers the entry animation.

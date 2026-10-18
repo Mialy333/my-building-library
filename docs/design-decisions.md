@@ -81,7 +81,7 @@ Ces couleurs servent uniquement en aplat, jamais pour du texte.
 | AWS Scholars | abricot `#EFBF93` | `#E0A071` |
 | Dev3Pack | rose `#E3A0AA` | `#D98391` |
 | Hacktoberfest 2026 | abricot `#EFBF93`, provisoire (voir 9) | `#E0A071` |
-| Mon parcours | — (à paraître) | — |
+| Mon parcours | — (à paraître, masqué) | — |
 
 - Sur ces aplats, les dessins et les barres sont en encre `#231A22` à 75 %, dans les deux modes.
 
@@ -293,7 +293,7 @@ Sur la scène, la ligne mono du haut passe donc en `--ink-soft` : `--ink-muted` 
 
 ### 5.8 ter Page À propos (première version, 9 oct 2026)
 
-- Rôle : la fiche, courte, à parcourir en 30 secondes. Le récit complet sera le livre « Mon parcours » (rayon Parcours), qui reste « à paraître ».
+- Rôle : la fiche, courte, à parcourir en 30 secondes. Le récit complet sera le livre « Mon parcours » (rayon Parcours). Tant qu'il n'a pas de chapitre, la page n'y renvoie pas.
 - En haut : portrait en grande arche (200 × 250), « Qui écrit », h1 « À *propos* », la ligne d'auteure, les boutons de profils.
 - Le texte de Mialy vit dans `src/data/about.ts` (FR d'elle, EN traduit par Claude, à valider) et se publie section par section ; ce qui n'est pas encore écrit reste dans un encadré pointillé « à paraître ».
 - **Ce que je *cherche*** (12 oct 2026) : un paragraphe en Newsreader 19 px (poste, secteurs, la double compétence agents IA × gestion d'actifs), puis une fiche à parcourir d'un coup d'œil, en carte `--card` bordée d'encre avec ombre portée : Poste, Secteurs, Environnement, Contrat, Rythme, Où, Disponibilité, Langues. Le texte ne ferme aucune porte : contrat de professionnalisation (pour finir la formation Ada Tech School) ou CDI ; le mot « alternance » n'est pas employé, pour rester exact ; recentrage le 16 oct 2026 : agents et multi-agents, finance traditionnelle et fintechs, blockchain et stablecoins côté institutions (l'industrie est retirée) ; environnement AWS de préférence, Claude, Ollama ; mobilité à l'étranger « à terme », pour ne pas inquiéter un employeur qui s'engage sur un contrat de plusieurs mois. Libellés en mono capitales ; dès 640 px, libellés à gauche (140 px) et valeurs à droite, comme une fiche de bibliothèque. « ESN » est écrit « cabinet de conseil tech », compris hors de France.
@@ -356,8 +356,8 @@ Sur la scène, la ligne mono du haut passe donc en `--ink-soft` : `--ink-muted` 
 - Un seul accent d'interface, le prune. Les couleurs des livres ne servent jamais pour du texte.
 - Un décor ne passe jamais sur un titre. L'écran de couverture est un bloc séparé, sous le titre. Sur la scène d'accueil, le texte est posé sur le ciel uni ; nuages, soleil et lune restent hors de la zone de texte.
 - Un tag sans livre est masqué ; en V1 du site, seul « dev » est affiché. Un rayon vide est masqué.
-- **Rayon Builds** : affiché depuis le 9 oct 2026 avec un livre « *Mes agents* · à paraître » (sans titre de projet inventé). Il sera remplacé par le premier projet réel.
-- Les livres et chapitres en cours restent visibles avec « à paraître ».
+- **Livres sans chapitre publié** (18 oct 2026) : masqués de l'étagère, et leur rayon avec eux s'il devient vide (Parcours et Builds pour l'instant). Ils restent dans `books.ts` et réapparaissent avec leur premier chapitre. Raison : un livre vide en bas de l'étagère se lit comme un site inachevé, et un rayon « Mes agents » vide laisse croire que je n'ai rien construit seule. Remplace la règle du 9 oct 2026 (Builds affiché avec un livre « à paraître »).
+- Les chapitres pas encore écrits d'un livre en cours restent visibles avec « à paraître ».
 - Un concept BAA 101 n'est cliquable que si son chapitre est publié.
 - BAA 101 se limite aux fondamentaux : un concept y entre seulement s'il vaut pour tout agent, quels que soient le framework, le cloud ou le modèle.
 - Aucun contenu inventé : un fait manquant devient un placeholder `[…]` et il est signalé.
