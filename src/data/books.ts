@@ -467,6 +467,151 @@ export const books: Book[] = [
     ],
   },
   {
+    // My Python for AI 101: the Python mechanisms behind my projects, one card per
+    // mechanism, 60 cards sorted by family. Sources: the "My Python for AI 101" sections
+    // of the Claude Doc runbooks "Dev3Pack AI Engineering Bootcamp", "AgentCore — Agent
+    // Support Client" and "AgentCore — NovaMart Multi-Agent Support (Projet #3)".
+    // Placed after Hacktoberfest so the numbers of the books already published do not change.
+    slug: "python-for-ai-101",
+    name: { fr: "My Python for AI 101", en: "My Python for AI 101" },
+    shelf: "fundamentals",
+    color: "rose",
+    description: {
+      fr: "Les mécanismes Python qui font tourner mes agents, une fiche par mécanisme.",
+      en: "The Python mechanisms that run my agents, one card per mechanism.",
+    },
+    heading: { text: { fr: "My Python for AI ", en: "My Python for AI " }, accent: { fr: "101", en: "101" } },
+    meta: { fr: "Dev3Pack · AWS Scholars · 60 fiches", en: "Dev3Pack · AWS Scholars · 60 cards" },
+    summary: {
+      fr: [
+        "Les mécanismes Python qui font tourner mes agents, une fiche par mécanisme, avec l'entrée, la sortie et le fichier où les relire. Les fiches viennent de trois projets : le bootcamp Dev3Pack, puis AI Support Agent et NovaMart, deux projets du Nanodegree AWS.",
+        "60 fiches classées par famille, de l'organisation du projet jusqu'aux tests. Chaque chapitre finit par les chapitres de mes formations où on voit ces mécanismes sur le terrain, et le livre se ferme sur trois checklists pour le prochain projet.",
+      ],
+      en: [
+        "The Python mechanisms that run my agents, one per card, with the input, the output and the file where you can read them again. The cards come from three projects: the Dev3Pack bootcamp, then AI Support Agent and NovaMart, two projects of the AWS Nanodegree.",
+        "60 cards sorted by family, from the layout of the project to the tests. Every chapter ends with the chapters of my courses where these mechanisms are seen in the field, and the book closes on three checklists for the next project.",
+      ],
+    },
+    callout: {
+      label: { fr: "Format d'une fiche", en: "Card format" },
+      text: {
+        fr: "En une phrase, pourquoi pour un agent, une analogie, le mécanisme, l'entrée et la sortie réelles, <em>où le relire.</em>",
+        en: "In one sentence, why it matters for an agent, an analogy, the mechanism, the real input and output, <em>where to read it again.</em>",
+      },
+    },
+    cover: {
+      title: { fr: "Python ", en: "Python " },
+      accent: { fr: "101", en: "101" },
+      subtitle: { fr: "My Python for AI 101", en: "My Python for AI 101" },
+      info: { fr: "60 FICHES", en: "60 CARDS" },
+      bars: [45, 70, 55, 90, 65],
+    },
+    chapters: [
+      concept(1, "Mode d'emploi et carte", "How to read it, and the map", {
+        published: true,
+        teaser: {
+          fr: "Trois projets, qui a écrit quel code, où chaque mécanisme intervient, et la carte des 60 fiches.",
+          en: "Three projects, who wrote which code, where each mechanism sits, and the map of the 60 cards.",
+        },
+      }),
+      concept(2, "Organiser le projet", "Organizing the project", {
+        published: true,
+        teaser: {
+          fr: "Un fichier, plusieurs commandes, et des réglages qui ne sont jamais écrits dans le code.",
+          en: "One file, several commands, and settings that are never written in the code.",
+        },
+      }),
+      concept(3, "Les données", "Data", {
+        published: true,
+        concepts: [5, 11],
+        teaser: {
+          fr: "Une case manquante, une intention modifiée en route, un arrondi qui fait passer un prix : ce que la forme des données évite.",
+          en: "A missing box, an intent changed along the way, a rounding error that lets a price through: what the shape of the data prevents.",
+        },
+      }),
+      concept(4, "Les données AWS", "AWS data", {
+        published: true,
+        concepts: [1, 11],
+        teaser: {
+          fr: "Une commande absente qui devient une réponse claire, et deux agents qui ne s'écrasent plus.",
+          en: "A missing order that becomes a clear answer, and two agents that no longer overwrite each other.",
+        },
+      }),
+      concept(5, "Le texte", "Text", {
+        published: true,
+        concepts: [4, 5, 7, 8],
+        teaser: {
+          fr: "Un refus qui nomme les deux valeurs, une forme reconnue par regex, un JSON accepté seulement s'il est exact.",
+          en: "A refusal that names both values, a shape recognized by regex, JSON accepted only if it is exact.",
+        },
+      }),
+      concept(6, "Le contrôle", "Control flow", {
+        published: true,
+        concepts: [2, 6],
+        teaser: {
+          fr: "Les sorties d'abord, une table où une paire absente est refusée, et des outils rangés avec leurs règles.",
+          en: "Exits first, a table where a missing pair is refused, and tools packed with their rules.",
+        },
+      }),
+      concept(7, "Les erreurs et les garde-fous", "Errors and guardrails", {
+        published: true,
+        concepts: [6, 11],
+        teaser: {
+          fr: "Un traceback qui devient un refus lisible, et une règle que le code garantit même si le modèle se trompe.",
+          en: "A traceback that becomes a readable refusal, and a rule the code guarantees even if the model is wrong.",
+        },
+      }),
+      concept(8, "Décorateurs, contexte et fichiers", "Decorators, context and files", {
+        published: true,
+        concepts: [3, 8],
+        teaser: {
+          fr: "La docstring que lit le modèle, une trace jamais laissée ouverte, une preuve jamais écrasée.",
+          en: "The docstring the model reads, a trace never left open, evidence never overwritten.",
+        },
+      }),
+      concept(9, "Les agents et leurs interfaces", "Agents and their interfaces", {
+        published: true,
+        concepts: [3, 10, 11],
+        teaser: {
+          fr: "Un faux modèle à la place du vrai, une règle « toujours » tenue par un hook, une mémoire qui ne fuit pas.",
+          en: "A fake model in place of the real one, an \"always\" rule kept by a hook, memory that does not leak.",
+        },
+      }),
+      concept(10, "Le réseau, le temps et la concurrence", "Network, time and concurrency", {
+        published: true,
+        concepts: [6, 7],
+        teaser: {
+          fr: "Une URL vérifiée avant l'appel, une attente bornée, trois recherches lancées en même temps.",
+          en: "A URL checked before the call, a bounded wait, three searches started at the same time.",
+        },
+      }),
+      concept(11, "Déployer et outiller", "Deploying and tooling", {
+        published: true,
+        concepts: [1, 3],
+        teaser: {
+          fr: "Un déploiement validé avant de partir, une identité lue dans un token, une fonction devenue outil MCP.",
+          en: "A deployment validated before it leaves, an identity read from a token, a function turned into an MCP tool.",
+        },
+      }),
+      concept(12, "Tester et évaluer", "Testing and evaluating", {
+        published: true,
+        concepts: [9],
+        teaser: {
+          fr: "Des tests réseau coupé, et un guardrail mesuré avant d'être publié.",
+          en: "Tests with the network cut off, and a guardrail measured before it is published.",
+        },
+      }),
+      concept(13, "Les checklists du prochain projet", "The checklists for the next project", {
+        published: true,
+        concepts: [11],
+        teaser: {
+          fr: "Trois checklists, une par projet, dans l'ordre où on pose les règles dans un nouveau repo.",
+          en: "Three checklists, one per project, in the order you put the rules in a new repo.",
+        },
+      }),
+    ],
+  },
+  {
     slug: "my-path",
     name: { fr: "Mon parcours", en: "My path" },
     shelf: "path",

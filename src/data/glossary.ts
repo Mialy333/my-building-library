@@ -8,6 +8,14 @@ export interface Term {
   concepts?: number[];
   // Journey chapters where the term was met: { book slug, chapter slug }.
   usedIn?: { book: string; chapter: string }[];
+  // Books whose chapters may turn the term into a bubble. Without scope: every book.
+  // Used for Python words ("set", "Exception", "Decimal") that mean something else in
+  // ordinary sentences ("set aside", "the token's decimals"). A scoped term can also
+  // become a bubble when it is written alone as inline code (`ThreadPoolExecutor`).
+  scope?: string[];
+  // Only as inline code, never in running text: for words like "lambda" or "yield"
+  // whose plain-text meaning is another thing (an AWS Lambda, a financial yield).
+  inCode?: boolean;
 }
 
 export const glossary: Term[] = [
@@ -580,6 +588,680 @@ export const glossary: Term[] = [
       en: "The usage statistics a piece of software sends to its publisher. Some tools send them by default; you can turn them off.",
     },
     usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
+  },
+  // My Python for AI 101 (sources: the glossaries of the three runbooks with a
+  // "My Python for AI 101" section). Scoped to that book: these words keep their
+  // ordinary meaning in the other chapters.
+  {
+    term: { fr: "base64", en: "base64" },
+    definition: {
+      fr: "Une façon d'écrire des octets en texte simple pour les transporter ; le contenu ne change pas.",
+      en: "A way to write bytes as plain text so they can travel; the content does not change.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Compréhension", en: "Comprehension" },
+    definition: {
+      fr: "Une ligne qui construit une liste, un set ou un dict à partir d'une autre collection, avec un filtre éventuel.",
+      en: "One line that builds a list, a set or a dict from another collection, with an optional filter.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Dataclass", en: "Dataclass" },
+    definition: {
+      fr: "Une classe déclarée par ses champs typés ; avec frozen=True, l'objet ne peut plus être modifié.",
+      en: "A class declared by its typed fields; with frozen=True, the object can no longer be changed.",
+    },
+    concepts: [5],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Decimal", en: "Decimal" },
+    definition: {
+      fr: "Le type Python qui calcule en décimal exact, sans les erreurs d'arrondi du float. DynamoDB en renvoie, et JSON ne sait pas les écrire tels quels.",
+      en: "The Python type that computes in exact decimal, without the rounding errors of float. DynamoDB returns them, and JSON cannot write them as they are.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Décorateur", en: "Decorator" },
+    definition: {
+      fr: "Une fonction qui en reçoit une autre et en renvoie une version enrichie, écrite @nom au-dessus du def.",
+      en: "A function that receives another one and returns an enriched version of it, written @name above the def.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "deepcopy", en: "deepcopy" },
+    definition: {
+      fr: "Une copie complète d'un objet et de tout ce qu'il contient, indépendante de l'original.",
+      en: "A full copy of an object and everything it contains, independent of the original.",
+    },
+    concepts: [10],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-09" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Dictionnaire (dict)", en: "Dictionary (dict)" },
+    definition: {
+      fr: "Une collection de valeurs rangées sous des clés ; la forme de la trace, des reçus et des réponses JSON.",
+      en: "A collection of values stored under keys; the shape of the trace, the receipts and the JSON answers.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Docstring", en: "Docstring" },
+    definition: {
+      fr: "Le texte entre triples guillemets sous un def ; un framework d'agent ou un serveur MCP en fait la description de l'outil que lit le modèle.",
+      en: "The text between triple quotes under a def; an agent framework or an MCP server turns it into the tool description the model reads.",
+    },
+    concepts: [3],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Exception", en: "Exception" },
+    definition: {
+      fr: "Un signal d'erreur qui interrompt le flux normal ; on la lève (raise), on l'attrape (except) et on la transforme en refus.",
+      en: "An error signal that interrupts the normal flow; you raise it, catch it (except) and turn it into a refusal.",
+    },
+    concepts: [6],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "f-string", en: "f-string" },
+    definition: {
+      fr: "Une chaîne préfixée par f où {valeur} est remplacé ; un format optionnel suit les deux-points (!r, :.2f, :08d).",
+      en: "A string prefixed with f where {value} is replaced; an optional format follows the colon (!r, :.2f, :08d).",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Fixture", en: "Fixture" },
+    definition: {
+      fr: "Une fonction que pytest exécute avant un test pour préparer le terrain (dossier jetable, réseau coupé).",
+      en: "A function pytest runs before a test to prepare the ground (a throwaway folder, the network cut off).",
+    },
+    concepts: [9],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-12" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Hash (empreinte)", en: "Hash (fingerprint)" },
+    definition: {
+      fr: "Un résumé court et fixe d'un texte (SHA-256) : le même texte donne toujours la même empreinte, sans le révéler.",
+      en: "A short, fixed summary of a text (SHA-256): the same text always gives the same fingerprint, without revealing it.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "IDF", en: "IDF" },
+    definition: {
+      fr: "Inverse Document Frequency : un mot présent dans peu de passages pèse plus dans le score de récupération.",
+      en: "Inverse Document Frequency: a word found in few passages weighs more in the retrieval score.",
+    },
+    concepts: [7],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Injection de dépendances", en: "Dependency injection" },
+    definition: {
+      fr: "Passer à une fonction l'objet dont elle a besoin (modèle, réseau) au lieu de le créer dedans, pour pouvoir le remplacer par un faux.",
+      en: "Passing a function the object it needs (model, network) instead of creating it inside, so it can be swapped for a fake.",
+    },
+    concepts: [9],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "ipaddress", en: "ipaddress" },
+    definition: {
+      fr: "Le module Python qui lit une adresse IP et dit si elle est publique, privée ou locale.",
+      en: "The Python module that reads an IP address and tells whether it is public, private or local.",
+    },
+    concepts: [3],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "monkeypatch", en: "monkeypatch" },
+    definition: {
+      fr: "L'outil pytest qui remplace temporairement une fonction ou une variable d'environnement pendant un test.",
+      en: "The pytest tool that temporarily replaces a function or an environment variable during a test.",
+    },
+    concepts: [9],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-12" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "pathlib", en: "pathlib" },
+    definition: {
+      fr: "Le module Python qui manipule les chemins de fichiers comme des objets (Path, /, glob, read_text).",
+      en: "The Python module that handles file paths as objects (Path, /, glob, read_text).",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Protocol", en: "Protocol" },
+    definition: {
+      fr: "En Python, un contrat défini par des méthodes : une classe le respecte dès qu'elle a ces méthodes, sans héritage.",
+      en: "In Python, a contract defined by methods: a class meets it as soon as it has those methods, without inheritance.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Regex (expression régulière)", en: "Regex (regular expression)" },
+    definition: {
+      fr: "Un motif qui décrit une forme de texte plutôt qu'un mot exact ; sert aux gardes d'injection, au masquage et à lire un en-tête.",
+      en: "A pattern that describes a shape of text rather than an exact word; used by injection guards, redaction and to read a header.",
+    },
+    concepts: [4],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "set (ensemble)", en: "set" },
+    definition: {
+      fr: "Une collection sans doublon ; & donne les éléments communs, <= vérifie qu'un ensemble est inclus dans un autre.",
+      en: "A collection with no duplicates; & gives the shared elements, <= checks that one set is contained in another.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "subprocess", en: "subprocess" },
+    definition: {
+      fr: "Le module Python qui lance un autre programme (git, une CLI) et récupère son code de retour et sa sortie.",
+      en: "The Python module that launches another program (git, a CLI) and gets back its exit code and output.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Thread", en: "Thread" },
+    definition: {
+      fr: "Un fil d'exécution parallèle ; join(timeout) permet d'attendre une réponse au plus N secondes.",
+      en: "A parallel thread of execution; join(timeout) lets you wait for an answer for N seconds at most.",
+    },
+    concepts: [6],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Tokenisation", en: "Tokenization" },
+    definition: {
+      fr: "Le découpage d'un texte en mots minuscules (tokens) avant de les comparer.",
+      en: "Cutting a text into lowercase words (tokens) before comparing them.",
+    },
+    concepts: [7],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-05" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Type hint", en: "Type hint" },
+    definition: {
+      fr: "L'annotation du type attendu (str, list[str], str | None) ; Python ne l'impose pas, mais les frameworks d'agent et MCP la lisent.",
+      en: "The annotation of the expected type (str, list[str], str | None); Python does not enforce it, but agent frameworks and MCP read it.",
+    },
+    concepts: [3],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-11" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "ARN", en: "ARN" },
+    definition: {
+      fr: "Amazon Resource Name : l'identifiant unique d'une ressource AWS, de la forme arn:partition:service:région:compte:ressource.",
+      en: "Amazon Resource Name: the unique identifier of an AWS resource, shaped arn:partition:service:region:account:resource.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "ast", en: "ast" },
+    definition: {
+      fr: "Le module Python qui transforme du code source en arbre de syntaxe, qu'on analyse sans exécuter le code.",
+      en: "The Python module that turns source code into a syntax tree you can analyse without running the code.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "async", en: "async" },
+    definition: {
+      fr: "Le mot-clé qui déclare une coroutine : une fonction qui peut être suspendue et reprise (await), pour traiter plusieurs requêtes sans bloquer le programme.",
+      en: "The keyword that declares a coroutine: a function that can be suspended and resumed (await), to handle several requests without blocking the program.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "argparse", en: "argparse" },
+    definition: {
+      fr: "Le module Python qui transforme les arguments de la ligne de commande en objets Python.",
+      en: "The Python module that turns command-line arguments into Python objects.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "asyncio.run", en: "asyncio.run" },
+    definition: {
+      fr: "Démarre et exécute une fonction asynchrone (coroutine) depuis du code synchrone.",
+      en: "Starts and runs an asynchronous function (coroutine) from synchronous code.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Code Interpreter", en: "Code Interpreter" },
+    definition: {
+      fr: "Un service qui exécute du code généré dans un environnement isolé, pour obtenir un calcul exact plutôt qu'une estimation du modèle.",
+      en: "A service that runs generated code in an isolated environment, to get an exact calculation rather than the model's estimate.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Context manager", en: "Context manager" },
+    definition: {
+      fr: "Un objet utilisé avec with, qui exécute du code à l'entrée et à la sortie d'un bloc ; la ressource est refermée même en cas d'erreur.",
+      en: "An object used with with, which runs code on entering and leaving a block; the resource is closed even if an error occurs.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Repli dégradé (fallback)", en: "Fallback" },
+    definition: {
+      fr: "Un chemin de code de secours exécuté quand l'appel principal échoue, pour renvoyer un résultat partiel plutôt qu'une erreur.",
+      en: "A back-up code path run when the main call fails, to return a partial result rather than an error.",
+    },
+    concepts: [6],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Sans état (stateless)", en: "Stateless" },
+    definition: {
+      fr: "Se dit d'une fonction ou d'un handler qui ne garde aucun état entre deux appels, et peut donc être rappelé sans effet de bord.",
+      en: "Said of a function or handler that keeps no state between two calls, so it can be called again with no side effect.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-07" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "random.choices", en: "random.choices" },
+    definition: {
+      fr: "Tire des éléments au hasard (avec remise) dans une séquence ; utile pour des identifiants de démo lisibles.",
+      en: "Draws items at random (with replacement) from a sequence; handy for readable demo IDs.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "re.fullmatch", en: "re.fullmatch" },
+    definition: {
+      fr: "Vérifie qu'une chaîne correspond entièrement à un motif regex, et capture au passage ses groupes.",
+      en: "Checks that a whole string matches a regex pattern, and captures its groups along the way.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-05" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "uuid.uuid4", en: "uuid.uuid4" },
+    definition: {
+      fr: "Génère un identifiant aléatoire de 128 bits, unique en pratique ; sert aux ID de session.",
+      en: "Generates a random 128-bit identifier, unique in practice; used for session IDs.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "__call__", en: "__call__" },
+    definition: {
+      fr: "La méthode qui rend un objet appelable comme une fonction : agent(prompt).",
+      en: "The method that makes an object callable like a function: agent(prompt).",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-09" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "__file__", en: "__file__" },
+    definition: {
+      fr: "Le chemin du fichier Python en cours d'exécution.",
+      en: "The path of the Python file being run.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-02" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "__getattr__", en: "__getattr__" },
+    definition: {
+      fr: "Au niveau d'un module, la fonction appelée quand on lit un attribut absent ; permet des valeurs calculées à la demande.",
+      en: "At module level, the function called when a missing attribute is read; allows values computed on demand.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-02" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "__name__", en: "__name__" },
+    definition: {
+      fr: "Vaut '__main__' quand le fichier est lancé directement, sinon le nom du module.",
+      en: "Equals '__main__' when the file is launched directly, otherwise the module's name.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-02" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "agent.messages", en: "agent.messages" },
+    definition: {
+      fr: "L'historique de conversation qu'un agent Strands relit à chaque appel.",
+      en: "The conversation history a Strands agent reads again on every call.",
+    },
+    concepts: [10],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-05" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "agent.state", en: "agent.state" },
+    definition: {
+      fr: "Le stockage clé-valeur d'un agent Strands, invisible pour le modèle, lisible par ses outils.",
+      en: "A Strands agent's key-value storage, invisible to the model, readable by its tools.",
+    },
+    concepts: [10],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-09" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "as_completed", en: "as_completed" },
+    definition: {
+      fr: "Parcourt des futures dans l'ordre où elles se terminent.",
+      en: "Walks through futures in the order in which they finish.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Back-off", en: "Back-off" },
+    definition: {
+      fr: "Une attente qui s'allonge à chaque nouvelle tentative après un échec.",
+      en: "A wait that grows longer with each new attempt after a failure.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-04" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "boto3", en: "boto3" },
+    definition: {
+      fr: "Le SDK AWS pour Python. Deux interfaces : client (le format brut de l'API) ou resource (des objets aux types Python).",
+      en: "The AWS SDK for Python. Two interfaces: client (the API's raw format) or resource (objects with Python types).",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "ClientError", en: "ClientError" },
+    definition: {
+      fr: "L'exception que boto3 lève pour toute erreur AWS ; le motif est dans exc.response['Error']['Code'].",
+      en: "The exception boto3 raises for any AWS error; the reason is in exc.response['Error']['Code'].",
+    },
+    concepts: [6],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-07" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Closure", en: "Closure" },
+    definition: {
+      fr: "Une fonction interne qui garde l'accès aux variables de la fonction qui l'a créée.",
+      en: "An inner function that keeps access to the variables of the function that created it.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "ConditionExpression", en: "ConditionExpression" },
+    definition: {
+      fr: "Une condition que DynamoDB vérifie au moment même de l'écriture, de façon atomique.",
+      en: "A condition DynamoDB checks at the very moment of the write, atomically.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-04" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "@contextmanager", en: "@contextmanager" },
+    definition: {
+      fr: "Le décorateur qui fabrique un context manager à partir d'une fonction avec yield.",
+      en: "The decorator that makes a context manager from a function with yield.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-08" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "ContextVar", en: "ContextVar" },
+    definition: {
+      fr: "Une variable dont la valeur dépend du contexte d'exécution courant.",
+      en: "A variable whose value depends on the current execution context.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-10" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "EMF", en: "EMF" },
+    definition: {
+      fr: "Embedded Metric Format : un log JSON dont CloudWatch extrait automatiquement des métriques.",
+      en: "Embedded Metric Format: a JSON log from which CloudWatch extracts metrics automatically.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "@app.entrypoint", en: "@app.entrypoint" },
+    definition: {
+      fr: "Le décorateur qui fait d'une fonction le gestionnaire des requêtes du Runtime AgentCore.",
+      en: "The decorator that makes a function the request handler of the AgentCore Runtime.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "functools.wraps", en: "functools.wraps" },
+    definition: {
+      fr: "Recopie le nom et la docstring de la fonction d'origine sur son wrapper.",
+      en: "Copies the original function's name and docstring onto its wrapper.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Future", en: "Future" },
+    definition: {
+      fr: "La promesse du résultat d'une tâche lancée dans un thread.",
+      en: "The promise of the result of a task started in a thread.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-10" }],
+    scope: ["python-for-ai-101"],
+    inCode: true,
+  },
+  {
+    term: { fr: "inspect", en: "inspect" },
+    definition: {
+      fr: "Le module d'introspection : il récupère par exemple le code source d'une fonction.",
+      en: "The introspection module: it gets, for example, the source code of a function.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-12" }],
+    scope: ["python-for-ai-101"],
+    inCode: true,
+  },
+  {
+    term: { fr: "lambda", en: "lambda" },
+    definition: {
+      fr: "Une fonction anonyme d'une seule expression : lambda o: o['order_date'].",
+      en: "An anonymous one-expression function: lambda o: o['order_date'].",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-04" }],
+    scope: ["python-for-ai-101"],
+    inCode: true,
+  },
+  {
+    term: { fr: "lambda_handler", en: "lambda_handler" },
+    definition: {
+      fr: "Le point d'entrée d'une fonction AWS Lambda : il reçoit (event, context) et renvoie un dict.",
+      en: "The entry point of an AWS Lambda function: it receives (event, context) and returns a dict.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "load_dotenv", en: "load_dotenv" },
+    definition: {
+      fr: "Copie les variables d'un fichier .env dans os.environ.",
+      en: "Copies the variables of a .env file into os.environ.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-02" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Optional", en: "Optional" },
+    definition: {
+      fr: "L'annotation Optional[T] : une valeur de type T, ou None.",
+      en: "The Optional[T] annotation: a value of type T, or None.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-08" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Paginator", en: "Paginator" },
+    definition: {
+      fr: "Un objet boto3 qui enchaîne automatiquement les pages d'une API.",
+      en: "A boto3 object that chains the pages of an API automatically.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "SequentialToolExecutor", en: "SequentialToolExecutor" },
+    definition: {
+      fr: "L'exécuteur Strands qui lance les outils d'un tour l'un après l'autre.",
+      en: "The Strands executor that runs a turn's tools one after the other.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-10" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "SessionRepository", en: "SessionRepository" },
+    definition: {
+      fr: "L'interface Strands à implémenter pour stocker les sessions où l'on veut.",
+      en: "The Strands interface to implement to store sessions wherever you want.",
+    },
+    concepts: [10],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "Singleton paresseux", en: "Lazy singleton" },
+    definition: {
+      fr: "Un objet créé une seule fois, au premier besoin, puis réutilisé.",
+      en: "An object created only once, the first time it is needed, then reused.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "StreamingBody", en: "StreamingBody" },
+    definition: {
+      fr: "Un corps de réponse AWS sous forme de flux, à lire avec .read().",
+      en: "An AWS response body in the form of a stream, to read with .read().",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-04" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "sys.argv", en: "sys.argv" },
+    definition: {
+      fr: "La liste des arguments de la ligne de commande.",
+      en: "The list of command-line arguments.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-02" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "sys.path", en: "sys.path" },
+    definition: {
+      fr: "La liste des dossiers où Python cherche les modules à importer.",
+      en: "The list of folders where Python looks for the modules to import.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-02" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "ThreadPoolExecutor", en: "ThreadPoolExecutor" },
+    definition: {
+      fr: "Un groupe de threads qui exécute des tâches en parallèle, adapté à l'attente réseau.",
+      en: "A pool of threads that runs tasks in parallel, suited to waiting on the network.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "threading.Lock", en: "threading.Lock" },
+    definition: {
+      fr: "Un verrou : un seul thread à la fois exécute le bloc protégé.",
+      en: "A lock: only one thread at a time runs the protected block.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-10" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "timedelta", en: "timedelta" },
+    definition: {
+      fr: "La durée obtenue en soustrayant deux dates ; .days donne les jours.",
+      en: "The duration you get by subtracting two dates; .days gives the days.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-04" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "ToolContext", en: "ToolContext" },
+    definition: {
+      fr: "L'objet que Strands injecte dans un outil context=True ; il donne accès à l'agent appelant.",
+      en: "The object Strands injects into a context=True tool; it gives access to the calling agent.",
+    },
+    concepts: [10],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-09" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "unittest", en: "unittest" },
+    definition: {
+      fr: "Le framework de tests de la bibliothèque standard (TestCase, setUp).",
+      en: "The standard library's test framework (TestCase, setUp).",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-12" }],
+    scope: ["python-for-ai-101"],
+  },
+  {
+    term: { fr: "yield", en: "yield" },
+    definition: {
+      fr: "Suspend une fonction ; dans un context manager, sépare l'entrée de la sortie.",
+      en: "Suspends a function; in a context manager, separates the way in from the way out.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-08" }],
+    scope: ["python-for-ai-101"],
+    inCode: true,
   },
 ];
 

@@ -47,6 +47,8 @@ const links = [
   { href: chapter.video, label: t("chapter.video") },
 ].filter((l): l is { href: string; label: string } => !!l.href);
 const index = book.chapters.indexOf(chapter);
+// The chapters on each side, for the "previous / next" navigation at the end.
+const prev = index > 0 ? book.chapters[index - 1] : undefined;
 const next = book.chapters[index + 1];
 
 const crumbs = [
@@ -132,21 +134,35 @@ const crumbs = [
       </p>
     )}
 
-    {next && (
-      <div class="block">
-        <p class="mono-label">{t("chapter.next")}</p>
-        {next.published ? (
-          <a class="next-link" href={chapterUrl(locale, book, next)}>
-            <span class="mono">{chapterLabel(next, t)}</span>
-            <span class="next-title">{next.title[locale]} →</span>
+    {(prev || next) && (
+      <nav class="block pager" aria-label={t("chapter.pager")}>
+        {prev && (prev.published ? (
+          <a class="pager-link" href={chapterUrl(locale, book, prev)}>
+            <span class="mono-label">← {t("chapter.prev")}</span>
+            <span class="mono">{chapterLabel(prev, t)}</span>
+            <span class="next-title">{prev.title[locale]}</span>
           </a>
         ) : (
-          <p class="next-pending">
+          <p class="pager-pending">
+            <span class="mono-label">← {t("chapter.prev")}</span>
+            <span class="mono">{chapterLabel(prev, t)} · {t("unit.toCome")}</span>
+            <span class="next-title">{prev.title[locale]}</span>
+          </p>
+        ))}
+        {next && (next.published ? (
+          <a class="pager-link to-next" href={chapterUrl(locale, book, next)}>
+            <span class="mono-label">{t("chapter.next")} →</span>
+            <span class="mono">{chapterLabel(next, t)}</span>
+            <span class="next-title">{next.title[locale]}</span>
+          </a>
+        ) : (
+          <p class="pager-pending to-next">
+            <span class="mono-label">{t("chapter.next")} →</span>
             <span class="mono">{chapterLabel(next, t)} · {t("unit.toCome")}</span>
             <span class="next-title">{next.title[locale]}</span>
           </p>
-        )}
-      </div>
+        ))}
+      </nav>
     )}
   </footer>
 </article>
@@ -201,6 +217,59 @@ const crumbs = [
     font-family: var(--font-mono); font-size: 0.8em; padding: 1px 5px;
     border-radius: 4px; background: var(--rule);
   }
+
+  /* Code blocks: a sheet of paper inside the page. Shiki uses its
+     "css-variables" theme (astro.config.mjs), so the colours below come from
+     the site palette and switch with light/dark mode:
+     keywords in plum, strings in green, numbers in apricot, comments muted. */
+  .prose {
+    --astro-code-foreground: var(--ink);
+    --astro-code-background: var(--card);
+    --astro-code-token-keyword: var(--accent-text);
+    --astro-code-token-string: var(--published-ink);
+    --astro-code-token-string-expression: var(--published-ink);
+    --astro-code-token-comment: var(--ink-muted);
+    --astro-code-token-constant: var(--code-number);
+    --astro-code-token-function: var(--ink);
+    --astro-code-token-parameter: var(--ink-soft);
+    --astro-code-token-punctuation: var(--ink-muted);
+    --astro-code-token-link: var(--accent-text);
+    --code-number: #9C4F2E;
+  }
+  :global(:root[data-theme="dark"]) .prose { --code-number: #EFBF93; }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .prose { --code-number: #EFBF93; }
+  }
+  .prose :global(pre) {
+    position: relative; margin: 1.2em 0 1.5em; padding: 36px 18px 16px;
+    border: 1px solid var(--line); border-radius: 14px; box-shadow: 4px 4px 0 var(--rule);
+    overflow-x: auto; font-size: 14px; line-height: 1.7; tab-size: 4;
+  }
+  /* The language, written small at the top of the sheet ("python", "bash"). */
+  .prose :global(pre[data-language])::before {
+    content: attr(data-language); position: absolute; top: 11px; left: 18px;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-muted);
+  }
+  /* Inside a block, code drops the inline "chip" look (it was drawn line by line). */
+  .prose :global(pre code) { padding: 0; border-radius: 0; background: none; font-size: inherit; }
+
+  /* Tables: sans-serif, smaller than the reading text, a strong rule under the
+     header and a fine line between rows, so each row reads as one line of a register. */
+  .prose :global(table) {
+    width: 100%; margin: 0.6em 0 1.6em; border-collapse: collapse;
+    font-family: var(--font-sans); font-size: 15px; line-height: 1.45;
+  }
+  .prose :global(th) {
+    padding: 8px 10px; border-bottom: 1.5px solid var(--ink); text-align: left; vertical-align: bottom;
+    font-family: var(--font-mono); font-size: 11.5px; font-weight: 500; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--ink-muted);
+  }
+  .prose :global(td) { padding: 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .prose :global(tbody tr:nth-child(even)) { background: var(--rule); }
+  .prose :global(td code) { overflow-wrap: anywhere; }
+  /* A bubble inside inline code keeps the code look; its card does not. */
+  .prose :global(code .gloss-term) { font-size: inherit; }
+  .prose :global(code .gloss-pop) { font-family: var(--font-sans); font-size: 17px; }
   .prose :global(blockquote) {
     margin: 0 0 1em; padding: 4px 0 4px 18px; border-left: 3px solid var(--accent-text);
     font-family: var(--font-serif); font-style: italic; font-size: 24px; line-height: 1.2;
@@ -268,14 +337,22 @@ const crumbs = [
   .tech-partner { flex-basis: 100%; padding-left: 26px; font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); }
   .links { display: flex; flex-wrap: wrap; column-gap: 24px; margin: 16px 0 0; }
   .code { display: inline-flex; align-items: center; min-height: 44px; font-size: 16px; font-weight: 600; }
-  .next-link, .next-pending {
-    display: flex; flex-direction: column; gap: 2px; margin: 8px 0 0; padding: 14px 18px;
+  /* Previous / next: two cards, stacked on a phone, side by side from 640 px.
+     The "next" card sits on the right and is aligned right, like turning a page. */
+  .pager { display: grid; gap: 12px; }
+  .pager-link, .pager-pending {
+    display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 14px 18px;
     border-radius: 14px; text-decoration: none; color: var(--ink);
   }
-  .next-link { background: var(--card); border: 1px solid var(--line); }
-  .next-pending { border: 1px dashed var(--ink-faint); }
+  .pager-link { background: var(--card); border: 1px solid var(--line); }
+  .pager-link:hover { border-color: var(--accent-text); }
+  .pager-pending { border: 1px dashed var(--ink-faint); }
   .next-title { font-family: var(--font-serif); font-size: 22px; line-height: 1.15; }
-  .next-pending .next-title { color: var(--ink-soft); }
+  .pager-pending .next-title { color: var(--ink-soft); }
+  @media (min-width: 640px) {
+    .pager { grid-template-columns: 1fr 1fr; }
+    .to-next { grid-column: 2; text-align: right; }
+  }
 </style>
 
 <script>

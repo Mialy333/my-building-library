@@ -7,7 +7,9 @@
 // Later occurrences stay plain text, so the page does not fill up with
 // underlines.
 //
-// The chapter's language comes from its file path: src/content/chapters/<fr|en>/...
+// The chapter's language and book come from its file path:
+// src/content/chapters/<fr|en>/<book>/... A term with a "scope" only becomes a bubble
+// in the books it lists; in those books it can also be inline code (see glossary.ts).
 import { glossary, termId, type Term } from "../data/glossary";
 import type { Locale } from "../i18n/ui";
 
@@ -16,8 +18,9 @@ const labels = {
   en: { see: "See in the glossary →", close: "Close" },
 };
 
-// Never touch text inside these elements: links, code, headings, buttons.
-const SKIP = new Set(["a", "code", "pre", "h1", "h2", "h3", "h4", "h5", "h6", "button", "script", "style"]);
+// Never touch text inside these elements: links, code blocks, headings, buttons.
+// Inline code is handled apart (see the text visitor below).
+const SKIP = new Set(["a", "pre", "h1", "h2", "h3", "h4", "h5", "h6", "button", "script", "style"]);
 
 const escapeRegex = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const escapeHtml = (s: string) =>
@@ -80,10 +83,13 @@ function candidates(locale: Locale): Candidate[] {
 }
 
 // Cuts a text into plain pieces and bubbles. Each term is used once per chapter.
-function split(value: string, locale: Locale, done: Set<Term>): string[] | null {
+// A term may appear in this book: no scope means every book.
+const allowedIn = (entry: Term, book: string) => !entry.scope || entry.scope.includes(book);
+
+function split(value: string, locale: Locale, book: string, done: Set<Term>): string[] | null {
   let best: { entry: Term; index: number; length: number } | null = null;
   for (const { entry, re } of candidates(locale)) {
-    if (done.has(entry)) continue;
+    if (done.has(entry) || !allowedIn(entry, book) || entry.inCode) continue;
     const m = re.exec(value);
     if (m && (!best || m.index < best.index || (m.index === best.index && m[0].length > best.length))) {
       best = { entry, index: m.index, length: m[0].length };
@@ -95,12 +101,29 @@ function split(value: string, locale: Locale, done: Set<Term>): string[] | null 
   return [
     escapeHtml(value.slice(0, best.index)),
     bubble(best.entry, locale, value.slice(best.index, best.index + best.length)),
-    ...(split(after, locale, done) ?? [escapeHtml(after)]),
+    ...(split(after, locale, book, done) ?? [escapeHtml(after)]),
   ];
 }
 
-const localeOf = (url: URL | undefined): Locale | null =>
-  (url?.pathname.match(/\/content\/chapters\/(fr|en)\//)?.[1] as Locale | undefined) ?? null;
+// Inline code that is exactly a scoped term (`ThreadPoolExecutor`, `asyncio.run()`):
+// the whole code becomes the bubble's word. Only terms scoped to this book, so code
+// in the other books never changes.
+function codeBubble(value: string, locale: Locale, book: string, done: Set<Term>): string | null {
+  // `asyncio.run()` -> "asyncio.run", `Optional[dict]` -> "Optional".
+  const bare = value.trim().replace(/\(\)$/, "").replace(/\[.*\]$/, "");
+  const entry = glossary.find(
+    (e) => e.scope?.includes(book) && !done.has(e) && formsOf(e, locale).includes(bare),
+  );
+  if (!entry) return null;
+  done.add(entry);
+  return bubble(entry, locale, value);
+}
+
+// "src/content/chapters/fr/dev3pack/session-05.md" -> { locale: "fr", book: "dev3pack" }.
+const chapterOf = (url: URL | undefined): { locale: Locale; book: string } | null => {
+  const m = url?.pathname.match(/\/content\/chapters\/(fr|en)\/([^/]+)\//);
+  return m ? { locale: m[1] as Locale, book: m[2] } : null;
+};
 
 export const glossaryBubbles = {
   name: "glossary-bubbles",
@@ -109,15 +132,24 @@ export const glossaryBubbles = {
     ctx.data.glossaryDone = new Set<Term>();
   },
   text(node: { value: string }, ctx: any) {
-    const locale = localeOf(ctx.fileURL);
-    if (!locale) return; // not a chapter: leave it alone
+    const chapter = chapterOf(ctx.fileURL);
+    if (!chapter) return; // not a chapter: leave it alone
+    const done = ctx.data.glossaryDone as Set<Term>;
 
-    // Skip text inside a link, code, a heading or a button.
+    // Skip text inside a link, a code block, a heading or a button; note inline code.
+    let inCode = false;
     for (let p = ctx.parent(node); p; p = ctx.parent(p)) {
-      if (p.type === "element" && SKIP.has(p.tagName)) return;
+      if (p.type !== "element") continue;
+      if (SKIP.has(p.tagName)) return;
+      if (p.tagName === "code") inCode = true;
     }
 
-    const pieces = split(node.value, locale, ctx.data.glossaryDone as Set<Term>);
+    if (inCode) {
+      const html = codeBubble(node.value, chapter.locale, chapter.book, done);
+      if (html) ctx.replaceNode(node, { type: "raw", value: html });
+      return;
+    }
+    const pieces = split(node.value, chapter.locale, chapter.book, done);
     if (pieces) ctx.replaceNode(node, { type: "raw", value: pieces.join("") });
   },
 };

@@ -81,6 +81,7 @@ Ces couleurs servent uniquement en aplat, jamais pour du texte.
 | AWS Scholars | abricot `#EFBF93` | `#E0A071` |
 | Dev3Pack | rose `#E3A0AA` | `#D98391` |
 | Hacktoberfest 2026 | abricot `#EFBF93`, provisoire (voir 9) | `#E0A071` |
+| My Python for AI 101 | rose `#E3A0AA`, provisoire (voir 9) | — (pas de jauge) |
 | Mon parcours | — (à paraître, masqué) | — |
 
 - Sur ces aplats, les dessins et les barres sont en encre `#231A22` à 75 %, dans les deux modes.
@@ -253,7 +254,10 @@ Sur la scène, la ligne mono du haut passe donc en `--ink-soft` : `--ink-muted` 
 - Corps en Newsreader 19 px, interligne 1.6 ; intertitres h2 en serif 28 px ; code en IBM Plex Mono.
 - Citation de la question de défense : filet prune à gauche.
 - **Thème du challenge** (18 oct 2026, Hacktoberfest) : sous le label, « THÈME » en mono suivi du nom du thème en serif italique prune 22 px (« Build for a Friend »). Le nom reste en anglais dans les deux langues. Sur la page du livre, le label devient `WEEKEND · BUILD FOR A FRIEND` ; le fil d'Ariane et les liens croisés gardent le label court.
-- Bas de page : bloc « Concept BAA 101 » (mêmes règles que 5.5), « Appliqué dans » pour les chapitres de BAA 101, bloc « Stack », liens, puis chapitre suivant (lien s'il est publié, sinon titre + « à paraître »).
+- Bas de page : bloc « Concept BAA 101 » (mêmes règles que 5.5), « Appliqué dans » pour les chapitres de BAA 101, bloc « Stack », liens, puis chapitres précédent et suivant.
+- **Précédent / suivant** (22 oct 2026) : deux cartes `--card` bordées de `--line` (bordure prune au survol), empilées sur téléphone, côte à côte dès 640 px. « ← CHAPITRE PRÉCÉDENT » à gauche ; « CHAPITRE SUIVANT → » à droite, aligné à droite, comme une page qu'on tourne. Dans chaque carte : libellé mono, label du chapitre, titre en serif 22 px. Un chapitre non publié garde sa place : bordure en pointillés, titre + « à paraître ». Le premier chapitre n'a que « suivant », le dernier que « précédent ».
+- **Blocs de code** (22 oct 2026) : une feuille de papier dans la page. Carte `--card`, bordure `--line`, rayon 14 px, ombre portée `--rule` de 4 px ; le langage en mono capitales 11 px en haut à gauche (« PYTHON ») ; IBM Plex Mono 14 px, interligne 1.7 ; défilement horizontal pour les lignes longues. Couleurs tirées de la palette par le thème Shiki `css-variables` (`astro.config.mjs`), donc elles suivent le clair et le sombre : mots-clés prune (`--accent-text`), chaînes vert (`--published-ink`), nombres abricot (#9C4F2E en clair, #EFBF93 en sombre), commentaires `--ink-muted`, ponctuation `--ink-muted`. Remplace le thème `github-dark` par défaut, et le fond de code en ligne qui se dessinait ligne par ligne dans les blocs.
+- **Tableaux** (22 oct 2026) : Instrument Sans 15 px (plus lisible que Newsreader 19 px en colonnes), toute la largeur ; en-têtes en mono capitales 11,5 px `--ink-muted`, alignés à gauche, filet `--ink` de 1,5 px dessous ; une ligne `--line` entre les rangs et un rang sur deux sur fond `--rule`, comme un registre. Le code dans une cellule peut se couper n'importe où plutôt que d'élargir la colonne.
 - **Stack** (18 oct 2026) : une pastille par outil, bordure `--line`, fond `--paper`, icône prune de 18 px à côté du nom. Une techno partenaire Hacktoberfest a une bordure prune et la mention « Partenaire Hacktoberfest » en mono sous son nom.
   - Icônes (`src/data/tech-icons.ts`) : Tabler (MIT, trait) quand Tabler a le logo (Python, Telegram, Chrome, HTML5) ; Simple Icons (CC0, forme pleine, en `currentColor`) pour les marques absentes de Tabler (Ollama, Render, SQLite, Streamlit, Claude, uv, WebGPU) ; sinon une icône de fonction Tabler, jamais un logo inventé (cerveau pour Gemma, tableau pour TabPFN, robot pour Strands Agents, navigateur pour WebLLM, arbres pour Paris Data, nuage de pluie pour Open-Meteo, horloge pour launchd).
 - **Liens** (18 oct 2026) : sur une ligne qui passe à la ligne si besoin, dans cet ordre : « Voir le code → », « Lire le post DEV → », « Essayer la démo → », « Voir la vidéo → ». Un lien absent n'est pas affiché.
@@ -335,8 +339,10 @@ Sur la scène, la ligne mono du haut passe donc en `--ink-soft` : `--ink-muted` 
 - **Repérage** (`src/plugins/glossary-bubbles.ts`, au build, dans le processeur Markdown Sätteri d'Astro) :
   - le terme et sa variante entre parenthèses (« Grounding (ancrage) »), avec pluriel en s/x et apostrophe droite ou courbe ;
   - mot entier seulement (« trace » ne prend pas « tracer ») ; sigles en majuscules seulement (LLM, RAG) ;
-  - jamais dans un lien, du code, un titre ou un bouton ;
+  - jamais dans un lien, un bloc de code, un titre ou un bouton ;
   - variantes trop courantes exclues : « passage ».
+  - **Termes propres à un livre** (22 oct 2026, champ `scope`) : les notions Python de My Python for AI 101 (« set », « Exception », « Decimal »…) ne deviennent des bulles que dans ce livre ; ailleurs, ces mots gardent leur sens courant (« set aside », « les décimales d'un token »).
+  - **Code en ligne** (22 oct 2026) : dans ce livre, un code en ligne qui est exactement une notion (`ThreadPoolExecutor`, `asyncio.run()`) devient lui-même la bulle, en gardant son aspect de code. Un mot dont le sens courant est autre chose (« lambda », « yield », « Future ») n'est repéré que sous forme de code (champ `inCode`).
 - S'applique à tous les chapitres, des trois livres, en FR et en EN. Rien à faire à la rédaction : une notion ajoutée au glossaire est repérée au build suivant.
 
 ### 5.11 Scène de l'étagère (12 oct 2026)
@@ -355,6 +361,7 @@ Sur la scène, la ligne mono du haut passe donc en `--ink-soft` : `--ink-muted` 
 - Contraste du texte : 4,5:1 minimum, y compris sur le ciel de la scène d'accueil (voir 2.4).
 - Un seul accent d'interface, le prune. Les couleurs des livres ne servent jamais pour du texte.
 - Un décor ne passe jamais sur un titre. L'écran de couverture est un bloc séparé, sous le titre. Sur la scène d'accueil, le texte est posé sur le ciel uni ; nuages, soleil et lune restent hors de la zone de texte.
+- **Rayon Fondamentaux** (22 oct 2026) : deux livres (BAA 101 et My Python for AI 101), donc une phrase de synthèse sous son label : « Les bases que je réutilise d'un projet à l'autre : comment marche un agent, et le Python qui le fait tourner. »
 - **Rayon Journeys** (18 oct 2026) : « Formations et challenges » en français, « Journeys » en anglais. Sous son label, une phrase de synthèse (« Mes formations et mes challenges, racontés étape par étape. »), à la taille et la couleur de la description d'un livre. Un rayon à un seul livre garde la description du livre à côté de sa couverture.
 - Un tag sans livre est masqué ; en V1 du site, seul « dev » est affiché. Un rayon vide est masqué.
 - **Livres sans chapitre publié** (18 oct 2026) : masqués de l'étagère, et leur rayon avec eux s'il devient vide (Parcours et Builds pour l'instant). Ils restent dans `books.ts` et réapparaissent avec leur premier chapitre. Raison : un livre vide en bas de l'étagère se lit comme un site inachevé, et un rayon « Mes agents » vide laisse croire que je n'ai rien construit seule. Remplace la règle du 9 oct 2026 (Builds affiché avec un livre « à paraître »).
@@ -414,6 +421,7 @@ Toutes les animations sont en CSS ou SVG, sans bibliothèque. Seul le tampon « 
 - Phrase de description de la scène pour lecteurs d'écran (FR et EN) : rédigée par Claude, à valider.
 - Tampon « LU » : propre à chaque navigateur ; il ne suit pas le lecteur d'un appareil à l'autre.
 - Hacktoberfest 2026 : couleur et dessin de couverture à choisir. En attendant, abricot (comme AWS Scholars) et barres.
+- My Python for AI 101 (22 oct 2026) : couleur et dessin de couverture à choisir. En attendant, rose (comme Dev3Pack) et barres.
 
 Réglés le 8 oct 2026 : polices auto-hébergées via l'API Fonts d'Astro ; Dev3Pack découpé en 17 chapitres (Sessions 1 à 14, cap01, Final, Gecko) ; repos AWS et Dev3Pack branchés.
 Réglé le 9 oct 2026 : ordre de l'index « Dernières pages », devenu sans objet depuis son retrait de l'accueil.

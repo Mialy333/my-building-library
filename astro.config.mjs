@@ -10,6 +10,9 @@ export default defineConfig({
   // Sätteri is Astro's default Markdown processor; we only add one HTML plugin.
   markdown: {
     processor: satteri({ hastPlugins: [glossaryBubbles] }),
+    // Code blocks take their colours from CSS variables (set in ChapterPage.astro),
+    // so they follow the site's palette and its light/dark switch.
+    shikiConfig: { theme: "css-variables" },
   },
   i18n: {
     locales: ["fr", "en"],
