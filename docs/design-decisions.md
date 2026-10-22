@@ -345,6 +345,14 @@ Sur la scène, la ligne mono du haut passe donc en `--ink-soft` : `--ink-muted` 
   - **Code en ligne** (22 oct 2026) : dans ce livre, un code en ligne qui est exactement une notion (`ThreadPoolExecutor`, `asyncio.run()`) devient lui-même la bulle, en gardant son aspect de code. Un mot dont le sens courant est autre chose (« lambda », « yield », « Future ») n'est repéré que sous forme de code (champ `inCode`).
 - S'applique à tous les chapitres, des trois livres, en FR et en EN. Rien à faire à la rédaction : une notion ajoutée au glossaire est repérée au build suivant.
 
+### 5.10 bis Démos en vitrine (22 oct 2026)
+
+- **But** : mettre en avant les projets qui ont leur propre page de démo (Final assignment → Grounded Research Library, Gecko capstone → Gecko Café), avec leur intro illustrée.
+- **Image** : l'aperçu social de chaque démo (`docs/og-image.png` de son repo, 1200 × 630), copié dans `src/assets/demos/` et optimisé par Astro. Il montre l'intro illustrée et un exemple de résultat. Pas d'iframe : trop lourd sur téléphone, deux défilements imbriqués, et la page de démo vit mieux dans son propre onglet.
+- **Affiche** (`DemoCard.astro`) : l'image dans un cadre bordé `--ink`, rayon 14 px, ombre portée `--shadow` de 5 px (comme les couvertures), qui se soulève légèrement au survol ; dessous, « DÉMO EN LIGNE · FINAL » en mono, le nom de la démo en serif 26 px, une phrase en Newsreader 17 px avec des chiffres réels, puis « Essayer la démo ↗ » (nouvel onglet) et, sur la page livre, « Lire le chapitre → ».
+- **Emplacements** : sur la page livre, une section « À essayer » entre le résumé et le sommaire (une affiche sous l'autre sur téléphone, deux côte à côte dès 640 px) ; en haut du chapitre concerné, sous le titre. Le lien « Essayer la démo → » apparaît aussi dans les liens de bas de chapitre.
+- Un chapitre n'a une affiche que s'il est publié et qu'il a une démo (`demo`) et une vitrine (`showcase`) dans `books.ts`.
+
 ### 5.11 Scène de l'étagère (12 oct 2026)
 
 - Bandeau illustré en haut de la page Étagère (`ShelfScene.astro`, slot `hero`), même recette que l'accueil : SVG + CSS, sans JavaScript, jour/nuit suivant le thème du site, tout s'arrête avec `prefers-reduced-motion`. Pas de vrai GIF : trop lourd, flou sur écran Retina, incapable de suivre le bouton de thème.

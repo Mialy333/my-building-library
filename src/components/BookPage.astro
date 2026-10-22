@@ -4,6 +4,7 @@ import {
   books, baa, conceptsOf, appliedIn, type Book, type Chapter, pad, publishedCount, progressPercent, chapterUrl, bookUrl, chapterLabelWithTheme, chapterSlug,
 } from "../data/books";
 import BookCover from "./BookCover.astro";
+import DemoCard from "./DemoCard.astro";
 import Breadcrumb from "./Breadcrumb.astro";
 import ConceptList from "./ConceptList.astro";
 import { glossary } from "../data/glossary";
@@ -20,6 +21,8 @@ const t = useTranslations(locale);
 const label = (c: Chapter) => chapterLabelWithTheme(c, t);
 
 const journeys = books.filter((b) => b.shelf === "journeys");
+// Published chapters with a live demo to show off, in the order of the contents.
+const demos = book.chapters.filter((c) => c.published && c.showcase && c.demo);
 
 const published = book.chapters.filter((c) => c.published);
 const upcoming = book.chapters.filter((c) => !c.published);
@@ -90,6 +93,16 @@ const crumbs = [
           <p class="callout-text" set:html={book.callout.text[locale]} />
         </aside>
       )}
+    </section>
+  )}
+
+  {demos.length > 0 && (
+    <section class="demos">
+      <h2>{t("demo.heading")}</h2>
+      <p class="body">{t("demo.lead")}</p>
+      <div class="demo-grid">
+        {demos.map((c) => <DemoCard book={book} chapter={c} withChapterLink />)}
+      </div>
     </section>
   )}
 
@@ -237,6 +250,12 @@ const crumbs = [
 
   h2 { margin: 0; font-family: var(--font-serif); font-weight: 400; font-size: 32px; line-height: 1; }
   .reading { padding: 44px 24px 0; }
+  /* "To try": the demo posters, one under the other, two side by side from 640 px. */
+  .demos { padding: 44px 24px 0; }
+  .demo-grid { display: grid; gap: 36px; margin-top: 24px; }
+  @media (min-width: 640px) {
+    .demo-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  }
   .body { margin: 14px 0 0; font-family: var(--font-reading); font-size: 19px; line-height: 1.6; }
   .callout { margin: 28px 6px 0 0; padding: 20px 22px; border-radius: 18px; background: var(--blush); box-shadow: 6px 6px 0 var(--shadow); }
   .callout-label { margin: 0; font-family: var(--font-mono); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-text); }

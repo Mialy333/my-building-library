@@ -1,5 +1,10 @@
 import type { Locale, UiKey } from "../i18n/ui";
+import type { ImageMetadata } from "astro";
 import type { TechIcon } from "./tech-icons";
+// Illustrated intros of the live demos: each demo's own social-preview image (og-image.png
+// in the docs/ folder of its repo), copied here so Astro can optimize it.
+import groundedResearchDemo from "../assets/demos/grounded-research-agent.png";
+import geckoBuyerDemo from "../assets/demos/my-gecko-buyer.png";
 
 export type BookColor = "sage" | "apricot" | "rose";
 export type Shelf = "fundamentals" | "journeys" | "path" | "builds";
@@ -33,6 +38,9 @@ export interface Chapter {
   post?: string;
   demo?: string;
   video?: string;
+  // A live demo worth showing off: its illustrated intro becomes a poster on the book
+  // page and at the top of the chapter (DemoCard.astro). Needs `demo` (the link).
+  showcase?: { image: ImageMetadata; title: string; alt: L; text: L };
 }
 
 export interface Book {
@@ -336,6 +344,19 @@ export const books: Book[] = [
           en: "Four prompt tweaks with no stable effect, then one idea: the model chooses, the code copies. 15/15.",
         },
         repo: "https://github.com/Mialy333/grounded-research-agent",
+        demo: "https://mialy333.github.io/grounded-research-agent/",
+        showcase: {
+          image: groundedResearchDemo,
+          title: "Grounded Research Library",
+          alt: {
+            fr: "La salle de lecture de la démo : six livres sur l'étagère, et une fiche de demande tamponnée « Not in our collection » pour une question hors des livres.",
+            en: "The demo's reading room: six books on the shelf, and a call slip stamped \"Not in our collection\" for a question outside the books.",
+          },
+          text: {
+            fr: "Un assistant de recherche qui ne répond qu'à partir de ses six livres : il recopie le passage mot pour mot, cite le livre, et refuse quand la réponse n'est pas sur l'étagère. 15/15 au grader privé ; la démo rejoue de vrais runs.",
+            en: "A research assistant that only answers from its six books: it copies the passage word for word, cites the book, and refuses when the answer is not on the shelf. 15/15 on the private grader; the demo replays real runs.",
+          },
+        },
       },
       {
         number: 17, kind: "step", code: "Gecko", slug: "gecko", published: true,
@@ -346,6 +367,19 @@ export const books: Book[] = [
           en: "A buyer that pins the request, checks every field, and signs only if everything matches: a real purchase on devnet.",
         },
         repo: "https://github.com/Mialy333/my-gecko-buyer",
+        demo: "https://mialy333.github.io/my-gecko-buyer/",
+        showcase: {
+          image: geckoBuyerDemo,
+          title: "Gecko Café",
+          alt: {
+            fr: "Le Gecko Café, sous un store prune : un ticket « One latte » refusé, parce que 5.00 dépasse le budget de 2.00.",
+            en: "The Gecko Café, under a plum awning: a \"One latte\" ticket declined, because 5.00 is over the 2.00 budget.",
+          },
+          text: {
+            fr: "Un agent qui commande un café sur Solana devnet et vérifie l'addition : il note la commande d'abord, contrôle sept points avant de signer et, si un seul est faux, nomme le champ et ne paie rien. 2 cafés payés, 12 additions refusées, 0 mauvais paiement.",
+            en: "An agent that orders a coffee on Solana devnet and checks the bill: it writes the order down first, checks seven things before signing and, if one is wrong, names the field and pays nothing. 2 coffees paid, 12 bad bills refused, 0 wrong payments.",
+          },
+        },
       },
     ],
   },

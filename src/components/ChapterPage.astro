@@ -4,6 +4,7 @@ import { getLocale, useTranslations } from "../i18n/ui";
 import { baa, conceptsOf, appliedIn, type Book, type Chapter, bookUrl, chapterUrl, chapterLabel, chapterSlug } from "../data/books";
 import Breadcrumb from "./Breadcrumb.astro";
 import ConceptList from "./ConceptList.astro";
+import DemoCard from "./DemoCard.astro";
 import { techIcons } from "../data/tech-icons";
 
 interface Props {
@@ -78,6 +79,10 @@ const crumbs = [
       <span class="stamp" data-read-stamp hidden>{t("chapter.read")}</span>
     </p>
   </header>
+
+  {chapter.showcase && chapter.demo && (
+    <div class="demo-top"><DemoCard book={book} chapter={chapter} /></div>
+  )}
 
   {Content ? (
     <div class="prose"><Content /></div>
@@ -207,6 +212,7 @@ const crumbs = [
     .stamp.fresh { animation: none; }
   }
 
+  .demo-top { margin-top: 28px; }
   .prose { margin-top: 32px; font-family: var(--font-reading); font-size: 19px; line-height: 1.6; }
   .prose :global(p) { margin: 0 0 1em; }
   .prose :global(h2) { margin: 1.8em 0 0.5em; font-family: var(--font-serif); font-weight: 400; font-size: 28px; line-height: 1.1; }
