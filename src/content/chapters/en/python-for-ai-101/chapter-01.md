@@ -2,9 +2,9 @@
 workedOn: 2026-10-22
 ---
 
-This book collects the Python mechanisms that run my agents, one per card, with the input, the output and the file where you can read them again. The 60 cards come from three projects: the Dev3Pack bootcamp and two projects of the AWS Nanodegree, AI Support Agent and NovaMart. They are sorted by family, from the layout of the project to the tests. Every card says which project it comes from, and every chapter ends with "In the field": the chapters of my courses where these mechanisms are at work.
+This book collects the Python mechanisms that run my agents, one per card, with the input, the output and the file where you can read them again. The 68 cards come from four projects: the Dev3Pack bootcamp, two projects of the AWS Nanodegree (AI Support Agent and NovaMart), and my build DRILLS.ai. They are sorted by family, from the layout of the project to the tests. Every card says which project it comes from, and every chapter ends with "In the field": the chapters of my courses and my projects where these mechanisms are at work.
 
-The pure-Python outputs were replayed on October 22 against the code in the repos. For NovaMart, the ones that go through AWS come from the project's evidence (`evidence/`), as the lab account has since been reset.
+The pure-Python outputs were replayed on October 22 against the code in the repos. For NovaMart, the ones that go through AWS come from the project's evidence (`evidence/`), as the lab account has since been reset. The DRILLS.ai cards (61 to 68) were replayed on October 30 on commit `8f45461`, with no network and no model call.
 
 ## How to read a card
 
@@ -38,9 +38,15 @@ Every card follows the same order: in one sentence, why it matters for an agent,
 | `src/agent_orchestrator.py` | The stubs and helpers come from the starter. The TODOs and the extras are mine, from the runbook's excerpts, with the assistant at my request. |
 | The step 7 extras: `scripts/`, `frontend_proxy/` | Me, with the assistant, at my request. |
 
+**DRILLS.ai**
+
+| Code read | Who wrote it |
+| --- | --- |
+| `src/ai_generator/`, `src/integrations/`, `api/`, `tests/` | Me, with the help of ChatGPT and Codex for design, code and iterations. A project base existed before the hackathon pivot. |
+
 ## The links
 
-Every path under "Where to read it again" opens the file on GitHub, on the exact line for Python code. The links are pinned to a commit, so they stay right even if the code changes later: `8c4726f` for the Dev3Pack course, `77d2a92` for my-gecko-buyer, `dc60e44` for grounded-research-agent, `1f7c614` for AI Support Agent, `fef122e` for NovaMart. For a notebook, the link opens the submitted file: GitHub cannot point to a cell, so you find it by the function name given.
+Every path under "Where to read it again" opens the file on GitHub, on the exact line for Python code. The links are pinned to a commit, so they stay right even if the code changes later: `8c4726f` for the Dev3Pack course, `77d2a92` for my-gecko-buyer, `dc60e44` for grounded-research-agent, `1f7c614` for AI Support Agent, `fef122e` for NovaMart, `8f45461` for DRILLS.ai. For a notebook, the link opens the submitted file: GitHub cannot point to a cell, so you find it by the function name given.
 
 ## Where each mechanism sits
 
@@ -74,7 +80,18 @@ A request comes in, an answer or a refusal comes out; the numbers point to the c
 6. After the invocation, a hook guarantees rule 6: the CommunicationAgent answers last (card 45). Out comes the answer or the refusal.
 7. All along, every tool is traced by a decorator (card 38) and its metrics go to CloudWatch through the logs (card 58).
 
-## The map of the 60 cards
+**In DRILLS.ai**
+
+1. The CV and the posting come in through a strict request, with typed consent (card 61); the middleware marks every private response (card 64).
+2. A two-slot semaphore and a bounded wait frame the operation (card 65).
+3. A PDF is read in a bounded subprocess (card 67); postings arrive from five sources in parallel (card 66), filtered by regex (card 18).
+4. The texts are split into windows (card 63), and the model picks IDs in a schema built at runtime (card 62).
+5. Rejected evidence becomes an error code, never CV text (card 30); out come the assessment or the refusal.
+6. In the tests, the model is replaced by an `AsyncMock` (card 68).
+
+## The map of the 68 cards
+
+Cards 61 to 68 come from DRILLS.ai. They sit in their family, at the end of each chapter, so the other cards keep their numbers.
 
 **[Chapter 2 · Organizing the project](/en/books/python-for-ai-101/chapter-02/)**
 
@@ -96,6 +113,8 @@ A request comes in, an answer or a refusal comes out; the numbers point to the c
 | 9 | Exact numbers | A rounding error that lets a price through | Dev3Pack |
 | 10 | Bytes, base64 and fingerprint | Signing other bytes than the ones checked | Dev3Pack |
 | 11 | Identifiers: `random.choices` vs `uuid.uuid4()` | A session ID that collides | AI Support Agent |
+| 61 | The strict Pydantic model and typed consent | Data sent without agreement, an extra field accepted | DRILLS.ai |
+| 62 | A schema built at runtime: `create_model` and `Literal` | An invented evidence ID | DRILLS.ai |
 
 **[Chapter 4 · AWS data](/en/books/python-for-ai-101/chapter-04/)**
 
@@ -117,6 +136,7 @@ A request comes in, an answer or a refusal comes out; the numbers point to the c
 | 20 | From words to sets: tokens, `set`, IDF | An answer with no source | Dev3Pack |
 | 21 | Strict JSON | A model output half accepted | Dev3Pack |
 | 22 | Defensive parsing of `toolUse` / `toolResult` blocks | A tool-call proof you can't show the reviewer | AI Support Agent |
+| 63 | Overlapping windows over a text | A sentence cut in two between two excerpts | DRILLS.ai |
 
 **[Chapter 6 · Control flow](/en/books/python-for-ai-101/chapter-06/)**
 
@@ -151,6 +171,7 @@ A request comes in, an answer or a refusal comes out; the numbers point to the c
 | 39 | The `with` context manager | A Gateway connection left open after an error | AI Support Agent |
 | 40 | The context manager: open, and always close | A trace segment never closed | NovaMart |
 | 41 | Files with `pathlib` | Evidence overwritten | Dev3Pack |
+| 64 | Middleware: one rule for every response | A CV kept in a cache | DRILLS.ai |
 
 **[Chapter 9 · Agents and their interfaces](/en/books/python-for-ai-101/chapter-09/)**
 
@@ -172,6 +193,8 @@ A request comes in, an answer or a refusal comes out; the numbers point to the c
 | 50 | The asynchronous `@app.entrypoint` | A runtime that blocks on one request | AI Support Agent |
 | 51 | Parallel fan-out: `ThreadPoolExecutor` and `as_completed` | Three slow searches one after the other | NovaMart |
 | 52 | Lock, per-thread context, lazy singleton | A resource created twice by two threads | NovaMart |
+| 65 | The semaphore and the bounded wait | Requests piling up, an endless wait | DRILLS.ai |
+| 66 | Async fan-out: `asyncio.gather` | A source that is down taken for "no postings" | DRILLS.ai |
 
 **[Chapter 11 · Deploying and tooling](/en/books/python-for-ai-101/chapter-11/)**
 
@@ -183,6 +206,7 @@ A request comes in, an answer or a refusal comes out; the numbers point to the c
 | 56 | HTTP entry points: the Runtime's entrypoint and Lambda | A customer pretending to be another | NovaMart |
 | 57 | The MCP server: a function becomes a tool | A check reserved for a single agent | Dev3Pack |
 | 58 | Metrics through the logs (EMF) | Telemetry that needs a missing permission | NovaMart |
+| 67 | The bounded subprocess: time, memory, CPU | A booby-trapped PDF that blocks the server | DRILLS.ai |
 
 **[Chapter 12 · Testing and evaluating](/en/books/python-for-ai-101/chapter-12/)**
 
@@ -190,3 +214,4 @@ A request comes in, an answer or a refusal comes out; the numbers point to the c
 | --- | --- | --- | --- |
 | 59 | Tests with pytest | A grade that depends on the wifi | Dev3Pack |
 | 60 | Testing the structure, evaluating the behaviour | A guardrail tuned by feel | NovaMart |
+| 68 | `AsyncMock`: replacing an async call | Tests that cost API credit | DRILLS.ai |

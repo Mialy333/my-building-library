@@ -120,7 +120,7 @@ These are backlog items, not fixes already made.
 
 ## The Python mechanisms
 
-- [My Python for AI 101, chapter 12 · Testing and evaluating](/en/books/python-for-ai-101/chapter-12/): card 59, pytest and `monkeypatch`, to remove the key, switch off the limiter, or replace the model with a planned answer.
+- [My Python for AI 101, chapter 12 · Testing and evaluating](/en/books/python-for-ai-101/chapter-12/): card 59, pytest and `monkeypatch`, to remove the key, switch off the limiter, or replace the model with a planned answer; card 68, `AsyncMock` for the agent's async methods.
 
 ## The defense question
 

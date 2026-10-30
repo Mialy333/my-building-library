@@ -65,6 +65,36 @@ for expected, source, text in CASES:
 
 **À réutiliser.** Un jeu de cas fixe (autorisés et bloqués) écrit avant de régler. Mesurer sur la version DRAFT, publier seulement la meilleure. Garder les rapports d'évaluation dans `evidence/`.
 
+## Fiche 68 — `AsyncMock` : remplacer un appel asynchrone dans un test
+
+**Projet.** DRILLS.ai (Builds, hackathon OpenAI DevDay)
+
+**En une phrase.** `AsyncMock(return_value=…)` imite une fonction `async` ; avec `monkeypatch.setattr`, on remplace une méthode de l'agent le temps d'un test, puis tout revient.
+
+**Pourquoi pour un agent.** On teste les routes, le consentement et les en-têtes sans réseau ni crédit API. Le faux renvoie une réponse prévue ; le test vérifie ce que le code en fait.
+
+**Analogie.** Une répétition avec une doublure : la mise en scène est vérifiée sans faire venir l'acteur principal.
+
+**Le mécanisme.**
+
+```python
+def test_split_endpoints_require_consent_and_keep_private_responses(client, payload, analysis, result, monkeypatch):
+    monkeypatch.setattr(api_main.ApplicationAgent, 'assess', AsyncMock(return_value=brief))
+    monkeypatch.setattr(api_main.ApplicationAgent, 'draft', AsyncMock(return_value=result))
+    response = client.post('/api/assessment', json=body)
+    assert response.status_code == 200 and response.json()['drafts_pending']
+    assert response.headers['cache-control'] == 'no-store'
+    ...
+    body['consent'] = False
+    assert client.post('/api/application-drafts', json=body).status_code == 422
+```
+
+**Entrée → sortie.** Rejoué le 30 octobre : ce test et celui du sous-processus tué → `2 passed`, sans réseau.
+
+**Où le relire.** [`tests/test_application.py · test_split_endpoints…`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/tests/test_application.py#L310) · [`test_pdf_worker_is_killed_on_timeout`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/tests/test_application.py#L356).
+
+**À réutiliser.** Un faux par frontière (modèle, réseau, sous-processus). Le test vérifie aussi les refus : un consentement à `False` doit donner 422.
+
 ## Sur le terrain
 
 Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
@@ -73,4 +103,4 @@ Les chapitres de mes formations et de mes projets où ces mécanismes tournent p
 - [Dev3Pack, Gecko capstone](/fr/books/dev3pack/gecko/) : fiche 59.
 - [AWS Scholars, chapitre 3 · NovaMart Multi-Agent Support](/fr/books/aws-scholars/chapter-03/) : fiche 60.
 - [DRILLS.ai, chapitre 4 · Phase 1 : des agents qui fabriquent des exercices](/fr/books/drills-ai/chapter-04/) : fiche 60.
-- [DRILLS.ai, chapitre 11 · Incidents, mesures et limites](/fr/books/drills-ai/chapter-11/) : fiche 59.
+- [DRILLS.ai, chapitre 11 · Incidents, mesures et limites](/fr/books/drills-ai/chapter-11/) : fiches 59 et 68.

@@ -162,6 +162,63 @@ session_id = payload.get("session_id") or str(uuid.uuid4())
 
 **To reuse.** For a demo ID that a human reads → `random.choices` from a chosen alphabet; for an ID that must never collide between sessions or machines → `uuid.uuid4()`.
 
+## Card 61 — The strict Pydantic model and typed consent
+
+**Project.** DRILLS.ai (Builds, OpenAI DevDay hackathon)
+
+**In one sentence.** A `BaseModel` class describes a request field by field; `extra="forbid"` rejects any extra field, and `Literal[True]` accepts only one value: true.
+
+**Why it matters for an agent.** A candidate's data only goes to the model with their agreement. If agreement is a type, a request without it is rejected before any call, with no `if` forgotten somewhere.
+
+**Analogy.** A subscription form: an unticked "I agree" box, or a note added by hand, and the file is sent back.
+
+**The mechanism.**
+
+```python
+class StrictModel(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+class ApplicationRequest(StrictModel):
+    candidate_text: str = Field(min_length=50, max_length=16_000)
+    job_description: str = Field(min_length=50, max_length=20_000)
+    output_language: Literal["fr", "en"] = "fr"
+    consent: Literal[True]
+```
+
+**Input → output.** Replayed on October 30: `consent=True` → request accepted, language `fr` by default. `consent=False` → `literal_error ('consent',) Input should be True`. An extra `salary` field → `extra_forbidden ('salary',) Extra inputs are not permitted`. In the API, these errors become a 422.
+
+**Where to read it.** [`application.py · StrictModel, ApplicationRequest`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/src/ai_generator/application.py#L22).
+
+**To reuse.** A strict base class for every input. Length bounds in the type, not in a separate function. A mandatory agreement is written `Literal[True]`.
+
+## Card 62 — A schema built at runtime: `create_model` and `Literal`
+
+**Project.** DRILLS.ai (Builds, OpenAI DevDay hackathon)
+
+**In one sentence.** `create_model` builds a Pydantic class while the program runs; with `Literal[tuple(ids)]`, a field only accepts the IDs that exist for this request.
+
+**Why it matters for an agent.** The schema sent to the model lists the only excerpts it may cite. It can neither invent an ID nor take an excerpt of the posting for an excerpt of the CV.
+
+**Analogy.** A transfer form with a pre-filled list of payees: you choose, you don't type.
+
+**The mechanism.**
+
+```python
+def selection_schema(profile: dict[str, str], posting: dict[str, str], *, assessment_only=False):
+    # Enum constraints prevent the model from inventing IDs or mixing sources.
+    profile_id = Literal[tuple(profile)]
+    posting_id = Literal[tuple(posting)]
+    requirement = create_model("RequirementSelection", __base__=Requirement,
+        posting_quote=(posting_id, ...), candidate_quote=(profile_id | None, ...))
+    ...
+```
+
+**Input → output.** Replayed with two profile excerpts and one posting excerpt. In the generated JSON Schema, `candidate_quote` becomes `{"enum": ["profile_0", "profile_1"]}` or `null`, and `posting_quote` becomes `{"const": "job_0"}`.
+
+**Where to read it.** [`application.py · selection_schema`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/src/ai_generator/application.py#L260) · [`resolve_selection`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/src/ai_generator/application.py#L276), which then puts back the original passages.
+
+**To reuse.** When the model has to point at something, give it the closed list in the schema. `X | None` to say "no evidence" without inventing an empty value.
+
 ## In the field
 
 The chapters of my courses and my projects where these mechanisms run for real.
@@ -175,3 +232,4 @@ The chapters of my courses and my projects where these mechanisms run for real.
 - [Dev3Pack, Session 14](/en/books/dev3pack/session-14/): card 6.
 - [Dev3Pack, Gecko capstone](/en/books/dev3pack/gecko/): cards 8, 9 and 10.
 - [AWS Scholars, chapter 2 · AI Support Agent](/en/books/aws-scholars/chapter-02/): cards 7 and 11.
+- [DRILLS.ai, chapter 6 · The assessment](/en/books/drills-ai/chapter-06/): cards 61 and 62.

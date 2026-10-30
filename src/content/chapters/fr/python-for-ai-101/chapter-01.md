@@ -2,9 +2,9 @@
 workedOn: 2026-10-22
 ---
 
-Ce livre range les mécanismes Python qui font tourner mes agents, une fiche par mécanisme, avec l'entrée, la sortie et le fichier où les relire. Les 60 fiches viennent de trois projets : le bootcamp Dev3Pack et deux projets du Nanodegree AWS, AI Support Agent et NovaMart. Elles sont classées par famille, de l'organisation du projet jusqu'aux tests. Chaque fiche dit de quel projet elle vient, et chaque chapitre finit par « Sur le terrain » : les chapitres de mes formations où on voit ces mécanismes à l'œuvre.
+Ce livre range les mécanismes Python qui font tourner mes agents, une fiche par mécanisme, avec l'entrée, la sortie et le fichier où les relire. Les 68 fiches viennent de quatre projets : le bootcamp Dev3Pack, deux projets du Nanodegree AWS (AI Support Agent et NovaMart), et mon build DRILLS.ai. Elles sont classées par famille, de l'organisation du projet jusqu'aux tests. Chaque fiche dit de quel projet elle vient, et chaque chapitre finit par « Sur le terrain » : les chapitres de mes formations et de mes projets où on voit ces mécanismes à l'œuvre.
 
-Les sorties en Python pur ont été rejouées le 22 octobre sur le code des repos. Pour NovaMart, celles qui passent par AWS viennent des preuves du projet (`evidence/`), car le compte du lab a depuis été réinitialisé.
+Les sorties en Python pur ont été rejouées le 22 octobre sur le code des repos. Pour NovaMart, celles qui passent par AWS viennent des preuves du projet (`evidence/`), car le compte du lab a depuis été réinitialisé. Les fiches de DRILLS.ai (61 à 68) ont été rejouées le 30 octobre sur le commit `8f45461`, sans réseau ni appel au modèle.
 
 ## Comment lire une fiche
 
@@ -38,9 +38,15 @@ Chaque fiche suit le même ordre : en une phrase, pourquoi ça compte pour un ag
 | `src/agent_orchestrator.py` | Les stubs et helpers viennent du starter. Les TODO et les extras sont de moi, à partir des extraits du runbook, avec l'assistant à ma demande. |
 | Les extras de l'étape 7 : `scripts/`, `frontend_proxy/` | Moi, avec l'assistant, à ma demande. |
 
+**DRILLS.ai**
+
+| Code lu | Qui l'a écrit |
+| --- | --- |
+| `src/ai_generator/`, `src/integrations/`, `api/`, `tests/` | Moi, avec l'assistance de ChatGPT et Codex pour la conception, le code et les itérations. Une base de projet existait avant le pivot du hackathon. |
+
 ## Les liens
 
-Chaque chemin de « Où le relire » ouvre le fichier sur GitHub, à la ligne exacte pour le code Python. Les liens sont figés sur un commit, donc ils restent justes même si le code change ensuite : `8c4726f` pour le cours Dev3Pack, `77d2a92` pour my-gecko-buyer, `dc60e44` pour grounded-research-agent, `1f7c614` pour AI Support Agent, `fef122e` pour NovaMart. Pour un notebook, le lien ouvre le fichier rendu : GitHub ne sait pas pointer une cellule, on la retrouve grâce au nom de fonction indiqué.
+Chaque chemin de « Où le relire » ouvre le fichier sur GitHub, à la ligne exacte pour le code Python. Les liens sont figés sur un commit, donc ils restent justes même si le code change ensuite : `8c4726f` pour le cours Dev3Pack, `77d2a92` pour my-gecko-buyer, `dc60e44` pour grounded-research-agent, `1f7c614` pour AI Support Agent, `fef122e` pour NovaMart, `8f45461` pour DRILLS.ai. Pour un notebook, le lien ouvre le fichier rendu : GitHub ne sait pas pointer une cellule, on la retrouve grâce au nom de fonction indiqué.
 
 ## Où chaque mécanisme intervient
 
@@ -74,7 +80,18 @@ Une demande entre, une réponse ou un refus sort ; les numéros renvoient aux fi
 6. Après l'invocation, un hook garantit la règle 6 : le CommunicationAgent répond en dernier (fiche 45). Sortent la réponse ou le refus.
 7. Tout du long, chaque outil est tracé par un décorateur (fiche 38) et ses métriques partent dans CloudWatch par les logs (fiche 58).
 
-## La carte des 60 fiches
+**Dans DRILLS.ai**
+
+1. Le CV et l'annonce entrent par une requête stricte, avec un consentement typé (fiche 61) ; le middleware marque chaque réponse privée (fiche 64).
+2. Un sémaphore à deux places et une attente bornée encadrent l'opération (fiche 65).
+3. Un PDF est lu dans un sous-processus borné (fiche 67) ; les offres arrivent de cinq sources en parallèle (fiche 66), filtrées par regex (fiche 18).
+4. Les textes sont découpés en fenêtres (fiche 63), et le modèle choisit des identifiants dans un schéma construit à l'exécution (fiche 62).
+5. Une preuve refusée devient un code d'erreur, jamais un texte de CV (fiche 30) ; sortent le diagnostic ou le refus.
+6. Dans les tests, le modèle est remplacé par un `AsyncMock` (fiche 68).
+
+## La carte des 68 fiches
+
+Les fiches 61 à 68 viennent de DRILLS.ai. Elles sont rangées dans leur famille, à la fin de chaque chapitre, pour ne pas renuméroter les autres.
 
 **[Chapitre 2 · Organiser le projet](/fr/books/python-for-ai-101/chapter-02/)**
 
@@ -96,6 +113,8 @@ Une demande entre, une réponse ou un refus sort ; les numéros renvoient aux fi
 | 9 | Les nombres exacts | Un arrondi qui fait passer un prix | Dev3Pack |
 | 10 | Octets, base64 et empreinte | Signer d'autres octets que ceux vérifiés | Dev3Pack |
 | 11 | Identifiants : `random.choices` vs `uuid.uuid4()` | Un ID de session qui collisionne | AI Support Agent |
+| 61 | Le modèle Pydantic strict et le consentement typé | Des données envoyées sans accord, un champ en trop accepté | DRILLS.ai |
+| 62 | Un schéma construit à l'exécution : `create_model` et `Literal` | Un identifiant de preuve inventé | DRILLS.ai |
 
 **[Chapitre 4 · Les données AWS](/fr/books/python-for-ai-101/chapter-04/)**
 
@@ -117,6 +136,7 @@ Une demande entre, une réponse ou un refus sort ; les numéros renvoient aux fi
 | 20 | Des mots aux ensembles : tokens, `set`, IDF | Une réponse sans source | Dev3Pack |
 | 21 | Le JSON strict | Une sortie de modèle acceptée à moitié | Dev3Pack |
 | 22 | Parsing défensif des blocs `toolUse` / `toolResult` | Une preuve d'appel d'outil qu'on ne peut pas produire au reviewer | AI Support Agent |
+| 63 | Des fenêtres qui se chevauchent sur un texte | Une phrase coupée en deux entre deux extraits | DRILLS.ai |
 
 **[Chapitre 6 · Le contrôle](/fr/books/python-for-ai-101/chapter-06/)**
 
@@ -151,6 +171,7 @@ Une demande entre, une réponse ou un refus sort ; les numéros renvoient aux fi
 | 39 | Context manager `with` | Une connexion Gateway qui reste ouverte après une erreur | AI Support Agent |
 | 40 | Le context manager : ouvrir, et toujours refermer | Un segment de trace jamais fermé | NovaMart |
 | 41 | Les fichiers avec `pathlib` | Une preuve écrasée | Dev3Pack |
+| 64 | Le middleware : une règle pour toutes les réponses | Un CV gardé en cache | DRILLS.ai |
 
 **[Chapitre 9 · Les agents et leurs interfaces](/fr/books/python-for-ai-101/chapter-09/)**
 
@@ -172,6 +193,8 @@ Une demande entre, une réponse ou un refus sort ; les numéros renvoient aux fi
 | 50 | Entrée asynchrone `@app.entrypoint` | Un runtime qui bloque sur une requête | AI Support Agent |
 | 51 | Le fan-out parallèle : `ThreadPoolExecutor` et `as_completed` | Trois recherches lentes l'une après l'autre | NovaMart |
 | 52 | Verrou, contexte par thread, singleton paresseux | Une ressource créée deux fois par deux threads | NovaMart |
+| 65 | Le sémaphore et l'attente bornée | Des requêtes empilées, une attente sans fin | DRILLS.ai |
+| 66 | Le fan-out asynchrone : `asyncio.gather` | Une source en panne prise pour « aucune offre » | DRILLS.ai |
 
 **[Chapitre 11 · Déployer et outiller](/fr/books/python-for-ai-101/chapter-11/)**
 
@@ -183,6 +206,7 @@ Une demande entre, une réponse ou un refus sort ; les numéros renvoient aux fi
 | 56 | Les entrées HTTP : entrypoint du Runtime et Lambda | Un client qui se fait passer pour un autre | NovaMart |
 | 57 | Le serveur MCP : une fonction devient un outil | Une vérification réservée à un seul agent | Dev3Pack |
 | 58 | Des métriques par les logs (EMF) | Une télémétrie qui exige une permission absente | NovaMart |
+| 67 | Le sous-processus borné : temps, mémoire, CPU | Un PDF piégé qui bloque le serveur | DRILLS.ai |
 
 **[Chapitre 12 · Tester et évaluer](/fr/books/python-for-ai-101/chapter-12/)**
 
@@ -190,3 +214,4 @@ Une demande entre, une réponse ou un refus sort ; les numéros renvoient aux fi
 | --- | --- | --- | --- |
 | 59 | Les tests avec pytest | Une note qui dépend du wifi | Dev3Pack |
 | 60 | Tester la structure, évaluer le comportement | Un guardrail réglé à l'impression | NovaMart |
+| 68 | `AsyncMock` : remplacer un appel asynchrone | Des tests qui coûtent des crédits API | DRILLS.ai |

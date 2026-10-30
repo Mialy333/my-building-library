@@ -199,6 +199,44 @@ except Exception as exc:
 
 **To reuse.** One metric per agent with an `Agent` dimension. Emission inside a `try` that never breaks the answer. Check the role's permissions before choosing the mechanism (API or logs).
 
+## Card 67 — The bounded subprocess: time, memory, CPU
+
+**Project.** DRILLS.ai (Builds, OpenAI DevDay hackathon)
+
+**In one sentence.** `asyncio.create_subprocess_exec` starts a second Python; `wait_for` bounds the time, `resource.setrlimit` bounds memory and CPU in the child, and `finally` kills the process if it is still running.
+
+**Why it matters for an agent.** Reading an unknown PDF means running a parser on untrusted data. In a separate process, an endless loop or a memory blow-up does not block the server.
+
+**Analogy.** Having a suspicious parcel opened in a separate room, with a stopwatch, rather than in the middle of the office.
+
+**The mechanism.**
+
+```python
+async def extract_pdf_text(data: bytes) -> str | None:
+    process = None
+    try:
+        process = await asyncio.create_subprocess_exec(sys.executable, str(Path(__file__).resolve()),
+            stdin=asyncio.subprocess.PIPE, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.DEVNULL)
+        output, _ = await asyncio.wait_for(process.communicate(data), timeout=4)
+        ...
+    except (OSError, ValueError, UnicodeError, asyncio.TimeoutError):
+        return None
+    finally:
+        if process is not None and process.returncode is None:
+            process.kill()
+            await process.wait()
+
+# In the child:
+resource.setrlimit(resource.RLIMIT_AS, (256 * 1024 * 1024, 256 * 1024 * 1024))
+resource.setrlimit(resource.RLIMIT_CPU, (3, 3))
+```
+
+**Input → output.** Replayed: a one-line text PDF → the exact sentence, with no model call. `b"not a pdf"` or a text that is too short → `None`, and the AI fallback takes over. The `test_pdf_worker_is_killed_on_timeout` test checks that a child that is too slow gets killed.
+
+**Where to read it.** [`pdf_text.py · extract_pdf_text`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/src/ai_generator/pdf_text.py#L27) · [the child part](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/src/ai_generator/pdf_text.py#L44).
+
+**To reuse.** Untrusted data, separate parser, limits in the child, `kill` in a `finally`. It is not a security sandbox: it is a bound.
+
 ## In the field
 
 The chapters of my courses and my projects where these mechanisms run for real.
@@ -210,5 +248,5 @@ The chapters of my courses and my projects where these mechanisms run for real.
 - [AWS Scholars, chapter 2 · AI Support Agent](/en/books/aws-scholars/chapter-02/): card 55.
 - [AWS Scholars, chapter 3 · NovaMart Multi-Agent Support](/en/books/aws-scholars/chapter-03/): cards 54, 56 and 58.
 - [DRILLS.ai, chapter 4 · Phase 1: agents that make exercises](/en/books/drills-ai/chapter-04/): cards 53 and 55.
-- [DRILLS.ai, chapter 5 · Phase 2: the pivot to job applications](/en/books/drills-ai/chapter-05/): card 53.
+- [DRILLS.ai, chapter 5 · Phase 2: the pivot to job applications](/en/books/drills-ai/chapter-05/): cards 53 and 67.
 - [DRILLS.ai, chapter 9 · MCP: three read-only tools](/en/books/drills-ai/chapter-09/): card 57.

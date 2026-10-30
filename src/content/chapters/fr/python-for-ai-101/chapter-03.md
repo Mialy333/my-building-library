@@ -162,6 +162,63 @@ session_id = payload.get("session_id") or str(uuid.uuid4())
 
 **À réutiliser.** Pour un ID de démo lisible par un humain → `random.choices` sur un alphabet choisi ; pour un ID qui ne doit jamais collisionner entre sessions ou machines → `uuid.uuid4()`.
 
+## Fiche 61 — Le modèle Pydantic strict et le consentement typé
+
+**Projet.** DRILLS.ai (Builds, hackathon OpenAI DevDay)
+
+**En une phrase.** Une classe `BaseModel` décrit une requête champ par champ ; `extra="forbid"` refuse tout champ en trop, et `Literal[True]` n'accepte qu'une seule valeur : vrai.
+
+**Pourquoi pour un agent.** Les données d'un candidat ne partent vers le modèle qu'avec son accord. Si l'accord est un type, une requête sans lui est refusée avant le moindre appel, sans `if` oublié quelque part.
+
+**Analogie.** Un bulletin de souscription : une case « j'accepte » non cochée, ou une mention ajoutée à la main, et le dossier est renvoyé.
+
+**Le mécanisme.**
+
+```python
+class StrictModel(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+class ApplicationRequest(StrictModel):
+    candidate_text: str = Field(min_length=50, max_length=16_000)
+    job_description: str = Field(min_length=50, max_length=20_000)
+    output_language: Literal["fr", "en"] = "fr"
+    consent: Literal[True]
+```
+
+**Entrée → sortie.** Rejoué le 30 octobre : `consent=True` → requête acceptée, langue `fr` par défaut. `consent=False` → `literal_error ('consent',) Input should be True`. Un champ `salary` en plus → `extra_forbidden ('salary',) Extra inputs are not permitted`. Dans l'API, ces erreurs deviennent un 422.
+
+**Où le relire.** [`application.py · StrictModel, ApplicationRequest`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/src/ai_generator/application.py#L22).
+
+**À réutiliser.** Une classe de base stricte pour toutes les entrées. Les bornes de longueur dans le type, pas dans une fonction à part. Un accord obligatoire s'écrit `Literal[True]`.
+
+## Fiche 62 — Un schéma construit à l'exécution : `create_model` et `Literal`
+
+**Projet.** DRILLS.ai (Builds, hackathon OpenAI DevDay)
+
+**En une phrase.** `create_model` fabrique une classe Pydantic pendant que le programme tourne ; avec `Literal[tuple(ids)]`, un champ n'accepte que les identifiants qui existent pour cette requête.
+
+**Pourquoi pour un agent.** Le schéma envoyé au modèle liste les seuls extraits qu'il peut citer. Il ne peut ni inventer un identifiant, ni prendre un extrait de l'annonce pour un extrait du CV.
+
+**Analogie.** Un formulaire de virement dont la liste des bénéficiaires est préremplie : on choisit, on ne tape pas.
+
+**Le mécanisme.**
+
+```python
+def selection_schema(profile: dict[str, str], posting: dict[str, str], *, assessment_only=False):
+    # Enum constraints prevent the model from inventing IDs or mixing sources.
+    profile_id = Literal[tuple(profile)]
+    posting_id = Literal[tuple(posting)]
+    requirement = create_model("RequirementSelection", __base__=Requirement,
+        posting_quote=(posting_id, ...), candidate_quote=(profile_id | None, ...))
+    ...
+```
+
+**Entrée → sortie.** Rejoué avec deux extraits de profil et un extrait d'annonce. Dans le JSON Schema produit, `candidate_quote` devient `{"enum": ["profile_0", "profile_1"]}` ou `null`, et `posting_quote` devient `{"const": "job_0"}`.
+
+**Où le relire.** [`application.py · selection_schema`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/src/ai_generator/application.py#L260) · [`resolve_selection`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/src/ai_generator/application.py#L276), qui remet ensuite les passages originaux.
+
+**À réutiliser.** Quand le modèle doit désigner quelque chose, lui donner la liste fermée dans le schéma. `X | None` pour dire « aucune preuve » sans inventer une valeur vide.
+
 ## Sur le terrain
 
 Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
@@ -175,3 +232,4 @@ Les chapitres de mes formations et de mes projets où ces mécanismes tournent p
 - [Dev3Pack, Session 14](/fr/books/dev3pack/session-14/) : fiche 6.
 - [Dev3Pack, Gecko capstone](/fr/books/dev3pack/gecko/) : fiches 8, 9 et 10.
 - [AWS Scholars, chapitre 2 · AI Support Agent](/fr/books/aws-scholars/chapter-02/) : fiches 7 et 11.
+- [DRILLS.ai, chapitre 6 · Le diagnostic](/fr/books/drills-ai/chapter-06/) : fiches 61 et 62.

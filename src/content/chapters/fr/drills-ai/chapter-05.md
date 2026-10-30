@@ -77,10 +77,10 @@ J'ai retiré cette préparation du parcours. Les routes `/api/interview/transcri
 
 ## Les mécanismes Python
 
-- [My Python for AI 101, chapitre 11 · Déployer et outiller](/fr/books/python-for-ai-101/chapter-11/) : fiche 53, `subprocess`, ici avec des limites de mémoire et de CPU.
+- [My Python for AI 101, chapitre 11 · Déployer et outiller](/fr/books/python-for-ai-101/chapter-11/) : fiche 53, `subprocess` ; fiche 67, le sous-processus de DRILLS, borné en temps, en mémoire et en CPU.
 - [My Python for AI 101, chapitre 7 · Les erreurs et les garde-fous](/fr/books/python-for-ai-101/chapter-07/) : fiche 31, le repli dégradé (l'extraction qui échoue renvoie `None`, et le secours IA prend le relais).
 - [My Python for AI 101, chapitre 5 · Le texte](/fr/books/python-for-ai-101/chapter-05/) : fiche 18, les expressions régulières du filtre d'offres.
-- [My Python for AI 101, chapitre 10 · Le réseau, le temps et la concurrence](/fr/books/python-for-ai-101/chapter-10/) : fiche 48, vérifier qu'un lien est bien en `https` avant de le garder.
+- [My Python for AI 101, chapitre 10 · Le réseau, le temps et la concurrence](/fr/books/python-for-ai-101/chapter-10/) : fiche 48, vérifier qu'un lien est bien en `https` avant de le garder ; fiche 66, les cinq sources lues en parallèle avec `asyncio.gather`.
 
 ## La question de défense
 

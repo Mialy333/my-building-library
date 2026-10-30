@@ -122,6 +122,8 @@ Pour un rollback : identifier le dernier commit sain, faire un revert contrôlé
 
 ## Les mécanismes Python
 
+- [My Python for AI 101, chapitre 10 · Le réseau, le temps et la concurrence](/fr/books/python-for-ai-101/chapter-10/) : fiche 65, le sémaphore à deux places et l'attente de 95 secondes.
+- [My Python for AI 101, chapitre 8 · Décorateurs, contexte et fichiers](/fr/books/python-for-ai-101/chapter-08/) : fiche 64, le middleware qui pose `no-store` et `Server-Timing`.
 - [My Python for AI 101, chapitre 10 · Le réseau, le temps et la concurrence](/fr/books/python-for-ai-101/chapter-10/) : fiche 49, mesurer une durée et borner une attente (ici en version asyncio, avec `wait_for`) ; fiche 52, le verrou, à comparer au sémaphore à deux places.
 - [My Python for AI 101, chapitre 2 · Organiser le projet](/fr/books/python-for-ai-101/chapter-02/) : fiche 3, refuser de travailler sans configuration (ici, 503 sans clé).
 

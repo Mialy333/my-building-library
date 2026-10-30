@@ -195,6 +195,35 @@ for msg in agent.messages:
 
 **To reuse.** Message objects in LLM frameworks are always mixed: always check that a key is there before reading it, and log the structured fields (name, input, result) rather than only the final text.
 
+## Card 63 — Overlapping windows over a text
+
+**Project.** DRILLS.ai (Builds, OpenAI DevDay hackathon)
+
+**In one sentence.** `range(0, len(text), 500)` gives a starting point every 500 characters, and `text[start:start + 600]` cuts 600 characters: each window covers the start of the next one.
+
+**Why it matters for an agent.** A sentence that falls on a cut would stay cut in two. The 100-character overlap gives it a chance to be found whole in one excerpt.
+
+**Analogy.** Monthly bank statements that repeat the closing balance of the previous month: nothing falls between two pages.
+
+**The mechanism.**
+
+```python
+def source_excerpts(text: str, prefix: str) -> dict[str, str]:
+    """Bounded overlapping slices, each preserved verbatim from the approved input."""
+    excerpts = {}
+    for start in range(0, len(text), 500):
+        excerpt = text[start:start + 600].strip()
+        if len(excerpt) >= 8:
+            excerpts[f"{prefix}_{len(excerpts)}"] = excerpt
+    return excerpts
+```
+
+**Input → output.** Replayed on a 1,250-character text: `{'profile_0': 600, 'profile_1': 600, 'profile_2': 250}` (length of each excerpt). A last piece under 8 characters is dropped.
+
+**Where to read it.** [`application.py · source_excerpts`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/src/ai_generator/application.py#L250).
+
+**To reuse.** Deterministic splitting, with readable IDs and text kept word for word. The overlap is a setting: you choose it, you don't guess it.
+
 ## In the field
 
 The chapters of my courses and my projects where these mechanisms run for real.
@@ -211,3 +240,4 @@ The chapters of my courses and my projects where these mechanisms run for real.
 - [AWS Scholars, chapter 2 · AI Support Agent](/en/books/aws-scholars/chapter-02/): cards 19 and 22.
 - [AWS Scholars, chapter 3 · NovaMart Multi-Agent Support](/en/books/aws-scholars/chapter-03/): card 17.
 - [DRILLS.ai, chapter 5 · Phase 2: the pivot to job applications](/en/books/drills-ai/chapter-05/): card 18.
+- [DRILLS.ai, chapter 6 · The assessment](/en/books/drills-ai/chapter-06/): card 63.

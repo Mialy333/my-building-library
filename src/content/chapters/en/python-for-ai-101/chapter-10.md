@@ -154,6 +154,69 @@ def _orchestrator():
 
 **To reuse.** Every "create if missing" shared between threads goes under a lock. Costly objects (agent graph, clients) built on the first call, then reused.
 
+## Card 65 — The semaphore and the bounded wait
+
+**Project.** DRILLS.ai (Builds, OpenAI DevDay hackathon)
+
+**In one sentence.** `asyncio.Semaphore(2)` lets two operations through at a time; `locked()` says whether it is full; `asyncio.wait_for(…, timeout=95)` stops waiting after 95 seconds.
+
+**Why it matters for an agent.** A model call costs money and can take a while. Rather than piling up requests, the server answers "busy" (429) straight away, and an operation that runs too long ends in 504 instead of hanging.
+
+**Analogy.** Two open counters and a "come back later" ticket when both are taken, rather than an endless queue.
+
+**The mechanism.**
+
+```python
+application_slots = asyncio.Semaphore(2)
+
+async def run_application_operation(operation, stage="application"):
+    if not os.getenv("OPENAI_API_KEY"):
+        raise HTTPException(status_code=503, detail="Application service is not configured.")
+    if application_slots.locked():
+        raise HTTPException(status_code=429, detail="Application service is busy. Please try again shortly.")
+    async with application_slots:
+        result = await asyncio.wait_for(operation(), timeout=95)
+        ...
+```
+
+**Input → output.** Replayed: both slots taken, a third call → `429 Application service is busy. Please try again shortly.` A free slot → the operation goes through. No key → `503` before anything else.
+
+**Where to read it.** [`api/main.py · application_slots, run_application_operation`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/api/main.py#L82).
+
+**To reuse.** Refuse fast rather than wait forever. The semaphore holds for one process: it is neither a quota shared across servers nor a spending cap.
+
+## Card 66 — Async fan-out: `asyncio.gather`
+
+**Project.** DRILLS.ai (Builds, OpenAI DevDay hackathon)
+
+**In one sentence.** `asyncio.gather` starts several coroutines at the same time and returns their results in order; here, each read returns a pair `(postings, source down or None)`.
+
+**Why it matters for an agent.** Five sources read one after the other add up their delays. And a source that is down must not make the others fail, nor pass for "no postings".
+
+**Analogy.** Asking five brokers for a price at the same time, and noting the ones that did not answer instead of concluding the market is empty.
+
+**The mechanism.**
+
+```python
+async def read(board):
+    try:
+        response = await client.get(f'https://boards-api.greenhouse.io/v1/boards/{board}/jobs', params={'content': 'true'})
+        response.raise_for_status()
+        payload = response.json()
+        jobs = [result for job in payload['jobs'] if (result := qualify(job, board))]
+        return jobs, None
+    except (httpx.HTTPError, ValueError, KeyError, TypeError):
+        return [], BOARDS[board]
+
+batches = await asyncio.gather(*(read(board) for board in BOARDS), *(read_ashby(board) for board in ASHBY_BOARDS))
+```
+
+**Input → output.** Replayed with the network cut: `0` postings, `unavailable_sources` → `['Anthropic', 'Databricks', 'Scale AI', 'Mistral AI', 'Dust']`, and the result is not cached. A complete answer stays cached for 300 seconds.
+
+**Where to read it.** [`jobs.py · load_jobs`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/src/integrations/jobs.py#L50).
+
+**To reuse.** Each task catches its own errors and says who failed. Never cache an incomplete result. Compare with card 51, the same idea with threads.
+
 ## In the field
 
 The chapters of my courses and my projects where these mechanisms run for real.
@@ -167,5 +230,5 @@ The chapters of my courses and my projects where these mechanisms run for real.
 - [Dev3Pack, Gecko capstone](/en/books/dev3pack/gecko/): card 48.
 - [AWS Scholars, chapter 2 · AI Support Agent](/en/books/aws-scholars/chapter-02/): card 50.
 - [AWS Scholars, chapter 3 · NovaMart Multi-Agent Support](/en/books/aws-scholars/chapter-03/): cards 51 and 52.
-- [DRILLS.ai, chapter 5 · Phase 2: the pivot to job applications](/en/books/drills-ai/chapter-05/): card 48.
-- [DRILLS.ai, chapter 10 · Deploying and operating](/en/books/drills-ai/chapter-10/): card 49.
+- [DRILLS.ai, chapter 5 · Phase 2: the pivot to job applications](/en/books/drills-ai/chapter-05/): cards 48 and 66.
+- [DRILLS.ai, chapter 10 · Deploying and operating](/en/books/drills-ai/chapter-10/): cards 49 and 65.

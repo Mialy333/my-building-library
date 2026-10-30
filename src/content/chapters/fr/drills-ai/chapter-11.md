@@ -120,7 +120,7 @@ Ce sont des éléments du backlog, pas des corrections faites.
 
 ## Les mécanismes Python
 
-- [My Python for AI 101, chapitre 12 · Tester et évaluer](/fr/books/python-for-ai-101/chapter-12/) : fiche 59, pytest et `monkeypatch`, pour couper la clé, couper le limiteur, ou remplacer le modèle par une réponse prévue.
+- [My Python for AI 101, chapitre 12 · Tester et évaluer](/fr/books/python-for-ai-101/chapter-12/) : fiche 59, pytest et `monkeypatch`, pour couper la clé, couper le limiteur, ou remplacer le modèle par une réponse prévue ; fiche 68, `AsyncMock` pour les méthodes asynchrones de l'agent.
 
 ## La question de défense
 

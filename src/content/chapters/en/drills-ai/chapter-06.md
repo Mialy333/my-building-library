@@ -57,6 +57,8 @@ Living in France is not enough to establish a right to work. Nationality never b
 
 ## The Python mechanisms
 
+- [My Python for AI 101, chapter 3 · Data](/en/books/python-for-ai-101/chapter-03/): card 61, the strict Pydantic model and the `Literal[True]` consent; card 62, the schema built at runtime that only accepts existing IDs.
+- [My Python for AI 101, chapter 5 · Text](/en/books/python-for-ai-101/chapter-05/): card 63, the overlapping windows of `source_excerpts()`.
 - [My Python for AI 101, chapter 7 · Errors and guardrails](/en/books/python-for-ai-101/chapter-07/): card 30, an exception (`EvidenceError`) caught and turned into a safe answer, with a code and no personal text.
 - [My Python for AI 101, chapter 5 · Text](/en/books/python-for-ai-101/chapter-05/): card 21, strict JSON, to compare with the Pydantic schema of Structured Outputs.
 

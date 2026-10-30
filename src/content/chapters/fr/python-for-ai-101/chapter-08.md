@@ -188,6 +188,35 @@ with path.open("x", encoding="utf-8") as handle:     # "x" : refuse d'écraser
 
 **À réutiliser.** Toujours `encoding="utf-8"`. `sorted(glob(…))` pour un résultat déterministe. `open("x")` pour un journal à écriture unique. `Path(__file__).resolve().parent` pour trouver ses données, d'où qu'on lance le script.
 
+## Fiche 64 — Le middleware : une règle pour toutes les réponses
+
+**Projet.** DRILLS.ai (Builds, hackathon OpenAI DevDay)
+
+**En une phrase.** `@app.middleware("http")` enregistre une fonction qui entoure chaque requête : elle laisse passer la requête avec `call_next`, puis modifie la réponse avant qu'elle parte.
+
+**Pourquoi pour un agent.** Une réponse qui contient un CV ne doit jamais être gardée en cache. Écrite une fois dans le middleware, la règle vaut pour toutes les routes privées, même celles qu'on ajoutera.
+
+**Analogie.** Le tampon « confidentiel » posé au service courrier sur chaque pli qui sort, quel que soit le bureau qui l'a écrit.
+
+**Le mécanisme.**
+
+```python
+@app.middleware("http")
+async def private_application_responses(request: Request, call_next):
+    started = perf_counter()
+    response = await call_next(request)
+    if request.url.path in {"/api/application", "/api/assessment", ...} or request.url.path.startswith("/mcp/"):
+        response.headers["Cache-Control"] = "no-store"
+        response.headers["Server-Timing"] = f"application;dur={(perf_counter()-started)*1000:.0f}"
+    return response
+```
+
+**Entrée → sortie.** Rejoué avec le client de test FastAPI : `POST /api/assessment` avec un corps vide → `422`, `Cache-Control: no-store`, `Server-Timing: application;dur=3`. `GET /health` → pas d'en-tête `Cache-Control` ajouté. Même une erreur garde la règle.
+
+**Où le relire.** [`api/main.py · private_application_responses`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/api/main.py#L85).
+
+**À réutiliser.** Ce qui doit valoir pour toutes les réponses va dans un middleware, pas dans chaque route. `perf_counter()` pour mesurer une durée.
+
 ## Sur le terrain
 
 Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
@@ -199,3 +228,4 @@ Les chapitres de mes formations et de mes projets où ces mécanismes tournent p
 - [AWS Scholars, chapitre 2 · AI Support Agent](/fr/books/aws-scholars/chapter-02/) : fiches 36 et 39.
 - [AWS Scholars, chapitre 3 · NovaMart Multi-Agent Support](/fr/books/aws-scholars/chapter-03/) : fiches 37, 38 et 40.
 - [DRILLS.ai, chapitre 9 · MCP : trois outils en lecture seule](/fr/books/drills-ai/chapter-09/) : fiche 37.
+- [DRILLS.ai, chapitre 10 · Déployer et exploiter](/fr/books/drills-ai/chapter-10/) : fiche 64.

@@ -505,7 +505,7 @@ export const books: Book[] = [
   },
   {
     // My Python for AI 101: the Python mechanisms behind my projects, one card per
-    // mechanism, 60 cards sorted by family. Sources: the "My Python for AI 101" sections
+    // mechanism, 68 cards sorted by family (61-68: DRILLS.ai, added on 30 Oct 2026). Sources: the "My Python for AI 101" sections
     // of the Claude Doc runbooks "Dev3Pack AI Engineering Bootcamp", "AgentCore — Agent
     // Support Client" and "AgentCore — NovaMart Multi-Agent Support (Projet #3)".
     // Placed after Hacktoberfest so the numbers of the books already published do not change.
@@ -518,15 +518,15 @@ export const books: Book[] = [
       en: "The Python mechanisms that run my agents, one card per mechanism.",
     },
     heading: { text: { fr: "My Python for AI ", en: "My Python for AI " }, accent: { fr: "101", en: "101" } },
-    meta: { fr: "Dev3Pack · AWS Scholars · 60 fiches", en: "Dev3Pack · AWS Scholars · 60 cards" },
+    meta: { fr: "Dev3Pack · AWS Scholars · DRILLS.ai · 68 fiches", en: "Dev3Pack · AWS Scholars · DRILLS.ai · 68 cards" },
     summary: {
       fr: [
-        "Les mécanismes Python qui font tourner mes agents, une fiche par mécanisme, avec l'entrée, la sortie et le fichier où les relire. Les fiches viennent de trois projets : le bootcamp Dev3Pack, puis AI Support Agent et NovaMart, deux projets du Nanodegree AWS.",
-        "60 fiches classées par famille, de l'organisation du projet jusqu'aux tests. Chaque chapitre finit par les chapitres de mes formations et de mes projets où on voit ces mécanismes sur le terrain, et le livre se ferme sur trois checklists pour le prochain projet.",
+        "Les mécanismes Python qui font tourner mes agents, une fiche par mécanisme, avec l'entrée, la sortie et le fichier où les relire. Les fiches viennent de quatre projets : le bootcamp Dev3Pack, AI Support Agent et NovaMart, deux projets du Nanodegree AWS, puis mon build DRILLS.ai.",
+        "68 fiches classées par famille, de l'organisation du projet jusqu'aux tests. Chaque chapitre finit par les chapitres de mes formations et de mes projets où on voit ces mécanismes sur le terrain, et le livre se ferme sur trois checklists pour le prochain projet.",
       ],
       en: [
-        "The Python mechanisms that run my agents, one per card, with the input, the output and the file where you can read them again. The cards come from three projects: the Dev3Pack bootcamp, then AI Support Agent and NovaMart, two projects of the AWS Nanodegree.",
-        "60 cards sorted by family, from the layout of the project to the tests. Every chapter ends with the chapters of my courses and my projects where these mechanisms are seen in the field, and the book closes on three checklists for the next project.",
+        "The Python mechanisms that run my agents, one per card, with the input, the output and the file where you can read them again. The cards come from four projects: the Dev3Pack bootcamp, AI Support Agent and NovaMart, two projects of the AWS Nanodegree, then my build DRILLS.ai.",
+        "68 cards sorted by family, from the layout of the project to the tests. Every chapter ends with the chapters of my courses and my projects where these mechanisms are seen in the field, and the book closes on three checklists for the next project.",
       ],
     },
     callout: {
@@ -540,15 +540,15 @@ export const books: Book[] = [
       title: { fr: "Python ", en: "Python " },
       accent: { fr: "101", en: "101" },
       subtitle: { fr: "My Python for AI 101", en: "My Python for AI 101" },
-      info: { fr: "60 FICHES", en: "60 CARDS" },
+      info: { fr: "68 FICHES", en: "68 CARDS" },
       bars: [45, 70, 55, 90, 65],
     },
     chapters: [
       concept(1, "Mode d'emploi et carte", "How to read it, and the map", {
         published: true,
         teaser: {
-          fr: "Trois projets, qui a écrit quel code, où chaque mécanisme intervient, et la carte des 60 fiches.",
-          en: "Three projects, who wrote which code, where each mechanism sits, and the map of the 60 cards.",
+          fr: "Quatre projets, qui a écrit quel code, où chaque mécanisme intervient, et la carte des 68 fiches.",
+          en: "Four projects, who wrote which code, where each mechanism sits, and the map of the 68 cards.",
         },
       }),
       concept(2, "Organiser le projet", "Organizing the project", {

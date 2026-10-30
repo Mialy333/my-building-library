@@ -77,10 +77,10 @@ I removed this preparation from the journey. The `/api/interview/transcribe`, `/
 
 ## The Python mechanisms
 
-- [My Python for AI 101, chapter 11 · Deploying and tooling](/en/books/python-for-ai-101/chapter-11/): card 53, `subprocess`, here with memory and CPU limits.
+- [My Python for AI 101, chapter 11 · Deploying and tooling](/en/books/python-for-ai-101/chapter-11/): card 53, `subprocess`; card 67, the DRILLS subprocess, bounded in time, memory and CPU.
 - [My Python for AI 101, chapter 7 · Errors and guardrails](/en/books/python-for-ai-101/chapter-07/): card 31, the degraded fallback (failed extraction returns `None`, and the AI fallback takes over).
 - [My Python for AI 101, chapter 5 · Text](/en/books/python-for-ai-101/chapter-05/): card 18, the regular expressions of the job filter.
-- [My Python for AI 101, chapter 10 · Network, time and concurrency](/en/books/python-for-ai-101/chapter-10/): card 48, checking that a link really is `https` before keeping it.
+- [My Python for AI 101, chapter 10 · Network, time and concurrency](/en/books/python-for-ai-101/chapter-10/): card 48, checking that a link really is `https` before keeping it; card 66, the five sources read in parallel with `asyncio.gather`.
 
 ## The defense question
 

@@ -154,6 +154,69 @@ def _orchestrator():
 
 **À réutiliser.** Tout « créer si absent » partagé entre threads sous un verrou. Les objets coûteux (graphe d'agents, clients) construits au premier appel puis réutilisés.
 
+## Fiche 65 — Le sémaphore et l'attente bornée
+
+**Projet.** DRILLS.ai (Builds, hackathon OpenAI DevDay)
+
+**En une phrase.** `asyncio.Semaphore(2)` laisse passer deux opérations à la fois ; `locked()` dit s'il est plein ; `asyncio.wait_for(…, timeout=95)` arrête l'attente au bout de 95 secondes.
+
+**Pourquoi pour un agent.** Un appel au modèle coûte et peut durer. Plutôt que d'empiler les requêtes, le serveur répond tout de suite « occupé » (429), et une opération trop longue finit en 504 au lieu de bloquer.
+
+**Analogie.** Deux guichets ouverts et un ticket « revenez plus tard » quand les deux sont pris, plutôt qu'une file sans fin.
+
+**Le mécanisme.**
+
+```python
+application_slots = asyncio.Semaphore(2)
+
+async def run_application_operation(operation, stage="application"):
+    if not os.getenv("OPENAI_API_KEY"):
+        raise HTTPException(status_code=503, detail="Application service is not configured.")
+    if application_slots.locked():
+        raise HTTPException(status_code=429, detail="Application service is busy. Please try again shortly.")
+    async with application_slots:
+        result = await asyncio.wait_for(operation(), timeout=95)
+        ...
+```
+
+**Entrée → sortie.** Rejoué : les deux places prises, un troisième appel → `429 Application service is busy. Please try again shortly.` Une place libre → l'opération passe. Sans clé → `503` avant tout.
+
+**Où le relire.** [`api/main.py · application_slots, run_application_operation`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/api/main.py#L82).
+
+**À réutiliser.** Refuser vite plutôt qu'attendre sans fin. Le sémaphore vaut pour un processus : ce n'est ni un quota partagé entre serveurs, ni un plafond de dépenses.
+
+## Fiche 66 — Le fan-out asynchrone : `asyncio.gather`
+
+**Projet.** DRILLS.ai (Builds, hackathon OpenAI DevDay)
+
+**En une phrase.** `asyncio.gather` lance plusieurs coroutines en même temps et rend leurs résultats dans l'ordre ; ici, chaque lecture rend un couple `(offres, source en panne ou None)`.
+
+**Pourquoi pour un agent.** Cinq sources lues l'une après l'autre additionnent leurs délais. Et une source en panne ne doit pas faire échouer les autres, ni passer pour « aucune offre ».
+
+**Analogie.** Demander un prix à cinq brokers en même temps, et noter ceux qui n'ont pas répondu au lieu de conclure que le marché est vide.
+
+**Le mécanisme.**
+
+```python
+async def read(board):
+    try:
+        response = await client.get(f'https://boards-api.greenhouse.io/v1/boards/{board}/jobs', params={'content': 'true'})
+        response.raise_for_status()
+        payload = response.json()
+        jobs = [result for job in payload['jobs'] if (result := qualify(job, board))]
+        return jobs, None
+    except (httpx.HTTPError, ValueError, KeyError, TypeError):
+        return [], BOARDS[board]
+
+batches = await asyncio.gather(*(read(board) for board in BOARDS), *(read_ashby(board) for board in ASHBY_BOARDS))
+```
+
+**Entrée → sortie.** Rejoué réseau coupé : `0` offre, `unavailable_sources` → `['Anthropic', 'Databricks', 'Scale AI', 'Mistral AI', 'Dust']`, et le résultat n'est pas mis en cache. Une réponse complète, elle, reste 300 secondes en cache.
+
+**Où le relire.** [`jobs.py · load_jobs`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/src/integrations/jobs.py#L50).
+
+**À réutiliser.** Chaque tâche attrape ses propres erreurs et dit qui a échoué. Ne jamais mettre en cache un résultat incomplet. Comparer avec la fiche 51, la même idée avec des threads.
+
 ## Sur le terrain
 
 Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
@@ -167,5 +230,5 @@ Les chapitres de mes formations et de mes projets où ces mécanismes tournent p
 - [Dev3Pack, Gecko capstone](/fr/books/dev3pack/gecko/) : fiche 48.
 - [AWS Scholars, chapitre 2 · AI Support Agent](/fr/books/aws-scholars/chapter-02/) : fiche 50.
 - [AWS Scholars, chapitre 3 · NovaMart Multi-Agent Support](/fr/books/aws-scholars/chapter-03/) : fiches 51 et 52.
-- [DRILLS.ai, chapitre 5 · Phase 2 : le pivot vers la candidature](/fr/books/drills-ai/chapter-05/) : fiche 48.
-- [DRILLS.ai, chapitre 10 · Déployer et exploiter](/fr/books/drills-ai/chapter-10/) : fiche 49.
+- [DRILLS.ai, chapitre 5 · Phase 2 : le pivot vers la candidature](/fr/books/drills-ai/chapter-05/) : fiches 48 et 66.
+- [DRILLS.ai, chapitre 10 · Déployer et exploiter](/fr/books/drills-ai/chapter-10/) : fiches 49 et 65.

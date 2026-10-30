@@ -57,6 +57,8 @@ Résider en France ne suffit pas à établir un droit au travail. La nationalit�
 
 ## Les mécanismes Python
 
+- [My Python for AI 101, chapitre 3 · Les données](/fr/books/python-for-ai-101/chapter-03/) : fiche 61, le modèle Pydantic strict et le consentement `Literal[True]` ; fiche 62, le schéma construit à l'exécution qui n'accepte que les IDs existants.
+- [My Python for AI 101, chapitre 5 · Le texte](/fr/books/python-for-ai-101/chapter-05/) : fiche 63, les fenêtres qui se chevauchent de `source_excerpts()`.
 - [My Python for AI 101, chapitre 7 · Les erreurs et les garde-fous](/fr/books/python-for-ai-101/chapter-07/) : fiche 30, une exception (`EvidenceError`) attrapée puis transformée en réponse sûre, avec un code et sans texte personnel.
 - [My Python for AI 101, chapitre 5 · Le texte](/fr/books/python-for-ai-101/chapter-05/) : fiche 21, le JSON strict, à comparer au schéma Pydantic des Structured Outputs.
 

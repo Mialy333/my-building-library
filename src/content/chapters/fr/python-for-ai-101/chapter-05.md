@@ -195,6 +195,35 @@ for msg in agent.messages:
 
 **À réutiliser.** Les objets message des frameworks LLM sont toujours hétérogènes : toujours vérifier la présence d'une clé avant d'y accéder, et logger les champs structurés (nom, input, résultat) plutôt que le seul texte final.
 
+## Fiche 63 — Des fenêtres qui se chevauchent sur un texte
+
+**Projet.** DRILLS.ai (Builds, hackathon OpenAI DevDay)
+
+**En une phrase.** `range(0, len(text), 500)` donne un point de départ tous les 500 caractères, et `text[start:start + 600]` coupe 600 caractères : chaque fenêtre recouvre le début de la suivante.
+
+**Pourquoi pour un agent.** Une phrase qui tombe sur une coupure resterait coupée en deux. Le chevauchement de 100 caractères laisse une chance de la retrouver entière dans un extrait.
+
+**Analogie.** Des relevés de compte mensuels qui reprennent le solde de la fin du mois précédent : rien ne tombe entre deux pages.
+
+**Le mécanisme.**
+
+```python
+def source_excerpts(text: str, prefix: str) -> dict[str, str]:
+    """Bounded overlapping slices, each preserved verbatim from the approved input."""
+    excerpts = {}
+    for start in range(0, len(text), 500):
+        excerpt = text[start:start + 600].strip()
+        if len(excerpt) >= 8:
+            excerpts[f"{prefix}_{len(excerpts)}"] = excerpt
+    return excerpts
+```
+
+**Entrée → sortie.** Rejoué sur un texte de 1 250 caractères : `{'profile_0': 600, 'profile_1': 600, 'profile_2': 250}` (longueur de chaque extrait). Un dernier morceau de moins de 8 caractères est écarté.
+
+**Où le relire.** [`application.py · source_excerpts`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/src/ai_generator/application.py#L250).
+
+**À réutiliser.** Un découpage déterministe, avec des identifiants lisibles et un texte gardé mot pour mot. Le chevauchement est un réglage : il se choisit, il ne se devine pas.
+
 ## Sur le terrain
 
 Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
@@ -211,3 +240,4 @@ Les chapitres de mes formations et de mes projets où ces mécanismes tournent p
 - [AWS Scholars, chapitre 2 · AI Support Agent](/fr/books/aws-scholars/chapter-02/) : fiches 19 et 22.
 - [AWS Scholars, chapitre 3 · NovaMart Multi-Agent Support](/fr/books/aws-scholars/chapter-03/) : fiche 17.
 - [DRILLS.ai, chapitre 5 · Phase 2 : le pivot vers la candidature](/fr/books/drills-ai/chapter-05/) : fiche 18.
+- [DRILLS.ai, chapitre 6 · Le diagnostic](/fr/books/drills-ai/chapter-06/) : fiche 63.

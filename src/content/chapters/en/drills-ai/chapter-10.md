@@ -122,6 +122,8 @@ Find the last healthy commit, make a controlled revert on the working branch, re
 
 ## The Python mechanisms
 
+- [My Python for AI 101, chapter 10 · Network, time and concurrency](/en/books/python-for-ai-101/chapter-10/): card 65, the two-slot semaphore and the 95-second wait.
+- [My Python for AI 101, chapter 8 · Decorators, context and files](/en/books/python-for-ai-101/chapter-08/): card 64, the middleware that sets `no-store` and `Server-Timing`.
 - [My Python for AI 101, chapter 10 · Network, time and concurrency](/en/books/python-for-ai-101/chapter-10/): card 49, measuring a duration and bounding a wait (here the asyncio version, with `wait_for`); card 52, the lock, to compare with the two-slot semaphore.
 - [My Python for AI 101, chapter 2 · Organizing the project](/en/books/python-for-ai-101/chapter-02/): card 3, refusing to work without configuration (here, 503 without a key).
 

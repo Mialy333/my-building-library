@@ -188,6 +188,35 @@ with path.open("x", encoding="utf-8") as handle:     # "x": refuses to overwrite
 
 **To reuse.** Always `encoding="utf-8"`. `sorted(glob(…))` for a deterministic result. `open("x")` for a write-once log. `Path(__file__).resolve().parent` to find your data, wherever the script is launched from.
 
+## Card 64 — Middleware: one rule for every response
+
+**Project.** DRILLS.ai (Builds, OpenAI DevDay hackathon)
+
+**In one sentence.** `@app.middleware("http")` registers a function that wraps every request: it lets the request through with `call_next`, then changes the response before it leaves.
+
+**Why it matters for an agent.** A response that contains a CV must never be cached. Written once in the middleware, the rule holds for every private route, including the ones added later.
+
+**Analogy.** The "confidential" stamp the mail room puts on every outgoing letter, whichever office wrote it.
+
+**The mechanism.**
+
+```python
+@app.middleware("http")
+async def private_application_responses(request: Request, call_next):
+    started = perf_counter()
+    response = await call_next(request)
+    if request.url.path in {"/api/application", "/api/assessment", ...} or request.url.path.startswith("/mcp/"):
+        response.headers["Cache-Control"] = "no-store"
+        response.headers["Server-Timing"] = f"application;dur={(perf_counter()-started)*1000:.0f}"
+    return response
+```
+
+**Input → output.** Replayed with the FastAPI test client: `POST /api/assessment` with an empty body → `422`, `Cache-Control: no-store`, `Server-Timing: application;dur=3`. `GET /health` → no `Cache-Control` header added. Even an error keeps the rule.
+
+**Where to read it.** [`api/main.py · private_application_responses`](https://github.com/Mialy333/drills.ai/blob/8f45461a2acd05cbbf930ed559d1afadb7e2e3bb/api/main.py#L85).
+
+**To reuse.** What must hold for every response goes in a middleware, not in each route. `perf_counter()` to measure a duration.
+
 ## In the field
 
 The chapters of my courses and my projects where these mechanisms run for real.
@@ -199,3 +228,4 @@ The chapters of my courses and my projects where these mechanisms run for real.
 - [AWS Scholars, chapter 2 · AI Support Agent](/en/books/aws-scholars/chapter-02/): cards 36 and 39.
 - [AWS Scholars, chapter 3 · NovaMart Multi-Agent Support](/en/books/aws-scholars/chapter-03/): cards 37, 38 and 40.
 - [DRILLS.ai, chapter 9 · MCP: three read-only tools](/en/books/drills-ai/chapter-09/): card 37.
+- [DRILLS.ai, chapter 10 · Deploying and operating](/en/books/drills-ai/chapter-10/): card 64.

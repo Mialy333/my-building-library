@@ -1355,7 +1355,7 @@ export const glossary: Term[] = [
       fr: "Un compteur qui limite le nombre d'opérations en même temps. Quand il est plein, la requête suivante est refusée ou attend.",
       en: "A counter that limits how many operations run at the same time. When it is full, the next request is refused or waits.",
     },
-    usedIn: [{ book: "drills-ai", chapter: "chapter-10" }],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-10" }, { book: "python-for-ai-101", chapter: "chapter-10" }],
   },
   {
     term: { fr: "Quota (rate limit)", en: "Rate limit" },
@@ -1430,7 +1430,7 @@ export const glossary: Term[] = [
       en: "A Python library that validates data against typed classes; with extra=\"forbid\", an unexpected field is rejected.",
     },
     concepts: [5],
-    usedIn: [{ book: "drills-ai", chapter: "chapter-06" }],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-06" }, { book: "python-for-ai-101", chapter: "chapter-03" }],
   },
   {
     term: { fr: "Zod", en: "Zod" },
@@ -1457,6 +1457,60 @@ export const glossary: Term[] = [
     },
     concepts: [9],
     usedIn: [{ book: "drills-ai", chapter: "chapter-04" }, { book: "drills-ai", chapter: "chapter-12" }],
+  },
+  // My Python for AI 101, DRILLS.ai cards 61-68 (30 oct 2026).
+  {
+    term: { fr: "Literal", en: "Literal" },
+    definition: {
+      fr: "Un type Python qui n'accepte que des valeurs précises : Literal[\"fr\", \"en\"], ou Literal[True] pour un accord obligatoire.",
+      en: "A Python type that only accepts exact values: Literal[\"fr\", \"en\"], or Literal[True] for a mandatory agreement.",
+    },
+    concepts: [5],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-03" }],
+    scope: ["python-for-ai-101", "drills-ai"],
+    inCode: true,
+  },
+  {
+    term: { fr: "create_model", en: "create_model" },
+    definition: {
+      fr: "La fonction Pydantic qui fabrique une classe de modèle pendant l'exécution, par exemple pour n'autoriser que les identifiants d'une requête.",
+      en: "The Pydantic function that builds a model class at runtime, for example to allow only the IDs of one request.",
+    },
+    concepts: [5, 11],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-03" }],
+    scope: ["python-for-ai-101", "drills-ai"],
+    inCode: true,
+  },
+  {
+    term: { fr: "asyncio.gather", en: "asyncio.gather" },
+    definition: {
+      fr: "Lance plusieurs coroutines en même temps et rend leurs résultats dans l'ordre où on les a données.",
+      en: "Starts several coroutines at the same time and returns their results in the order they were given.",
+    },
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-10" }],
+    scope: ["python-for-ai-101", "drills-ai"],
+    inCode: true,
+  },
+  {
+    term: { fr: "AsyncMock", en: "AsyncMock" },
+    definition: {
+      fr: "Un faux pour une fonction async, dans les tests : il renvoie une réponse prévue et compte ses appels.",
+      en: "A fake for an async function, in tests: it returns a planned answer and counts its calls.",
+    },
+    concepts: [9],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-12" }],
+    scope: ["python-for-ai-101", "drills-ai"],
+    inCode: true,
+  },
+  {
+    term: { fr: "Middleware", en: "Middleware" },
+    definition: {
+      fr: "Une fonction qui entoure chaque requête d'un serveur web, pour appliquer une même règle à toutes les réponses.",
+      en: "A function that wraps every request of a web server, to apply the same rule to every response.",
+    },
+    concepts: [11],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-08" }],
+    scope: ["python-for-ai-101", "drills-ai"],
   },
 ];
 
