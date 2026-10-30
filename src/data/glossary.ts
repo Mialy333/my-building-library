@@ -25,6 +25,7 @@ export const glossary: Term[] = [
       fr: "Architecture Decision Record : une page qui consigne une décision technique, l'option écartée, et la mesure chiffrée qui la ferait changer.",
       en: "Architecture Decision Record: a page that records a technical decision, the option set aside, and the numeric measurement that would change it.",
     },
+    usedIn: [{ book: "drills-ai", chapter: "chapter-12" }],
   },
   {
     term: { fr: "Agent", en: "Agent" },
@@ -33,6 +34,7 @@ export const glossary: Term[] = [
       en: "A program that uses a language model to decide what to do (search, call a tool, answer, refuse), in a loop, with stopping rules.",
     },
     concepts: [2],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-02" }],
   },
   {
     term: { fr: "Appel d'outil", en: "Tool call" },
@@ -89,6 +91,7 @@ export const glossary: Term[] = [
       fr: "La lenteur du premier appel à un service qui vient de démarrer. On la mesure : c'est un nombre, pas un verdict de panne.",
       en: "The slowness of the first call to a service that just started. You measure it: it's a number, not a failure verdict.",
     },
+    usedIn: [{ book: "drills-ai", chapter: "chapter-10" }],
   },
   {
     term: { fr: "Corpus", en: "Corpus" },
@@ -113,6 +116,7 @@ export const glossary: Term[] = [
       en: "An error that looks like a normal answer, like \"no results\" when there are some. The worst kind of error.",
     },
     concepts: [6],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-05" }],
   },
   {
     term: { fr: "Faux modèle", en: "Fake model" },
@@ -121,6 +125,7 @@ export const glossary: Term[] = [
       en: "A deterministic model with scripted answers. It tests the circuit, not the judgment: a green test on it proves the plumbing.",
     },
     concepts: [9],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-11" }],
   },
   {
     term: { fr: "Garde d'URL", en: "URL guard" },
@@ -145,6 +150,7 @@ export const glossary: Term[] = [
       en: "The fact that an answer is actually supported by the document it cites.",
     },
     concepts: [7, 9],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-06" }],
   },
   {
     term: { fr: "Guardrail", en: "Guardrail" },
@@ -170,6 +176,7 @@ export const glossary: Term[] = [
       en: "Everything around the model: the loop that runs it, the instructions, the tools, the traces, the evaluations. A managed harness runs the loop for you, with less control.",
     },
     concepts: [2],
+    scope: ["baa-101", "aws-scholars", "dev3pack", "hacktoberfest-2026", "python-for-ai-101"],
   },
   {
     term: { fr: "Hit rate @k", en: "Hit rate @k" },
@@ -194,6 +201,7 @@ export const glossary: Term[] = [
       en: "Running an action again doesn't change the result: a return already started isn't started twice, an existing resource is reused.",
     },
     concepts: [11],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-09" }],
   },
   {
     term: { fr: "Injection de prompt", en: "Prompt injection" },
@@ -202,6 +210,7 @@ export const glossary: Term[] = [
       en: "An order hidden in a text (document, page, tool output, product name) that tries to steer the model. You treat it as data, never as an instruction.",
     },
     concepts: [4],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-06" }],
   },
   {
     term: { fr: "Intention épinglée", en: "Pinned intent" },
@@ -241,6 +250,7 @@ export const glossary: Term[] = [
       en: "Model Context Protocol: a standard for exposing tools and data sources to any agent. An MCP tool is discovered by its name, description and schema.",
     },
     concepts: [3],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-09" }],
   },
   {
     term: { fr: "Mémoire de session", en: "Session memory" },
@@ -266,6 +276,7 @@ export const glossary: Term[] = [
       en: "In a multi-agent system, the agent that never answers itself: it routes the work to specialist agents.",
     },
     concepts: [2],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-04" }],
   },
   {
     term: { fr: "Outil borné", en: "Bounded tool" },
@@ -339,7 +350,7 @@ export const glossary: Term[] = [
       en: "A single second attempt where the model gets back the error from its first one. Beyond that, a flagged refusal.",
     },
     concepts: [5],
-    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "week-2" }, { book: "drills-ai", chapter: "chapter-06" }],
   },
   {
     term: { fr: "Rollback", en: "Rollback" },
@@ -347,6 +358,7 @@ export const glossary: Term[] = [
       fr: "Le retour à la dernière version qui marchait, décrit d'avance par une action, un nombre et une unité.",
       en: "Going back to the last version that worked, described in advance by an action, a number and a unit.",
     },
+    usedIn: [{ book: "drills-ai", chapter: "chapter-10" }],
   },
   {
     term: { fr: "Schéma", en: "Schema" },
@@ -355,7 +367,7 @@ export const glossary: Term[] = [
       en: "The required shape of a piece of data: its fields, their types, their bounds.",
     },
     concepts: [5],
-    usedIn: [{ book: "hacktoberfest-2026", chapter: "weekend" }],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "weekend" }, { book: "drills-ai", chapter: "chapter-06" }],
   },
   {
     term: { fr: "Seam (couture)", en: "Seam" },
@@ -432,6 +444,7 @@ export const glossary: Term[] = [
       en: "A maximum waiting time. Past it, you abandon the call and return a readable refusal, instead of waiting forever.",
     },
     concepts: [6],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-10" }],
   },
   {
     term: { fr: "Trace", en: "Trace" },
@@ -465,7 +478,7 @@ export const glossary: Term[] = [
       en: "Asking the model to answer in a fixed format (JSON), so the interface always shows the same thing, in the same place.",
     },
     concepts: [5],
-    usedIn: [{ book: "hacktoberfest-2026", chapter: "weekend" }],
+    usedIn: [{ book: "hacktoberfest-2026", chapter: "weekend" }, { book: "drills-ai", chapter: "chapter-06" }],
   },
   {
     term: { fr: "Données ouvertes (open data)", en: "Open data" },
@@ -664,8 +677,8 @@ export const glossary: Term[] = [
       en: "The text between triple quotes under a def; an agent framework or an MCP server turns it into the tool description the model reads.",
     },
     concepts: [3],
-    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
-    scope: ["python-for-ai-101"],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }, { book: "drills-ai", chapter: "chapter-09" }],
+    scope: ["python-for-ai-101", "drills-ai"],
   },
   {
     term: { fr: "Exception", en: "Exception" },
@@ -693,8 +706,8 @@ export const glossary: Term[] = [
       en: "A function pytest runs before a test to prepare the ground (a throwaway folder, the network cut off).",
     },
     concepts: [9],
-    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-12" }],
-    scope: ["python-for-ai-101"],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-12" }, { book: "drills-ai", chapter: "chapter-04" }],
+    scope: ["python-for-ai-101", "drills-ai"],
   },
   {
     term: { fr: "Hash (empreinte)", en: "Hash (fingerprint)" },
@@ -742,8 +755,8 @@ export const glossary: Term[] = [
       en: "The pytest tool that temporarily replaces a function or an environment variable during a test.",
     },
     concepts: [9],
-    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-12" }],
-    scope: ["python-for-ai-101"],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-12" }, { book: "drills-ai", chapter: "chapter-11" }],
+    scope: ["python-for-ai-101", "drills-ai"],
   },
   {
     term: { fr: "pathlib", en: "pathlib" },
@@ -770,8 +783,8 @@ export const glossary: Term[] = [
       en: "A pattern that describes a shape of text rather than an exact word; used by injection guards, redaction and to read a header.",
     },
     concepts: [4],
-    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
-    scope: ["python-for-ai-101"],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }, { book: "drills-ai", chapter: "chapter-05" }],
+    scope: ["python-for-ai-101", "drills-ai"],
   },
   {
     term: { fr: "set (ensemble)", en: "set" },
@@ -788,8 +801,8 @@ export const glossary: Term[] = [
       fr: "Le module Python qui lance un autre programme (git, une CLI) et récupère son code de retour et sa sortie.",
       en: "The Python module that launches another program (git, a CLI) and gets back its exit code and output.",
     },
-    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
-    scope: ["python-for-ai-101"],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }, { book: "drills-ai", chapter: "chapter-05" }],
+    scope: ["python-for-ai-101", "drills-ai"],
   },
   {
     term: { fr: "Thread", en: "Thread" },
@@ -836,8 +849,8 @@ export const glossary: Term[] = [
       fr: "Le module Python qui transforme du code source en arbre de syntaxe, qu'on analyse sans exécuter le code.",
       en: "The Python module that turns source code into a syntax tree you can analyse without running the code.",
     },
-    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }],
-    scope: ["python-for-ai-101"],
+    usedIn: [{ book: "python-for-ai-101", chapter: "chapter-01" }, { book: "drills-ai", chapter: "chapter-04" }],
+    scope: ["python-for-ai-101", "drills-ai"],
   },
   {
     term: { fr: "async", en: "async" },
@@ -1262,6 +1275,188 @@ export const glossary: Term[] = [
     usedIn: [{ book: "python-for-ai-101", chapter: "chapter-08" }],
     scope: ["python-for-ai-101"],
     inCode: true,
+  },
+  // DRILLS.ai (30 oct 2026): terms met while building the application tool.
+  {
+    term: { fr: "Workflow", en: "Workflow" },
+    definition: {
+      fr: "Un enchaînement d'étapes décidé par le code : le modèle intervient à des étapes précises, mais ne choisit pas la suite.",
+      en: "A sequence of steps decided by code: the model steps in at set points, but does not choose what comes next.",
+    },
+    concepts: [12],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-02" }],
+  },
+  {
+    term: { fr: "Contrôle humain (human-in-the-loop)", en: "Human-in-the-loop" },
+    definition: {
+      fr: "Une étape où une personne relit, corrige ou confirme avant que l'action parte. Dans DRILLS.ai, le candidat relit ses documents et postule lui-même.",
+      en: "A step where a person reviews, corrects or confirms before the action goes out. In DRILLS.ai, the candidate reviews their documents and applies themselves.",
+    },
+    concepts: [12],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-08" }],
+  },
+  {
+    term: { fr: "Référence contrainte", en: "Constrained reference" },
+    definition: {
+      fr: "Le modèle choisit l'identifiant d'un extrait dans une liste imposée par le schéma, au lieu de recopier une citation ; le code remet ensuite le passage original.",
+      en: "The model picks the ID of an excerpt from a list imposed by the schema, instead of copying a quote; code then puts back the original passage.",
+    },
+    concepts: [5, 11],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-06" }],
+  },
+  {
+    term: { fr: "Consentement", en: "Consent" },
+    definition: {
+      fr: "L'accord explicite de la personne avant que ses données partent vers un service. Sans lui, la requête est refusée avant tout appel.",
+      en: "The person's explicit agreement before their data goes to a service. Without it, the request is rejected before any call.",
+    },
+    concepts: [10],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-06" }],
+  },
+  {
+    term: { fr: "Éligibilité", en: "Eligibility" },
+    definition: {
+      fr: "Une condition administrative d'une offre (droit au travail, convention de stage, date de diplôme), distincte des compétences : un bon score ne la règle pas.",
+      en: "An administrative condition of a posting (right to work, internship agreement, graduation date), separate from skills: a good score does not settle it.",
+    },
+    concepts: [9],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-07" }],
+  },
+  {
+    term: { fr: "Score de couverture", en: "Coverage score" },
+    definition: {
+      fr: "Un pourcentage calculé en code à partir des compétences demandées et des preuves trouvées. Il mesure une couverture documentée, jamais une chance d'embauche.",
+      en: "A percentage computed in code from the skills asked for and the evidence found. It measures documented coverage, never a chance of being hired.",
+    },
+    concepts: [9, 11],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-07" }],
+  },
+  {
+    term: { fr: "Annotation d'outil", en: "Tool annotation" },
+    definition: {
+      fr: "Des indications déclarées avec un outil MCP pour le client : lecture seule, non destructif, idempotent.",
+      en: "Hints declared with an MCP tool for the client: read-only, non-destructive, idempotent.",
+    },
+    concepts: [3],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-09" }],
+  },
+  {
+    term: { fr: "Streamable HTTP", en: "Streamable HTTP" },
+    definition: {
+      fr: "Le transport HTTP de MCP : le client envoie ses requêtes à une seule adresse, ici /mcp/.",
+      en: "MCP's HTTP transport: the client sends its requests to a single address, here /mcp/.",
+    },
+    concepts: [3],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-09" }],
+  },
+  {
+    term: { fr: "Sémaphore", en: "Semaphore" },
+    definition: {
+      fr: "Un compteur qui limite le nombre d'opérations en même temps. Quand il est plein, la requête suivante est refusée ou attend.",
+      en: "A counter that limits how many operations run at the same time. When it is full, the next request is refused or waits.",
+    },
+    usedIn: [{ book: "drills-ai", chapter: "chapter-10" }],
+  },
+  {
+    term: { fr: "Quota (rate limit)", en: "Rate limit" },
+    definition: {
+      fr: "Un nombre maximal de requêtes par période, par exemple 3 par minute. Il protège une démo ; ce n'est pas une authentification.",
+      en: "A maximum number of requests per period, for example 3 per minute. It protects a demo; it is not authentication.",
+    },
+    usedIn: [{ book: "drills-ai", chapter: "chapter-10" }],
+  },
+  {
+    term: { fr: "CORS", en: "CORS" },
+    definition: {
+      fr: "La règle du navigateur qui dit quelles origines ont le droit d'appeler une API. Elle limite des usages dans le navigateur ; ce n'est pas une authentification.",
+      en: "The browser rule that says which origins may call an API. It limits uses in the browser; it is not authentication.",
+    },
+    usedIn: [{ book: "drills-ai", chapter: "chapter-11" }],
+  },
+  {
+    term: { fr: "CI/CD", en: "CI/CD" },
+    definition: {
+      fr: "Les vérifications (CI) et les déploiements (CD) lancés automatiquement à chaque push. Une CI verte ne prouve pas qu'un service déployé va bien.",
+      en: "The checks (CI) and deployments (CD) run automatically on each push. A green CI does not prove a deployed service is healthy.",
+    },
+    concepts: [1],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-10" }],
+  },
+  {
+    term: { fr: "Service worker", en: "Service worker" },
+    definition: {
+      fr: "Un script que le navigateur garde entre les visites, souvent pour le cache. Un ancien worker peut servir une ancienne version après un déploiement réussi.",
+      en: "A script the browser keeps between visits, often for caching. An old worker can serve an old version after a successful deployment.",
+    },
+    usedIn: [{ book: "drills-ai", chapter: "chapter-11" }],
+  },
+  {
+    term: { fr: "Worktree", en: "Worktree" },
+    definition: {
+      fr: "Un deuxième dossier de travail branché sur le même dépôt Git. Ses fichiers non commités ne partent pas avec un push.",
+      en: "A second working folder attached to the same Git repository. Its uncommitted files do not leave with a push.",
+    },
+    usedIn: [{ book: "drills-ai", chapter: "chapter-03" }],
+  },
+  {
+    term: { fr: "Detached HEAD", en: "Detached HEAD" },
+    definition: {
+      fr: "L'état Git où l'on est sur un commit, pas sur une branche. Un git pull y échoue, et le travail fait là doit être rattaché à une branche.",
+      en: "The Git state where you are on a commit, not on a branch. A git pull fails there, and work done there must be attached to a branch.",
+    },
+    usedIn: [{ book: "drills-ai", chapter: "chapter-03" }],
+  },
+  {
+    term: { fr: "Fast-forward", en: "Fast-forward" },
+    definition: {
+      fr: "Une mise à jour où la branche avance simplement jusqu'au commit visé, sans fusion. --ff-only refuse si les historiques divergent.",
+      en: "An update where the branch simply moves forward to the target commit, with no merge. --ff-only refuses if the histories diverge.",
+    },
+    usedIn: [{ book: "drills-ai", chapter: "chapter-10" }],
+  },
+  {
+    term: { fr: "Stockage navigateur", en: "Browser storage" },
+    definition: {
+      fr: "sessionStorage garde une donnée le temps de l'onglet ; localStorage la garde entre les visites. Les deux restent dans ce navigateur, sur cet appareil.",
+      en: "sessionStorage keeps data for the life of the tab; localStorage keeps it between visits. Both stay in that browser, on that device.",
+    },
+    concepts: [10],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-08" }],
+  },
+  {
+    term: { fr: "Pydantic", en: "Pydantic" },
+    definition: {
+      fr: "Une bibliothèque Python qui valide des données contre des classes typées ; avec extra=\"forbid\", un champ inattendu est refusé.",
+      en: "A Python library that validates data against typed classes; with extra=\"forbid\", an unexpected field is rejected.",
+    },
+    concepts: [5],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-06" }],
+  },
+  {
+    term: { fr: "Zod", en: "Zod" },
+    definition: {
+      fr: "Une bibliothèque TypeScript qui valide des données pendant l'exécution, par exemple un dossier relu dans le navigateur.",
+      en: "A TypeScript library that validates data at runtime, for example a dossier read back in the browser.",
+    },
+    concepts: [5],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-08" }],
+  },
+  {
+    term: { fr: "ATS", en: "ATS" },
+    definition: {
+      fr: "Applicant Tracking System : le logiciel de tri des candidatures d'un recruteur. « ATS-friendly » décrit une intention de lisibilité, pas une compatibilité certifiée.",
+      en: "Applicant Tracking System: a recruiter's software for sorting applications. \"ATS-friendly\" describes an intent of readability, not certified compatibility.",
+    },
+    usedIn: [{ book: "drills-ai", chapter: "chapter-08" }],
+  },
+  {
+    term: { fr: "Harness de test (test harness)", en: "Test harness" },
+    definition: {
+      fr: "Le code qui lance une fonction sur des cas et vérifie le résultat. Un bon harness de test échoue sur la version cassée et réussit sur la version corrigée.",
+      en: "The code that runs a function on cases and checks the result. A good test harness fails on the broken version and passes on the fixed one.",
+    },
+    concepts: [9],
+    usedIn: [{ book: "drills-ai", chapter: "chapter-04" }, { book: "drills-ai", chapter: "chapter-12" }],
   },
 ];
 
