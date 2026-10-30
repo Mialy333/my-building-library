@@ -23,6 +23,8 @@ A model follows its instructions most of the time. A rule reduces a behavior wit
 - [AWS Scholars, chapter 3](/en/books/aws-scholars/chapter-03/): "one tool at a time" was in the prompt, and the framework ran the tools in parallel. Fixes in code: a sequential executor, a forced final step, the customer check inside the tools.
 - [Dev3Pack, Final](/en/books/dev3pack/final/): the model chooses the paragraphs, the code copies them, and citations can no longer be invented.
 - [Dev3Pack, Gecko](/en/books/dev3pack/gecko/): the request is pinned before the transaction, and nothing is signed until every field matches.
+- [DRILLS.ai, chapter 5](/en/books/drills-ai/chapter-05/): the PDF extraction is bounded by the system (time, CPU, memory), not by an instruction.
+- [DRILLS.ai, chapter 7](/en/books/drills-ai/chapter-07/): the model qualifies the requirements; the score and the decision are computed in Python.
 
 ## The question to ask
 

@@ -24,6 +24,8 @@ Une moyenne cache la forme des résultats. Un score mesuré sur les cas qu'on vi
 - [Dev3Pack, Session 7](/fr/books/dev3pack/session-07/) : un faux modèle qui cite toujours le même document obtient déjà 50 %.
 - [Dev3Pack, cap01](/fr/books/dev3pack/cap01/) : une porte d'évaluation verte sur un faux modèle ne montre ni hallucinations ni mauvaises réponses.
 - [Dev3Pack, Final](/fr/books/dev3pack/final/) : un grade mesuré sur le mauvais fichier, écarté et signalé comme tel.
+- [DRILLS.ai, chapitre 4](/fr/books/drills-ai/chapter-04/) : un harness de test doit échouer sur la version cassée et réussir sur la version corrigée.
+- [DRILLS.ai, chapitre 11](/fr/books/drills-ai/chapter-11/) : des mesures de latence gardées telles quelles : elles ne montrent pas de gain, et je l'écris.
 
 ## La question à se poser
 

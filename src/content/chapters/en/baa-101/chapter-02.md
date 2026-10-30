@@ -23,6 +23,7 @@ A loop without exits spins idle, spends without limit, or crashes on the first t
 - [AWS Scholars, chapter 2](/en/books/aws-scholars/chapter-02/): the agent picks a tool, the framework runs it, the result goes back to the model, until the final answer. A missing tool doesn't crash the loop: it's simply missing.
 - [Dev3Pack, Session 5](/en/books/dev3pack/session-05/): a loop with four exits. The bot's first attempt crashed on an unknown tool instead of refusing it.
 - [Dev3Pack, Session 8](/en/books/dev3pack/session-08/): no arrow leads from "refusing" to "answering", so a refusal never becomes an answer.
+- [DRILLS.ai, chapter 1](/en/books/drills-ai/chapter-01/): one analysis call, at most one corrective attempt, drafting apart, and a timeout that caps each operation.
 
 ## The question to ask
 

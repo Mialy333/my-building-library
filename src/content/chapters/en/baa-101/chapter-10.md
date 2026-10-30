@@ -23,6 +23,7 @@ Without an owner, a memory leaks from one user to another. Without a limit, it g
 - [AWS Scholars, chapter 2](/en/books/aws-scholars/chapter-02/): without a customer ID, every test wrote to the same "default customer", and the agent ended up answering a question nobody had asked.
 - [AWS Scholars, chapter 3](/en/books/aws-scholars/chapter-03/): the memory survived a restart, but the agent writing the answer couldn't see it. The code now passes it the history.
 - [Dev3Pack, Session 11](/en/books/dev3pack/session-11/): a memory filed by owner, capped at five exchanges, with a policy written before the first record.
+- [DRILLS.ai, chapter 8](/en/books/drills-ai/chapter-08/): the dossier stays in the browser, with an expiry of one day, or 30 days when opted in, checked on every read.
 
 ## The question to ask
 

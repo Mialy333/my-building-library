@@ -22,6 +22,8 @@ Un modèle s'excuse de façon convaincante, et une bonne réponse peut cacher un
 - [AWS Scholars, chapitre 2](/fr/books/aws-scholars/chapter-02/) : isoler la couche d'abord, puis lire les logs, qui montrent le nom de l'outil, ses arguments et le résultat brut, là où le modèle ne fait que s'excuser.
 - [AWS Scholars, chapitre 3](/fr/books/aws-scholars/chapter-03/) : la trace a montré un agent lancé avant celui dont il dépendait, puis, sur un refus correct, un orchestrateur qui avait sauté toutes ses règles.
 - [Dev3Pack, Session 9](/fr/books/dev3pack/session-09/) : la trace distingue un document bien trouvé mais ignoré par le modèle d'un document jamais trouvé, deux corrections opposées. Et les secrets y entrent masqués.
+- [DRILLS.ai, chapitre 10](/fr/books/drills-ai/chapter-10/) : les logs disent l'étape, la durée, l'issue et le code d'erreur, jamais le contenu du CV.
+- [DRILLS.ai, chapitre 11](/fr/books/drills-ai/chapter-11/) : un ordre de diagnostic qui sépare transport, extraction, modèle et validation.
 
 ## La question à se poser
 

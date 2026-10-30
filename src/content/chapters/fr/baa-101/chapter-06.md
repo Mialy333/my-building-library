@@ -23,6 +23,8 @@ Un échec silencieux ressemble à une vraie réponse. Un crash montre une erreur
 - [Dev3Pack, Session 3](/fr/books/dev3pack/session-03/) : une question hors corpus est refusée sans aucun appel au modèle.
 - [Dev3Pack, Session 6](/fr/books/dev3pack/session-06/) : un fichier sans titre est refusé, plutôt que de renvoyer un demi-document.
 - [Dev3Pack, Gecko](/fr/books/dev3pack/gecko/) : « two espressos » est refusé sur la quantité, en nommant les deux valeurs (2 demandés, 1 préparé), et rien n'est signé.
+- [DRILLS.ai, chapitre 5](/fr/books/drills-ai/chapter-05/) : une source d'offres en panne s'affiche comme indisponible, jamais comme une liste vide.
+- [DRILLS.ai, chapitre 11](/fr/books/drills-ai/chapter-11/) : une fonction retirée répond 410, et une preuve refusée remonte avec un code, sans le texte du CV.
 
 ## La question à se poser
 

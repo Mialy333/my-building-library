@@ -164,7 +164,7 @@ session_id = payload.get("session_id") or str(uuid.uuid4())
 
 ## Sur le terrain
 
-Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
+Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
 
 - [Dev3Pack, Session 5](/fr/books/dev3pack/session-05/) : fiche 6.
 - [Dev3Pack, Session 6](/fr/books/dev3pack/session-06/) : fiches 6 et 8.

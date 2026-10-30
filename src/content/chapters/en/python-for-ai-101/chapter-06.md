@@ -208,7 +208,7 @@ turn.update(session_id=sid, customer_id=cid, request=request)        # mutate, n
 
 ## In the field
 
-The chapters of my courses where these mechanisms run for real.
+The chapters of my courses and my projects where these mechanisms run for real.
 
 - [Dev3Pack, Session 5](/en/books/dev3pack/session-05/): card 27.
 - [Dev3Pack, Session 8](/en/books/dev3pack/session-08/): cards 23, 27 and 28.

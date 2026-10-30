@@ -201,7 +201,7 @@ except Exception as exc:
 
 ## In the field
 
-The chapters of my courses where these mechanisms run for real.
+The chapters of my courses and my projects where these mechanisms run for real.
 
 - [Dev3Pack, Session 1](/en/books/dev3pack/session-01/): card 53.
 - [Dev3Pack, Session 12](/en/books/dev3pack/session-12/): card 57.
@@ -209,3 +209,6 @@ The chapters of my courses where these mechanisms run for real.
 - [Dev3Pack, Gecko capstone](/en/books/dev3pack/gecko/): cards 53 and 57.
 - [AWS Scholars, chapter 2 · AI Support Agent](/en/books/aws-scholars/chapter-02/): card 55.
 - [AWS Scholars, chapter 3 · NovaMart Multi-Agent Support](/en/books/aws-scholars/chapter-03/): cards 54, 56 and 58.
+- [DRILLS.ai, chapter 4 · Phase 1: agents that make exercises](/en/books/drills-ai/chapter-04/): cards 53 and 55.
+- [DRILLS.ai, chapter 5 · Phase 2: the pivot to job applications](/en/books/drills-ai/chapter-05/): card 53.
+- [DRILLS.ai, chapter 9 · MCP: three read-only tools](/en/books/drills-ai/chapter-09/): card 57.

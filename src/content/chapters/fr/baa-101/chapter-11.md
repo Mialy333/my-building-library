@@ -23,6 +23,8 @@ Un modèle suit ses consignes la plupart du temps. Une règle réduit un comport
 - [AWS Scholars, chapitre 3](/fr/books/aws-scholars/chapter-03/) : « un outil à la fois » était dans le prompt, et le framework lançait les outils en parallèle. Correctifs en code : un exécuteur séquentiel, une étape finale forcée, la vérification du client dans les outils.
 - [Dev3Pack, Final](/fr/books/dev3pack/final/) : le modèle choisit les paragraphes, le code les recopie, et les citations ne peuvent plus être inventées.
 - [Dev3Pack, Gecko](/fr/books/dev3pack/gecko/) : la demande est épinglée avant la transaction, et rien n'est signé tant que chaque champ ne concorde pas.
+- [DRILLS.ai, chapitre 5](/fr/books/drills-ai/chapter-05/) : l'extraction du PDF est bornée par le système (temps, CPU, mémoire), pas par une consigne.
+- [DRILLS.ai, chapitre 7](/fr/books/drills-ai/chapter-07/) : le modèle qualifie les exigences ; le score et la décision sont calculés en Python.
 
 ## La question à se poser
 

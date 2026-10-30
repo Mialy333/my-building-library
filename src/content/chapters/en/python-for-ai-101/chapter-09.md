@@ -199,7 +199,7 @@ def recall(self, user_id, key):
 
 ## In the field
 
-The chapters of my courses where these mechanisms run for real.
+The chapters of my courses and my projects where these mechanisms run for real.
 
 - [Dev3Pack, Session 2](/en/books/dev3pack/session-02/): card 43.
 - [Dev3Pack, Session 4](/en/books/dev3pack/session-04/): card 43.

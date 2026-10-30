@@ -24,6 +24,8 @@ An average hides the shape of the results. A score measured on the cases you jus
 - [Dev3Pack, Session 7](/en/books/dev3pack/session-07/): a fake model that always cites the same document already scores 50%.
 - [Dev3Pack, cap01](/en/books/dev3pack/cap01/): an evaluation gate that's green on a fake model shows neither hallucinations nor wrong answers.
 - [Dev3Pack, Final](/en/books/dev3pack/final/): a grade measured on the wrong file, set aside and reported as such.
+- [DRILLS.ai, chapter 4](/en/books/drills-ai/chapter-04/): a test harness must fail on the broken version and pass on the fixed one.
+- [DRILLS.ai, chapter 11](/en/books/drills-ai/chapter-11/): latency measurements kept as they are: they show no gain, and I write it down.
 
 ## The question to ask
 

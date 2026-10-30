@@ -21,6 +21,7 @@ Free text can't be checked: where's the source, what confidence? A model can cut
 
 - [Dev3Pack, Session 3](/en/books/dev3pack/session-03/): a numeric citation (`[42]`) rejected by the parser; a stubborn model still wrapping its JSON in prose on the second attempt, then a flagged refusal; a confidence of 1.0 on a single document.
 - [Dev3Pack, Final](/en/books/dev3pack/final/): after four prompt tweaks with no stable effect, the model stopped writing and started choosing paragraphs, which the code copies. Result: 9/10 in training, then 15/15.
+- [DRILLS.ai, chapter 6](/en/books/drills-ai/chapter-06/): the model picks an excerpt ID, code puts back the original passage: a reworded quote can no longer get through.
 
 ## The question to ask
 

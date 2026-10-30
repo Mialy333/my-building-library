@@ -23,6 +23,7 @@ A vague description, and the model calls the wrong tool, or none at all. A tool 
 - [Dev3Pack, Session 4](/en/books/dev3pack/session-04/): a negative amount or an unknown currency are refused before the call, and the refusal names the valid values.
 - [Dev3Pack, Session 12](/en/books/dev3pack/session-12/): of sixteen tools advertised by a server, only two can move money.
 - [Dev3Pack, Session 13](/en/books/dev3pack/session-13/): a guard decides, on the string alone, whether an address is allowed, before any request.
+- [DRILLS.ai, chapter 9](/en/books/drills-ai/chapter-09/): the `get_job` docstring also says what the tool does not do: it does not read an arbitrary URL.
 
 ## The question to ask
 

@@ -23,6 +23,7 @@ Une boucle sans sorties tourne à vide, dépense sans limite, ou plante sur la p
 - [AWS Scholars, chapitre 2](/fr/books/aws-scholars/chapter-02/) : l'agent choisit un outil, le framework l'exécute, le résultat revient au modèle, jusqu'à la réponse finale. Un outil absent ne fait pas planter la boucle : il manque, tout simplement.
 - [Dev3Pack, Session 5](/fr/books/dev3pack/session-05/) : une boucle à quatre sorties. Le premier essai du bot plantait sur un outil inconnu au lieu de le refuser.
 - [Dev3Pack, Session 8](/fr/books/dev3pack/session-08/) : aucune flèche ne mène de « refuser » à « répondre », donc un refus ne devient jamais une réponse.
+- [DRILLS.ai, chapitre 1](/fr/books/drills-ai/chapter-01/) : un appel d'analyse, au plus une tentative corrective, une rédaction à part, et un délai qui plafonne chaque opération.
 
 ## La question à se poser
 

@@ -23,6 +23,7 @@ Une description floue, et le modèle appelle le mauvais outil, ou n'en appelle a
 - [Dev3Pack, Session 4](/fr/books/dev3pack/session-04/) : un montant négatif ou une devise inconnue sont refusés avant l'appel, et le refus nomme les valeurs valides.
 - [Dev3Pack, Session 12](/fr/books/dev3pack/session-12/) : sur seize outils annoncés par un serveur, deux seulement peuvent faire bouger l'argent.
 - [Dev3Pack, Session 13](/fr/books/dev3pack/session-13/) : une garde décide, sur la seule chaîne de caractères, si une adresse est autorisée, avant toute requête.
+- [DRILLS.ai, chapitre 9](/fr/books/drills-ai/chapter-09/) : la docstring de `get_job` dit aussi ce que l'outil ne fait pas : il ne lit pas une URL quelconque.
 
 ## La question à se poser
 

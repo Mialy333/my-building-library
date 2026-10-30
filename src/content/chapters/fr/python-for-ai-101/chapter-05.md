@@ -197,7 +197,7 @@ for msg in agent.messages:
 
 ## Sur le terrain
 
-Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
+Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
 
 - [Dev3Pack, Session 3](/fr/books/dev3pack/session-03/) : fiche 21.
 - [Dev3Pack, Session 4](/fr/books/dev3pack/session-04/) : fiches 16 et 18.
@@ -210,3 +210,4 @@ Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
 - [Dev3Pack, Gecko capstone](/fr/books/dev3pack/gecko/) : fiches 16, 18 et 21.
 - [AWS Scholars, chapitre 2 · AI Support Agent](/fr/books/aws-scholars/chapter-02/) : fiches 19 et 22.
 - [AWS Scholars, chapitre 3 · NovaMart Multi-Agent Support](/fr/books/aws-scholars/chapter-03/) : fiche 17.
+- [DRILLS.ai, chapitre 5 · Phase 2 : le pivot vers la candidature](/fr/books/drills-ai/chapter-05/) : fiche 18.

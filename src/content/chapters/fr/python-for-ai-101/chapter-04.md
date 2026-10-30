@@ -126,6 +126,6 @@ while time.time() < deadline:
 
 ## Sur le terrain
 
-Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
+Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
 
 - [AWS Scholars, chapitre 3 · NovaMart Multi-Agent Support](/fr/books/aws-scholars/chapter-03/) : fiches 12, 13, 14 et 15.

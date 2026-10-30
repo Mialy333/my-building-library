@@ -22,6 +22,8 @@ Un modèle produit un texte plausible. Il peut annoncer un ticket créé, un cor
 - [AWS Scholars, chapitre 1](/fr/books/aws-scholars/chapter-01/) : le chatbot donnait des numéros de ticket inventés, sans jamais appeler l'outil. L'évaluation affichait 0.92 ; seul le scan de la table DynamoDB a révélé le problème.
 - [Dev3Pack, Session 1](/fr/books/dev3pack/session-01/) : l'assistant de code annonçait un correctif qui n'était pas dans le fichier. `git diff` l'a montré, et un petit script l'a prouvé avant et après la correction.
 - [Dev3Pack, Gecko](/fr/books/dev3pack/gecko/) : le reçu d'un achat est écrit à partir de deux lectures de la blockchain, avant et après, jamais à partir de la réponse de l'envoi.
+- [DRILLS.ai, chapitre 3](/fr/books/drills-ai/chapter-03/) : avant de réparer, l'état réel du clone : statut, branches, commits non poussés, worktrees. Un `/health` vert dit seulement que le service répond.
+- [DRILLS.ai, chapitre 10](/fr/books/drills-ai/chapter-10/) : une CI verte ne prouve pas que Render a redéployé le bon commit : on vérifie le commit déployé et on fait un vrai appel.
 
 ## La question à se poser
 

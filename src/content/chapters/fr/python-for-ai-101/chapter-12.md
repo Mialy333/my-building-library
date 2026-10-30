@@ -67,8 +67,10 @@ for expected, source, text in CASES:
 
 ## Sur le terrain
 
-Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
+Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
 
 - [Dev3Pack, Final assignment](/fr/books/dev3pack/final/) : fiche 59.
 - [Dev3Pack, Gecko capstone](/fr/books/dev3pack/gecko/) : fiche 59.
 - [AWS Scholars, chapitre 3 · NovaMart Multi-Agent Support](/fr/books/aws-scholars/chapter-03/) : fiche 60.
+- [DRILLS.ai, chapitre 4 · Phase 1 : des agents qui fabriquent des exercices](/fr/books/drills-ai/chapter-04/) : fiche 60.
+- [DRILLS.ai, chapitre 11 · Incidents, mesures et limites](/fr/books/drills-ai/chapter-11/) : fiche 59.

@@ -149,7 +149,7 @@ logger.warning("Blocked cross-customer access: session %s requested %s", bound, 
 
 ## Sur le terrain
 
-Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
+Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
 
 - [Dev3Pack, Session 2](/fr/books/dev3pack/session-02/) : fiche 3.
 - [Dev3Pack, Session 13](/fr/books/dev3pack/session-13/) : fiche 3.
@@ -157,3 +157,5 @@ Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
 - [Dev3Pack, Gecko capstone](/fr/books/dev3pack/gecko/) : fiche 3.
 - [AWS Scholars, chapitre 2 · AI Support Agent](/fr/books/aws-scholars/chapter-02/) : fiche 2.
 - [AWS Scholars, chapitre 3 · NovaMart Multi-Agent Support](/fr/books/aws-scholars/chapter-03/) : fiches 1, 4 et 5.
+- [DRILLS.ai, chapitre 3 · Installer et reprendre sans rien perdre](/fr/books/drills-ai/chapter-03/) : fiche 3.
+- [DRILLS.ai, chapitre 10 · Déployer et exploiter](/fr/books/drills-ai/chapter-10/) : fiche 3.

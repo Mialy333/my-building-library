@@ -522,11 +522,11 @@ export const books: Book[] = [
     summary: {
       fr: [
         "Les mécanismes Python qui font tourner mes agents, une fiche par mécanisme, avec l'entrée, la sortie et le fichier où les relire. Les fiches viennent de trois projets : le bootcamp Dev3Pack, puis AI Support Agent et NovaMart, deux projets du Nanodegree AWS.",
-        "60 fiches classées par famille, de l'organisation du projet jusqu'aux tests. Chaque chapitre finit par les chapitres de mes formations où on voit ces mécanismes sur le terrain, et le livre se ferme sur trois checklists pour le prochain projet.",
+        "60 fiches classées par famille, de l'organisation du projet jusqu'aux tests. Chaque chapitre finit par les chapitres de mes formations et de mes projets où on voit ces mécanismes sur le terrain, et le livre se ferme sur trois checklists pour le prochain projet.",
       ],
       en: [
         "The Python mechanisms that run my agents, one per card, with the input, the output and the file where you can read them again. The cards come from three projects: the Dev3Pack bootcamp, then AI Support Agent and NovaMart, two projects of the AWS Nanodegree.",
-        "60 cards sorted by family, from the layout of the project to the tests. Every chapter ends with the chapters of my courses where these mechanisms are seen in the field, and the book closes on three checklists for the next project.",
+        "60 cards sorted by family, from the layout of the project to the tests. Every chapter ends with the chapters of my courses and my projects where these mechanisms are seen in the field, and the book closes on three checklists for the next project.",
       ],
     },
     callout: {

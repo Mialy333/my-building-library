@@ -190,7 +190,7 @@ with path.open("x", encoding="utf-8") as handle:     # "x" : refuse d'écraser
 
 ## Sur le terrain
 
-Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
+Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
 
 - [Dev3Pack, Session 1](/fr/books/dev3pack/session-01/) : fiche 41.
 - [Dev3Pack, Session 6](/fr/books/dev3pack/session-06/) : fiche 41.
@@ -198,3 +198,4 @@ Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
 - [Dev3Pack, Gecko capstone](/fr/books/dev3pack/gecko/) : fiche 41.
 - [AWS Scholars, chapitre 2 · AI Support Agent](/fr/books/aws-scholars/chapter-02/) : fiches 36 et 39.
 - [AWS Scholars, chapitre 3 · NovaMart Multi-Agent Support](/fr/books/aws-scholars/chapter-03/) : fiches 37, 38 et 40.
+- [DRILLS.ai, chapitre 9 · MCP : trois outils en lecture seule](/fr/books/drills-ai/chapter-09/) : fiche 37.

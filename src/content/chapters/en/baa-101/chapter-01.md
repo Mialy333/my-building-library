@@ -22,6 +22,8 @@ A model produces plausible text. It can announce a ticket created, a fix applied
 - [AWS Scholars, chapter 1](/en/books/aws-scholars/chapter-01/): the chatbot gave out invented ticket numbers, without ever calling the tool. The evaluation showed 0.92; only a scan of the DynamoDB table revealed the problem.
 - [Dev3Pack, Session 1](/en/books/dev3pack/session-01/): the coding assistant announced a fix that wasn't in the file. `git diff` showed it, and a small script proved it before and after the fix.
 - [Dev3Pack, Gecko](/en/books/dev3pack/gecko/): a purchase receipt is written from two reads of the blockchain, before and after, never from the send's response.
+- [DRILLS.ai, chapter 3](/en/books/drills-ai/chapter-03/): before fixing, the clone's real state: status, branches, unpushed commits, worktrees. A green `/health` only says the service answers.
+- [DRILLS.ai, chapter 10](/en/books/drills-ai/chapter-10/): a green CI does not prove Render redeployed the right commit: you check the deployed commit and make a real call.
 
 ## The question to ask
 

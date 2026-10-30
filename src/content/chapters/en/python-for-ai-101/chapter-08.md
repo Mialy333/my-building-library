@@ -190,7 +190,7 @@ with path.open("x", encoding="utf-8") as handle:     # "x": refuses to overwrite
 
 ## In the field
 
-The chapters of my courses where these mechanisms run for real.
+The chapters of my courses and my projects where these mechanisms run for real.
 
 - [Dev3Pack, Session 1](/en/books/dev3pack/session-01/): card 41.
 - [Dev3Pack, Session 6](/en/books/dev3pack/session-06/): card 41.
@@ -198,3 +198,4 @@ The chapters of my courses where these mechanisms run for real.
 - [Dev3Pack, Gecko capstone](/en/books/dev3pack/gecko/): card 41.
 - [AWS Scholars, chapter 2 · AI Support Agent](/en/books/aws-scholars/chapter-02/): cards 36 and 39.
 - [AWS Scholars, chapter 3 · NovaMart Multi-Agent Support](/en/books/aws-scholars/chapter-03/): cards 37, 38 and 40.
+- [DRILLS.ai, chapter 9 · MCP: three read-only tools](/en/books/drills-ai/chapter-09/): card 37.

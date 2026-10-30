@@ -126,6 +126,6 @@ while time.time() < deadline:
 
 ## In the field
 
-The chapters of my courses where these mechanisms run for real.
+The chapters of my courses and my projects where these mechanisms run for real.
 
 - [AWS Scholars, chapter 3 · NovaMart Multi-Agent Support](/en/books/aws-scholars/chapter-03/): cards 12, 13, 14 and 15.

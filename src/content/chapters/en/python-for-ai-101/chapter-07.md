@@ -183,7 +183,7 @@ def _orders():
 
 ## In the field
 
-The chapters of my courses where these mechanisms run for real.
+The chapters of my courses and my projects where these mechanisms run for real.
 
 - [Dev3Pack, Session 2](/en/books/dev3pack/session-02/): card 30.
 - [Dev3Pack, Session 4](/en/books/dev3pack/session-04/): card 30.
@@ -191,3 +191,5 @@ The chapters of my courses where these mechanisms run for real.
 - [Dev3Pack, Gecko capstone](/en/books/dev3pack/gecko/): card 30.
 - [AWS Scholars, chapter 2 · AI Support Agent](/en/books/aws-scholars/chapter-02/): cards 31, 34 and 35.
 - [AWS Scholars, chapter 3 · NovaMart Multi-Agent Support](/en/books/aws-scholars/chapter-03/): cards 32 and 33.
+- [DRILLS.ai, chapter 5 · Phase 2: the pivot to job applications](/en/books/drills-ai/chapter-05/): card 31.
+- [DRILLS.ai, chapter 6 · The assessment](/en/books/drills-ai/chapter-06/): card 30.

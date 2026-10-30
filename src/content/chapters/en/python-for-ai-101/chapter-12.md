@@ -67,8 +67,10 @@ for expected, source, text in CASES:
 
 ## In the field
 
-The chapters of my courses where these mechanisms run for real.
+The chapters of my courses and my projects where these mechanisms run for real.
 
 - [Dev3Pack, Final assignment](/en/books/dev3pack/final/): card 59.
 - [Dev3Pack, Gecko capstone](/en/books/dev3pack/gecko/): card 59.
 - [AWS Scholars, chapter 3 · NovaMart Multi-Agent Support](/en/books/aws-scholars/chapter-03/): card 60.
+- [DRILLS.ai, chapter 4 · Phase 1: agents that make exercises](/en/books/drills-ai/chapter-04/): card 60.
+- [DRILLS.ai, chapter 11 · Incidents, measurements and limits](/en/books/drills-ai/chapter-11/): card 59.

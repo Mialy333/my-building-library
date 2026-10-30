@@ -164,7 +164,7 @@ session_id = payload.get("session_id") or str(uuid.uuid4())
 
 ## In the field
 
-The chapters of my courses where these mechanisms run for real.
+The chapters of my courses and my projects where these mechanisms run for real.
 
 - [Dev3Pack, Session 5](/en/books/dev3pack/session-05/): card 6.
 - [Dev3Pack, Session 6](/en/books/dev3pack/session-06/): cards 6 and 8.

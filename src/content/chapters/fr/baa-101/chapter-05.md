@@ -21,6 +21,7 @@ Un texte libre ne se vérifie pas : où est la source, quelle confiance ? Un mod
 
 - [Dev3Pack, Session 3](/fr/books/dev3pack/session-03/) : une citation numérique (`[42]`) rejetée par le parser ; un modèle entêté qui enrobe encore son JSON de prose au second essai, puis un refus signalé ; une confiance de 1.0 sur un seul document.
 - [Dev3Pack, Final](/fr/books/dev3pack/final/) : après quatre retouches de prompt sans effet stable, le modèle a cessé de rédiger pour choisir des paragraphes, que le code recopie. Résultat : 9/10 à l'entraînement, puis 15/15.
+- [DRILLS.ai, chapitre 6](/fr/books/drills-ai/chapter-06/) : le modèle choisit l'ID d'un extrait, le code remet le passage original : une citation reformulée ne peut plus passer.
 
 ## La question à se poser
 

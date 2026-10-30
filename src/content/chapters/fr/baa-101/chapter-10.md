@@ -23,6 +23,7 @@ Sans propriétaire, une mémoire fuit d'un utilisateur à l'autre. Sans limite, 
 - [AWS Scholars, chapitre 2](/fr/books/aws-scholars/chapter-02/) : sans identifiant client, tous les tests écrivaient dans le même « client par défaut », et l'agent finissait par répondre à une question jamais posée.
 - [AWS Scholars, chapitre 3](/fr/books/aws-scholars/chapter-03/) : la mémoire survivait au redémarrage, mais l'agent qui rédige la réponse n'y avait pas accès. Le code lui transmet maintenant l'historique.
 - [Dev3Pack, Session 11](/fr/books/dev3pack/session-11/) : une mémoire rangée par propriétaire, plafonnée à cinq échanges, avec une politique écrite avant le premier enregistrement.
+- [DRILLS.ai, chapitre 8](/fr/books/drills-ai/chapter-08/) : le dossier reste dans le navigateur, avec une expiration d'un jour, ou de 30 jours sur option, vérifiée à chaque lecture.
 
 ## La question à se poser
 

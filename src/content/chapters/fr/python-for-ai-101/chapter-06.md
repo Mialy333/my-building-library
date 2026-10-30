@@ -208,7 +208,7 @@ turn.update(session_id=sid, customer_id=cid, request=request)        # mutate, n
 
 ## Sur le terrain
 
-Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
+Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
 
 - [Dev3Pack, Session 5](/fr/books/dev3pack/session-05/) : fiche 27.
 - [Dev3Pack, Session 8](/fr/books/dev3pack/session-08/) : fiches 23, 27 et 28.

@@ -22,6 +22,8 @@ A model apologizes convincingly, and a good answer can hide a bad path. Without 
 - [AWS Scholars, chapter 2](/en/books/aws-scholars/chapter-02/): isolate the layer first, then read the logs, which show the tool's name, its arguments and the raw result, where the model only apologizes.
 - [AWS Scholars, chapter 3](/en/books/aws-scholars/chapter-03/): the trace showed an agent launched before the one it depended on, then, on a correct refusal, an orchestrator that had skipped all its rules.
 - [Dev3Pack, Session 9](/en/books/dev3pack/session-09/): the trace tells a document found but ignored by the model from a document never found, two opposite fixes. And secrets go into it masked.
+- [DRILLS.ai, chapter 10](/en/books/drills-ai/chapter-10/): the logs give the step, the duration, the outcome and the error code, never the CV's content.
+- [DRILLS.ai, chapter 11](/en/books/drills-ai/chapter-11/): a diagnosis order that separates transport, extraction, model and validation.
 
 ## The question to ask
 

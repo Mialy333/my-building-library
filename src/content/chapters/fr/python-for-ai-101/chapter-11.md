@@ -201,7 +201,7 @@ except Exception as exc:
 
 ## Sur le terrain
 
-Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
+Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
 
 - [Dev3Pack, Session 1](/fr/books/dev3pack/session-01/) : fiche 53.
 - [Dev3Pack, Session 12](/fr/books/dev3pack/session-12/) : fiche 57.
@@ -209,3 +209,6 @@ Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
 - [Dev3Pack, Gecko capstone](/fr/books/dev3pack/gecko/) : fiches 53 et 57.
 - [AWS Scholars, chapitre 2 · AI Support Agent](/fr/books/aws-scholars/chapter-02/) : fiche 55.
 - [AWS Scholars, chapitre 3 · NovaMart Multi-Agent Support](/fr/books/aws-scholars/chapter-03/) : fiches 54, 56 et 58.
+- [DRILLS.ai, chapitre 4 · Phase 1 : des agents qui fabriquent des exercices](/fr/books/drills-ai/chapter-04/) : fiches 53 et 55.
+- [DRILLS.ai, chapitre 5 · Phase 2 : le pivot vers la candidature](/fr/books/drills-ai/chapter-05/) : fiche 53.
+- [DRILLS.ai, chapitre 9 · MCP : trois outils en lecture seule](/fr/books/drills-ai/chapter-09/) : fiche 57.

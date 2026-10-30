@@ -199,7 +199,7 @@ def recall(self, user_id, key):
 
 ## Sur le terrain
 
-Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
+Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
 
 - [Dev3Pack, Session 2](/fr/books/dev3pack/session-02/) : fiche 43.
 - [Dev3Pack, Session 4](/fr/books/dev3pack/session-04/) : fiche 43.

@@ -183,7 +183,7 @@ def _orders():
 
 ## Sur le terrain
 
-Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
+Les chapitres de mes formations et de mes projets où ces mécanismes tournent pour de vrai.
 
 - [Dev3Pack, Session 2](/fr/books/dev3pack/session-02/) : fiche 30.
 - [Dev3Pack, Session 4](/fr/books/dev3pack/session-04/) : fiche 30.
@@ -191,3 +191,5 @@ Les chapitres de mes formations où ces mécanismes tournent pour de vrai.
 - [Dev3Pack, Gecko capstone](/fr/books/dev3pack/gecko/) : fiche 30.
 - [AWS Scholars, chapitre 2 · AI Support Agent](/fr/books/aws-scholars/chapter-02/) : fiches 31, 34 et 35.
 - [AWS Scholars, chapitre 3 · NovaMart Multi-Agent Support](/fr/books/aws-scholars/chapter-03/) : fiches 32 et 33.
+- [DRILLS.ai, chapitre 5 · Phase 2 : le pivot vers la candidature](/fr/books/drills-ai/chapter-05/) : fiche 31.
+- [DRILLS.ai, chapitre 6 · Le diagnostic](/fr/books/drills-ai/chapter-06/) : fiche 30.

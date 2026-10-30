@@ -156,7 +156,7 @@ def _orchestrator():
 
 ## In the field
 
-The chapters of my courses where these mechanisms run for real.
+The chapters of my courses and my projects where these mechanisms run for real.
 
 - [Dev3Pack, Session 2](/en/books/dev3pack/session-02/): card 49.
 - [Dev3Pack, Session 4](/en/books/dev3pack/session-04/): card 48.
@@ -167,3 +167,5 @@ The chapters of my courses where these mechanisms run for real.
 - [Dev3Pack, Gecko capstone](/en/books/dev3pack/gecko/): card 48.
 - [AWS Scholars, chapter 2 · AI Support Agent](/en/books/aws-scholars/chapter-02/): card 50.
 - [AWS Scholars, chapter 3 · NovaMart Multi-Agent Support](/en/books/aws-scholars/chapter-03/): cards 51 and 52.
+- [DRILLS.ai, chapter 5 · Phase 2: the pivot to job applications](/en/books/drills-ai/chapter-05/): card 48.
+- [DRILLS.ai, chapter 10 · Deploying and operating](/en/books/drills-ai/chapter-10/): card 49.

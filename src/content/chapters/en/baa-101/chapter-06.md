@@ -23,6 +23,8 @@ A silent failure looks like a real answer. A crash shows the user a technical er
 - [Dev3Pack, Session 3](/en/books/dev3pack/session-03/): an off-corpus question is refused without any model call.
 - [Dev3Pack, Session 6](/en/books/dev3pack/session-06/): a file without a title is refused, rather than returning half a document.
 - [Dev3Pack, Gecko](/en/books/dev3pack/gecko/): "two espressos" is refused on quantity, naming both values (2 asked, 1 prepared), and nothing is signed.
+- [DRILLS.ai, chapter 5](/en/books/drills-ai/chapter-05/): a job source that is down is shown as unavailable, never as an empty list.
+- [DRILLS.ai, chapter 11](/en/books/drills-ai/chapter-11/): a removed feature answers 410, and a rejected piece of evidence comes back with a code, without the CV's text.
 
 ## The question to ask
 
