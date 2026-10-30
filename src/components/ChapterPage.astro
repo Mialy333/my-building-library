@@ -31,7 +31,9 @@ const workedOn = entry?.data.workedOn
   : null;
 
 // Reading time: words in the Markdown source, at about 200 words a minute.
-const words = entry?.body ? entry.body.split(/\s+/).filter(Boolean).length : 0;
+// SVG diagrams and HTML tags are left out: their markup is not text to read.
+const readable = entry?.body ? entry.body.replace(/<svg[\s\S]*?<\/svg>/g, " ").replace(/<[^>]+>/g, " ") : "";
+const words = readable.split(/\s+/).filter(Boolean).length;
 const minutes = Math.max(1, Math.round(words / 200));
 // Key of the "read" stamp, the same in FR and EN: reading one language marks both.
 const readKey = `${book.slug}/${slug}`;
@@ -282,6 +284,38 @@ const crumbs = [
   }
   .prose :global(blockquote p) { margin: 0; }
   .prose :global(a) { text-underline-offset: 3px; }
+
+  /* Figures (30 oct 2026): screenshots and diagrams, drawn like the code blocks,
+     a sheet of paper inside the page. Diagrams are inline SVG whose shapes take
+     their colours from the palette (classes d-*), so they follow light and dark. */
+  .prose :global(figure) { margin: 1.4em 0 1.8em; }
+  .prose :global(figure img), .prose :global(figure svg) { display: block; width: 100%; height: auto; }
+  .prose :global(figure.shot img) { border: 1px solid var(--line); border-radius: 14px; box-shadow: 4px 4px 0 var(--rule); }
+  .prose :global(figure.diagram) {
+    padding: 18px 12px 14px; border: 1px solid var(--line); border-radius: 14px;
+    background: var(--card); box-shadow: 4px 4px 0 var(--rule);
+  }
+  .prose :global(figure.diagram svg) { max-width: 440px; margin: 0 auto; }
+  .prose :global(figcaption) {
+    margin-top: 10px; font-family: var(--font-mono); font-size: 13px; line-height: 1.5; color: var(--ink-muted);
+  }
+  .prose :global(.d-box) { fill: var(--paper); stroke: var(--line); stroke-width: 1.2; }
+  .prose :global(.d-key) { fill: var(--blush); stroke: var(--accent-text); stroke-width: 1.2; }
+  .prose :global(.d-qbox) { stroke: var(--ink-muted); stroke-dasharray: 5 3; }
+  .prose :global(.d-dashbox) { stroke-dasharray: 5 3; }
+  .prose :global(.d-ghost) { fill: none; stroke: var(--ink-faint); stroke-dasharray: 4 4; }
+  .prose :global(.d-frame) { fill: none; stroke: var(--accent-text); stroke-dasharray: 3 3; }
+  .prose :global(.d-t) { fill: var(--ink); font-family: var(--font-sans); font-size: 13px; }
+  .prose :global(.d-m) { fill: var(--ink); font-family: var(--font-mono); font-size: 12px; }
+  .prose :global(.d-s) { fill: var(--ink-muted); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0; }
+  .prose :global(.d-a) { fill: var(--accent-text); }
+  .prose :global(.d-halo) { paint-order: stroke; stroke: var(--card); stroke-width: 4px; stroke-linejoin: round; }
+  .prose :global(.d-l) { fill: none; stroke: var(--ink-muted); stroke-width: 1.3; }
+  .prose :global(.d-l.d-acc) { stroke: var(--accent-text); }
+  .prose :global(.d-dash) { stroke-dasharray: 4 3; }
+  .prose :global(.d-life) { stroke: var(--ink-faint); }
+  .prose :global(.d-head) { fill: var(--ink-muted); }
+  .prose :global(.d-head.d-acc) { fill: var(--accent-text); }
 
   /* Glossary bubbles (added by src/plugins/glossary-bubbles.ts).
      The word: same text, a dotted plum underline, a "?" cursor. */

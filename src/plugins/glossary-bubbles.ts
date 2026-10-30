@@ -18,9 +18,10 @@ const labels = {
   en: { see: "See in the glossary →", close: "Close" },
 };
 
-// Never touch text inside these elements: links, code blocks, headings, buttons.
+// Never touch text inside these elements: links, code blocks, headings, buttons,
+// and SVG diagrams (a bubble inside an SVG would break the drawing).
 // Inline code is handled apart (see the text visitor below).
-const SKIP = new Set(["a", "pre", "h1", "h2", "h3", "h4", "h5", "h6", "button", "script", "style"]);
+const SKIP = new Set(["a", "pre", "h1", "h2", "h3", "h4", "h5", "h6", "button", "script", "style", "svg"]);
 
 const escapeRegex = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const escapeHtml = (s: string) =>

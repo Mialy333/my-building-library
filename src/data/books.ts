@@ -5,6 +5,8 @@ import type { TechIcon } from "./tech-icons";
 // in the docs/ folder of its repo), copied here so Astro can optimize it.
 import groundedResearchDemo from "../assets/demos/grounded-research-agent.png";
 import geckoBuyerDemo from "../assets/demos/my-gecko-buyer.png";
+// DRILLS.ai: the home screenshot of its README (docs/images/home-en.jpg at commit 8f45461).
+import drillsHome from "../assets/demos/drills-home.jpg";
 
 export type BookColor = "sage" | "apricot" | "rose";
 export type Shelf = "fundamentals" | "journeys" | "path" | "builds";
@@ -115,6 +117,7 @@ export const books: Book[] = [
       concept(9, "Évaluer sans se mentir", "Evaluate without lying to yourself", { published: true }),
       concept(10, "La mémoire a un propriétaire", "Memory has an owner", { published: true }),
       concept(11, "Ce qui doit toujours arriver s'impose dans le code", "What must always happen is enforced in code", { published: true }),
+      concept(12, "Doser l'autonomie", "Dosing autonomy", { published: true }),
     ],
   },
   {
@@ -641,6 +644,188 @@ export const books: Book[] = [
         teaser: {
           fr: "Trois checklists, une par projet, dans l'ordre où on pose les règles dans un nouveau repo.",
           en: "Three checklists, one per project, in the order you put the rules in a new repo.",
+        },
+      }),
+    ],
+  },
+  {
+    // DRILLS.ai: my own build, from the OpenAI DevDay hackathon (Builds shelf).
+    // Source: the project runbook "Runbook — DRILLS.ai", version of commit 8f45461
+    // (26 Oct 2026), audited on 30 Oct 2026. Code written with ChatGPT and Codex.
+    slug: "drills-ai",
+    name: { fr: "DRILLS.ai", en: "DRILLS.ai" },
+    shelf: "builds",
+    color: "sage",
+    description: {
+      fr: "Mon outil de candidature pour les personnes en reconversion vers l'Agent Engineering, construit pendant le hackathon OpenAI DevDay.",
+      en: "My application tool for people switching careers into Agent Engineering, built during the OpenAI DevDay hackathon.",
+    },
+    heading: { text: { fr: "DRILLS", en: "DRILLS" }, accent: { fr: ".ai", en: ".ai" } },
+    meta: { fr: "Hackathon OpenAI DevDay · octobre 2026 · MVP en ligne", en: "OpenAI DevDay hackathon · October 2026 · MVP live" },
+    summary: {
+      fr: [
+        "J'ai transformé un prototype d'exercices de programmation en outil de candidature pour les personnes en reconversion vers l'Agent Engineering. On importe un CV, on choisit une offre, on voit les preuves et les points à clarifier, puis on prépare des documents modifiables avant de postuler soi-même.",
+        "Astro, TypeScript, FastAPI et l'API OpenAI, avec des sorties structurées, des références vérifiées et un score calculé en Python. Construit avec l'assistance de ChatGPT et Codex. Le MVP est en ligne ; sa valeur sur de vraies recherches d'emploi reste à évaluer.",
+      ],
+      en: [
+        "I turned a coding-exercise prototype into an application tool for people switching careers into Agent Engineering. You import a CV, choose a posting, see the evidence and the points to clarify, then prepare editable documents before applying yourself.",
+        "Astro, TypeScript, FastAPI and the OpenAI API, with structured outputs, checked references and a score computed in Python. Built with the help of ChatGPT and Codex. The MVP is live; its value on real job searches still has to be evaluated.",
+      ],
+    },
+    callout: {
+      label: { fr: "Fil rouge", en: "Common thread" },
+      text: {
+        fr: "Une candidature crédible exige des faits, des contrôles et des limites compréhensibles, <em>pas seulement un texte fluide.</em>",
+        en: "A credible application needs facts, checks and understandable limits, <em>not just fluent text.</em>",
+      },
+    },
+    repo: "https://github.com/Mialy333/drills.ai",
+    cover: {
+      // \u200B = zero-width space: lets ".ai" go to the next line on a narrow cover.
+      title: { fr: "DRILLS\u200B", en: "DRILLS\u200B" },
+      accent: { fr: ".ai", en: ".ai" },
+      subtitle: { fr: "OpenAI DevDay hackathon", en: "OpenAI DevDay hackathon" },
+      info: { fr: "MVP", en: "MVP" },
+      bars: [40, 75, 55, 95],
+    },
+    chapters: [
+      concept(1, "Le problème et le contrat", "The problem and the contract", {
+        published: true,
+        concepts: [2, 12],
+        teaser: {
+          fr: "Trois questions de reconvertie, une promesse qui a changé deux fois, et ce qui reste hors contrat.",
+          en: "Three career-changer questions, a promise that changed twice, and what stays out of the contract.",
+        },
+        demo: "https://mialy333.github.io/drills.ai/en/",
+        video: "https://www.youtube.com/watch?v=rpC7ADxf-kI",
+        showcase: {
+          image: drillsHome,
+          title: "DRILLS.ai",
+          alt: {
+            fr: "L'accueil de DRILLS.ai : une application rétro qui propose de préparer sa première candidature d'Agent Engineer.",
+            en: "The DRILLS.ai home page: a retro app that offers to prepare your first Agent Engineer application.",
+          },
+          text: {
+            fr: "Un CV, une offre, un diagnostic qui montre ses preuves, puis des documents à relire avant de postuler soi-même. Capture du 25 octobre 2026, avec un exemple fictif.",
+            en: "A CV, a posting, an assessment that shows its evidence, then documents to review before applying yourself. Screenshot from October 25, 2026, with a fictional example.",
+          },
+        },
+      }),
+      concept(2, "L'architecture", "The architecture", {
+        published: true,
+        concepts: [11, 12],
+        teaser: {
+          fr: "Un composant nommé agent, un workflow piloté par l'application, et cinq étapes sur huit écrites en code.",
+          en: "A component named agent, a workflow driven by the app, and five steps out of eight written in code.",
+        },
+        stack: [
+          { name: "Astro", icon: "brand-astro" },
+          { name: "TypeScript", icon: "brand-typescript" },
+          { name: "Tiptap", icon: "edit" },
+          { name: "Zod", icon: "si-zod" },
+          { name: "Python", icon: "brand-python" },
+          { name: "FastAPI", icon: "si-fastapi" },
+          { name: "Pydantic", icon: "si-pydantic" },
+          { name: "OpenAI Responses API", icon: "brand-openai" },
+          { name: "pypdf", icon: "file-type-pdf" },
+          { name: "MCP", icon: "si-mcp" },
+          { name: "pytest", icon: "si-pytest" },
+          { name: "uv", icon: "si-uv" },
+          { name: "GitHub Actions", icon: "si-githubactions" },
+          { name: "GitHub Pages", icon: "si-githubpages" },
+          { name: "Render", icon: "si-render" },
+          { name: "ChatGPT / Codex", icon: "brand-openai" },
+        ],
+      }),
+      concept(3, "Installer et reprendre sans rien perdre", "Setting up and resuming without losing anything", {
+        published: true,
+        concepts: [1],
+        teaser: {
+          fr: "Dix branches, des worktrees, une revue détachée : regarder l'état réel du clone avant de réparer.",
+          en: "Ten branches, worktrees, a detached review: look at the clone's real state before fixing.",
+        },
+      }),
+      concept(4, "Phase 1 : des agents qui fabriquent des exercices", "Phase 1: agents that make exercises", {
+        published: true,
+        concepts: [1, 5, 9],
+        teaser: {
+          fr: "Quatre agents en chaîne, un validateur qui dit ce qu'il n'a pas prouvé, et un test qui doit échouer sur le bug.",
+          en: "Four agents in a chain, a validator that says what it did not prove, and a test that must fail on the bug.",
+        },
+      }),
+      concept(5, "Phase 2 : le pivot vers la candidature", "Phase 2: the pivot to job applications", {
+        published: true,
+        concepts: [1, 6, 11],
+        teaser: {
+          fr: "Quatre étapes, un PDF lu dans un sous-processus borné, et une panne d'offres jamais déguisée en liste vide.",
+          en: "Four steps, a PDF read in a bounded subprocess, and a job-board outage never disguised as an empty list.",
+        },
+        demo: "https://mialy333.github.io/drills.ai/en/",
+      }),
+      concept(6, "Le diagnostic : choisir une référence, pas la recopier", "The assessment: choose a reference, don't copy it", {
+        published: true,
+        concepts: [4, 5, 11],
+        teaser: {
+          fr: "Des extraits numérotés, un modèle qui choisit un ID, et le code qui remet le passage exact.",
+          en: "Numbered excerpts, a model that picks an ID, and code that puts back the exact passage.",
+        },
+      }),
+      concept(7, "Le score calculé par le code", "The score computed by code", {
+        published: true,
+        concepts: [9, 11],
+        teaser: {
+          fr: "Poids 3, 2, 1, crédit 1, 0,5, 0 : un 67 qu'on peut refaire à la main, et une condition qu'aucun score ne lève.",
+          en: "Weights 3, 2, 1, credit 1, 0.5, 0: a 67 you can redo by hand, and a condition no score lifts.",
+        },
+      }),
+      concept(8, "Les documents, le dossier et le suivi", "Documents, the dossier and tracking", {
+        published: true,
+        concepts: [10, 12],
+        teaser: {
+          fr: "Un brouillon à relire, un dossier qui expire dans le navigateur, et un envoi que seul le candidat déclare.",
+          en: "A draft to review, a dossier that expires in the browser, and a sending only the candidate declares.",
+        },
+      }),
+      concept(9, "MCP : trois outils en lecture seule", "MCP: three read-only tools", {
+        published: true,
+        concepts: [3, 4, 12],
+        teaser: {
+          fr: "Chercher, lire, scorer : trois outils qui ne voient ni le dossier, ni le modèle, et ne postulent pas.",
+          en: "Search, read, score: three tools that see neither the dossier nor the model, and do not apply.",
+        },
+      }),
+      concept(10, "Déployer et exploiter", "Deploying and operating", {
+        published: true,
+        concepts: [1, 8],
+        teaser: {
+          fr: "Deux hébergeurs, une CI qui n'est pas une barrière, et des logs qui disent où, jamais quoi.",
+          en: "Two hosts, a CI that is not a gate, and logs that say where, never what.",
+        },
+        demo: "https://mialy333.github.io/drills.ai/en/",
+        video: "https://www.youtube.com/watch?v=rpC7ADxf-kI",
+      }),
+      concept(11, "Incidents, mesures et limites", "Incidents, measurements and limits", {
+        published: true,
+        concepts: [6, 8, 9],
+        teaser: {
+          fr: "Dix-neuf incidents, 190 tests qui ne prouvent pas plus d'entretiens, et une latence gardée telle quelle.",
+          en: "Nineteen incidents, 190 tests that do not prove more interviews, and latency kept as it is.",
+        },
+      }),
+      concept(12, "Décisions, journal et suite", "Decisions, log and next steps", {
+        published: true,
+        concepts: [9, 12],
+        teaser: {
+          fr: "Vingt-neuf étapes avec leurs commits, treize décisions avec leur condition de retour, et un test à mener.",
+          en: "Twenty-nine steps with their commits, thirteen decisions with their condition for going back, and a test to run.",
+        },
+      }),
+      concept(13, "Ce que je sais défendre", "What I can defend", {
+        published: true,
+        concepts: [4, 5, 9, 11, 12],
+        teaser: {
+          fr: "Vingt notions, une question chacune, et dix réponses de soutenance qui ne promettent rien de trop.",
+          en: "Twenty notions, one question each, and ten defense answers that promise nothing too much.",
         },
       }),
     ],

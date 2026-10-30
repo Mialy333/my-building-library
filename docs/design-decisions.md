@@ -82,6 +82,7 @@ Ces couleurs servent uniquement en aplat, jamais pour du texte.
 | Dev3Pack | rose `#E3A0AA` | `#D98391` |
 | Hacktoberfest 2026 | abricot `#EFBF93`, provisoire (voir 9) | `#E0A071` |
 | My Python for AI 101 | rose `#E3A0AA`, provisoire (voir 9) | — (pas de jauge) |
+| DRILLS.ai | sauge `#A9C4AB`, provisoire (voir 9) | — (pas de jauge) |
 | Mon parcours | — (à paraître, masqué) | — |
 
 - Sur ces aplats, les dessins et les barres sont en encre `#231A22` à 75 %, dans les deux modes.
@@ -258,6 +259,11 @@ Sur la scène, la ligne mono du haut passe donc en `--ink-soft` : `--ink-muted` 
 - **Précédent / suivant** (22 oct 2026) : deux cartes `--card` bordées de `--line` (bordure prune au survol), empilées sur téléphone, côte à côte dès 640 px. « ← CHAPITRE PRÉCÉDENT » à gauche ; « CHAPITRE SUIVANT → » à droite, aligné à droite, comme une page qu'on tourne. Dans chaque carte : libellé mono, label du chapitre, titre en serif 22 px. Un chapitre non publié garde sa place : bordure en pointillés, titre + « à paraître ». Le premier chapitre n'a que « suivant », le dernier que « précédent ».
 - **Blocs de code** (22 oct 2026) : une feuille de papier dans la page. Carte `--card`, bordure `--line`, rayon 14 px, ombre portée `--rule` de 4 px ; le langage en mono capitales 11 px en haut à gauche (« PYTHON ») ; IBM Plex Mono 14 px, interligne 1.7 ; défilement horizontal pour les lignes longues. Couleurs tirées de la palette par le thème Shiki `css-variables` (`astro.config.mjs`), donc elles suivent le clair et le sombre : mots-clés prune (`--accent-text`), chaînes vert (`--published-ink`), nombres abricot (#9C4F2E en clair, #EFBF93 en sombre), commentaires `--ink-muted`, ponctuation `--ink-muted`. Remplace le thème `github-dark` par défaut, et le fond de code en ligne qui se dessinait ligne par ligne dans les blocs.
 - **Tableaux** (22 oct 2026) : Instrument Sans 15 px (plus lisible que Newsreader 19 px en colonnes), toute la largeur ; en-têtes en mono capitales 11,5 px `--ink-muted`, alignés à gauche, filet `--ink` de 1,5 px dessous ; une ligne `--line` entre les rangs et un rang sur deux sur fond `--rule`, comme un registre. Le code dans une cellule peut se couper n'importe où plutôt que d'élargir la colonne.
+- **Figures** (30 oct 2026, DRILLS.ai) : schémas d'architecture et captures d'écran dans le texte d'un chapitre. Ce sont des documents, comme les blocs de code et les tableaux, pas de l'illustration : la colonne de lecture reste sans décor.
+  - Même feuille de papier que les blocs de code : carte `--card`, bordure `--line`, rayon 14 px, ombre portée `--rule` de 4 px. Légende en mono 13 px `--ink-muted` sous la figure.
+  - Schémas : SVG en ligne dans le Markdown, dessiné pour 390 px de large (viewBox de 340), centré et limité à 440 px sur grand écran. Les formes prennent leurs couleurs dans la palette par des classes `d-*`, donc elles suivent le clair et le sombre : boîtes `--paper` bordées de `--line`, étape clé en `--blush` bordée de prune, flèches `--ink-muted`, flèche ou mention importante en prune, zones en pointillés `--ink-faint`. Texte en Instrument Sans 13 px, détails en IBM Plex Mono 10 px. Un titre SVG pour les lecteurs d'écran.
+  - Les bulles du glossaire ne touchent jamais un SVG, et le temps de lecture ne compte pas son code.
+  - Captures : l'image telle quelle dans le même cadre, avec sa date et « exemple fictif » dans la légende ; une capture devenue historique le dit.
 - **Stack** (18 oct 2026) : une pastille par outil, bordure `--line`, fond `--paper`, icône prune de 18 px à côté du nom. Une techno partenaire Hacktoberfest a une bordure prune et la mention « Partenaire Hacktoberfest » en mono sous son nom.
   - Icônes (`src/data/tech-icons.ts`) : Tabler (MIT, trait) quand Tabler a le logo (Python, Telegram, Chrome, HTML5) ; Simple Icons (CC0, forme pleine, en `currentColor`) pour les marques absentes de Tabler (Ollama, Render, SQLite, Streamlit, Claude, uv, WebGPU) ; sinon une icône de fonction Tabler, jamais un logo inventé (cerveau pour Gemma, tableau pour TabPFN, robot pour Strands Agents, navigateur pour WebLLM, arbres pour Paris Data, nuage de pluie pour Open-Meteo, horloge pour launchd).
 - **Liens** (18 oct 2026) : sur une ligne qui passe à la ligne si besoin, dans cet ordre : « Voir le code → », « Lire le post DEV → », « Essayer la démo → », « Voir la vidéo → ». Un lien absent n'est pas affiché.
@@ -372,7 +378,7 @@ Sur la scène, la ligne mono du haut passe donc en `--ink-soft` : `--ink-muted` 
 - **Rayon Fondamentaux** (22 oct 2026) : deux livres (BAA 101 et My Python for AI 101), donc une phrase de synthèse sous son label : « Les bases que je réutilise d'un projet à l'autre : comment marche un agent, et le Python qui le fait tourner. »
 - **Rayon Journeys** (18 oct 2026) : « Formations et challenges » en français, « Journeys » en anglais. Sous son label, une phrase de synthèse (« Mes formations et mes challenges, racontés étape par étape. »), à la taille et la couleur de la description d'un livre. Un rayon à un seul livre garde la description du livre à côté de sa couverture.
 - Un tag sans livre est masqué ; en V1 du site, seul « dev » est affiché. Un rayon vide est masqué.
-- **Livres sans chapitre publié** (18 oct 2026) : masqués de l'étagère, et leur rayon avec eux s'il devient vide (Parcours et Builds pour l'instant). Ils restent dans `books.ts` et réapparaissent avec leur premier chapitre. Raison : un livre vide en bas de l'étagère se lit comme un site inachevé, et un rayon « Mes agents » vide laisse croire que je n'ai rien construit seule. Remplace la règle du 9 oct 2026 (Builds affiché avec un livre « à paraître »).
+- **Livres sans chapitre publié** (18 oct 2026) : masqués de l'étagère, et leur rayon avec eux s'il devient vide (Parcours pour l'instant ; Builds est revenu le 30 oct 2026 avec DRILLS.ai, et « Mes agents » reste masqué). Ils restent dans `books.ts` et réapparaissent avec leur premier chapitre. Raison : un livre vide en bas de l'étagère se lit comme un site inachevé, et un rayon « Mes agents » vide laisse croire que je n'ai rien construit seule. Remplace la règle du 9 oct 2026 (Builds affiché avec un livre « à paraître »).
 - Les chapitres pas encore écrits d'un livre en cours restent visibles avec « à paraître ».
 - Un concept BAA 101 n'est cliquable que si son chapitre est publié.
 - BAA 101 se limite aux fondamentaux : un concept y entre seulement s'il vaut pour tout agent, quels que soient le framework, le cloud ou le modèle.
@@ -430,6 +436,7 @@ Toutes les animations sont en CSS ou SVG, sans bibliothèque. Seul le tampon « 
 - Tampon « LU » : propre à chaque navigateur ; il ne suit pas le lecteur d'un appareil à l'autre.
 - Hacktoberfest 2026 : couleur et dessin de couverture à choisir. En attendant, abricot (comme AWS Scholars) et barres.
 - My Python for AI 101 (22 oct 2026) : couleur et dessin de couverture à choisir. En attendant, rose (comme Dev3Pack) et barres.
+- DRILLS.ai (30 oct 2026) : couleur et dessin de couverture à choisir. En attendant, sauge (comme BAA 101) et barres.
 
 Réglés le 8 oct 2026 : polices auto-hébergées via l'API Fonts d'Astro ; Dev3Pack découpé en 17 chapitres (Sessions 1 à 14, cap01, Final, Gecko) ; repos AWS et Dev3Pack branchés.
 Réglé le 9 oct 2026 : ordre de l'index « Dernières pages », devenu sans objet depuis son retrait de l'accueil.
